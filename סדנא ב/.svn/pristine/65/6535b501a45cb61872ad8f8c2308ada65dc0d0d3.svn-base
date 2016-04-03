@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WSEP.bridgeProject;
+
+namespace WSEP.acceptanceTests
+{
+    abstract class ProjectTest // if not working try adding public
+    {
+
+        private BridgeProject _bridge;
+
+        public void setUp()
+        {
+            _bridge = Driver.getBridge();
+        }
+    }
+}

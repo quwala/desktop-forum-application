@@ -1,0 +1,281 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WSEP.userManagement
+{
+    public class UserManager : IUserManager
+    {
+
+        private User _superAdmin;
+        private List<Tuple<string, List<User>>> _forumMembers; // forum name and a list of members
+        private List<Tuple<string, List<User>>> _forumAdmins; // forum name and a list of admins
+        private List<Tuple<string, string, List<User>>> _subForumModerators; // forum name, sub forum name and a list of moderators
+
+        public UserManager()
+        {
+            _forumMembers = new List<Tuple<string, List<User>>>();
+            _forumAdmins = new List<Tuple<string, List<User>>>();
+            _subForumModerators = new List<Tuple<string, string, List<User>>>();
+            // WTF should I do with the super admin?
+        }
+
+        public bool aggainAdmin(string forumName, string username)
+        {
+            List<User> admins = null;
+            List<User> members = null;
+            // get list of admins
+            foreach (Tuple<string, List<User>> t in _forumAdmins)
+            {
+                if (forumName.Equals(t.Item1))
+                {
+                    admins = t.Item2;
+                    break;
+                }
+            }
+            // if list not found return false (wrong forum name)
+            if (admins == null)
+            {
+                return false;
+            }
+            User admin = null;
+            //  search user in admins list
+            foreach (User user in admins)
+            {
+                if (username.Equals(user.getUsername()))
+                {
+                    admin = user;
+                    break;
+                }
+            }
+            // if found return true
+            if (admin != null)
+            {
+                return true;
+            }
+            // get regular members list
+            foreach (Tuple<string, List<User>> t in _forumMembers)
+            {
+                if (forumName.Equals(t.Item1))
+                {
+                    members = t.Item2;
+                    break;
+                }
+            }
+            // if list not found return false (wrong forum name)
+            // should never be true as it should fail in the test admins == null before
+            if (members == null)
+            {
+                return false;
+            }
+            User member = null;
+            // search user in members list
+            foreach (User user in members)
+            {
+                if (username.Equals(user.getUsername()))
+                {
+                    member = user;
+                    break;
+                }
+            }
+            // if not found return false
+            if (member == null)
+            {
+                return false;
+            }
+            // add user to list of admins
+            admins.Add(member);
+            // if not added return false
+            if (!admins.Contains(member))
+            {
+                return false;
+            }
+            // remove user from regular members list
+            members.Remove(member);
+            // if not removed throw exception - fatal error
+            if (members.Contains(member))
+            {
+                string str1 = "User " + username + " was added as an admin to forum " + forumName + " but could not be removed from the regular members list.\n";
+                string str2 = "This created an illegal situation where the same user was in both data bases where a user can only be in one.\n";
+                string str3 = "Hence a fatal error occured.";
+                throw new Exception (str1 + str2 + str3);
+            }
+            // success
+            return true;
+        }
+
+        public bool unassignAdmin(string forumName, string username)
+        {
+            List<User> admins = null;
+            List<User> members = null;
+            // get list of admins
+            foreach (Tuple<string, List<User>> t in _forumAdmins)
+            {
+                if (forumName.Equals(t.Item1))
+                {
+                    admins = t.Item2;
+                    break;
+                }
+            }
+            // if list not found return false (wrong forum name)
+            if (admins == null)
+            {
+                return false;
+            }
+            User admin = null;
+            // search user in admins list
+            foreach (User user in admins)
+            {
+                if (username.Equals(user.getUsername()))
+                {
+                    admin = user;
+                    break;
+                }
+            }
+            // if not found return true
+            if (admin == null)
+            {
+                return true;
+            }
+            // get regular members list
+            foreach (Tuple<string, List<User>> t in _forumMembers)
+            {
+                if (forumName.Equals(t.Item1))
+                {
+                    members = t.Item2;
+                    break;
+                }
+            }
+            // if list not found return false (wrong forum name)
+            // should never be true as it should fail in the test admins == null before
+            if (members == null)
+            {
+                return false;
+            }
+            // add user to regular members list
+            members.Add(admin);
+            // if not added return false
+            if (!members.Contains(admin))
+            {
+                return false;
+            }
+            // remove user from admins list
+            admins.Remove(admin);
+            // if not removed throw exception - fatal error
+            if (admins.Contains(admin))
+            {
+                string str1 = "User " + username + " is no longer an admin to forum " + forumName + " and added to the regular members list, but could not be removed from the admins list.\n";
+                string str2 = "This created an illegal situation where the same user was in both data bases where a user can only be in one.\n";
+                string str3 = "Hence a fatal error occured.";
+                throw new Exception(str1 + str2 + str3);
+            }
+            // success
+            return true;
+        }
+
+        public bool assignModerator(string forumName, string subForumName, string username)
+        {
+            // set user as moderator
+            // if succedded return true
+            // else return false
+            return false;
+        }
+
+        public bool unassignModerator(string forumName, string subForumName, string username)
+        {
+            // set user as regular member
+            // if succedded return true
+            // else return false
+            return false;
+        }
+
+        public void getUserPermissionsForForum(string forumName, string username)
+        {
+            // check if user is a regular member, an admin or the super admin
+        }
+
+        public void getUserPermissionsForSubForum(string forumName, string subForumName, string username)
+        {
+            // check if user us a regular member, a moderator, an admin or the super admin
+        }
+
+        // should be synchronized
+        public bool verifyRegistrationDetails(string forumName, string username, string password, string eMail)
+        {
+            #region valid username (also verifies valid forum name)
+            List<User> admins = null;
+            List<User> members = null;
+            // get list of forum admins
+            foreach (Tuple<string, List<User>> t in _forumAdmins)
+            {
+                if (forumName.Equals(t.Item1))
+                {
+                    admins = t.Item2;
+                    break;
+                }
+            }
+            // if list not found return false (wrong forum name)
+            if (admins == null)
+            {
+                return false;
+            }
+            // check if there is an admin with that username
+            foreach (User admin in admins)
+            {
+                if (username.Equals(admin.getUsername()))
+                {
+                    return false;
+                }
+            }
+            // get list of forum members
+            foreach (Tuple<string, List<User>> t in _forumMembers)
+            {
+                if (forumName.Equals(t.Item1))
+                {
+                    members = t.Item2;
+                    break;
+                }
+            }
+            // if list not found return false (wrong forum name)
+            // should never be true as it should fail in the test admins == null before
+            if (members == null)
+            {
+                return false;
+            }
+            // check if there is a member with that username
+            foreach (User member in members)
+            {
+                if (username.Equals(member.getUsername()))
+                {
+                    return false;
+                }
+            }
+            #endregion
+            // verify password match the forum's policy
+            #region valid eMail
+            if (!eMail.Contains("@"))
+            {
+                return false;
+            }
+            string eMailSuffix = eMail.Substring(eMail.IndexOf('@'));
+            if (eMailSuffix.Contains("@") || !eMailSuffix.Contains("."))
+            {
+                return false;
+            }
+            #endregion
+            User newMember = new User(username, password, eMail, this);
+            members.Add(newMember);
+            return members.Contains(newMember);
+        }
+
+        public bool sendPM(string forumName, string from, string to, string msg)
+        {
+            // get user with that username from that forum
+            // activate user method getPM
+            return false;
+        }
+    }
+}

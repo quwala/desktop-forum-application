@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WSEP.acceptanceTests
+{
+    class AllTests // if not working try adding public
+    {
+        // there should be a function that adds new tests
+        // there should also be a connection to Nunit
+        // look at fsen file acptTests.AllTests
+    }
+}
