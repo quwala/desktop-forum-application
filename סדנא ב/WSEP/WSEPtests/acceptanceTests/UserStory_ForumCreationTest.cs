@@ -8,6 +8,9 @@ namespace WSEPtests.acceptanceTests
     public class UserStory_ForumCreationTest
     {
 
+        //check
+        //
+
         private IForumSystem fs;
 
         [TestInitialize()]
