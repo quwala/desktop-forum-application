@@ -4,3 +4,6 @@ C:\Users\Gal\Desktop\University\סדנא ב\WSEP\WSEP\bin\Debug\WSEP.pdb
 C:\Users\Gal\Desktop\University\סדנא ב\WSEP\WSEP\obj\Debug\WSEP.exe
 C:\Users\Gal\Desktop\University\סדנא ב\WSEP\WSEP\obj\Debug\WSEP.pdb
 C:\Users\Gal\Desktop\University\סדנא ב\WSEP\WSEP\obj\Debug\WSEP.csprojResolveAssemblyReference.cache
+C:\Users\roie dominitz\Desktop\GMRRS\סדנא ב\WSEP\WSEP\bin\Debug\WSEP.exe.config
+C:\Users\roie dominitz\Desktop\GMRRS\סדנא ב\WSEP\WSEP\obj\Debug\WSEP.exe
+C:\Users\roie dominitz\Desktop\GMRRS\סדנא ב\WSEP\WSEP\obj\Debug\WSEP.pdb
