@@ -6,21 +6,29 @@ using System.Threading.Tasks;
 
 namespace WSEP.forumManagement.forumHandler
 {
-    class Forum
+    public class Forum
     {
         private Policy _policy;
         private string name;
 
         public Forum(string name) 
         {
-            Policy nPolicy = new Policy();//defualt policy, can change later
+            Policy nPolicy = new Policy("Default Policy");//defualt policy, can change later
             _policy = nPolicy;
-            checkName(name);
+            checkForumName(name);
 
                 this.name = name;
         }
 
-        private void checkName(string name)
+        public bool setPolicy(Policy p)
+        {
+            if (p == null)
+                throw new Exception("Cannot set a null policy");
+            this._policy = p;
+            return true;
+        }
+
+        private void checkForumName(string name)
         {
             if (name == null)
                 throw new InvalidNameException("Name of the forum cannot be null");

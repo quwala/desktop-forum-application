@@ -70,6 +70,16 @@ namespace WSEP.userManagement
             return true;
         }
 
+        public bool checkPolicy(int minAdmins, int maxAdmins, int minModerators, int maxModerators)
+        {
+            return false;
+            //Thanks Gal, glhf 
+            //only need to check stuff like if the minAdmins is 2 and there is 
+            //currently only one, shit like that. 
+        }
+
+        
+
         public bool addSubForum(string forumName, string subForumName, string adminUsername)
         {
             if (forumName == null || subForumName == null || adminUsername == null)
