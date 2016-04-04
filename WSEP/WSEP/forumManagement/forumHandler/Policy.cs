@@ -8,5 +8,7 @@ namespace WSEP.forumManagement.forumHandler
 {
     class Policy
     {
+        //params...
+
     }
 }
