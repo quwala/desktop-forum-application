@@ -22,7 +22,11 @@ namespace WSEP.forumManagement.forumHandler
 
         private void checkName(string name)
         {
-            if(name.Equals("")) 
+            if (name == null)
+                throw new InvalidNameException("Name of the forum cannot be null");
+
+
+            if ( name.Equals("")) 
                  throw new InvalidNameException("Name of the forum cannot be empty");
 
             if(name.Contains("%") || name.Contains("&") || name.Contains("@"))

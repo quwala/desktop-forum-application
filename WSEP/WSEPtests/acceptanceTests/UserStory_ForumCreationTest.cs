@@ -21,7 +21,15 @@ namespace WSEPtests.acceptanceTests
         public void Test_ForumCreation_GoodInput()
         {
             Assert.IsTrue(fs.addForum("forumName"));
-            Assert.IsFalse(fs.addForum("forumName"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+            "A Forum with that name already exists")]
+        public void Test_ForumCreation_ExistingForumAdd()
+        {
+            fs.addForum("test");
+            fs.addForum("test");
         }
 
         [TestMethod]
@@ -33,9 +41,10 @@ namespace WSEPtests.acceptanceTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidNameException))]
         public void Test_ForumCreation_CatastophicInput()
         {
-            Assert.IsFalse(fs.addForum(null));
+            fs.addForum(null);
         }
     }
 }
