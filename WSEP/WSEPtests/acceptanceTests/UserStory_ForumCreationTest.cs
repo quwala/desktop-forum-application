@@ -25,16 +25,17 @@ namespace WSEPtests.acceptanceTests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidNameException))]
         public void Test_ForumCreation_BadInput()
         {
-            Assert.IsFalse(fs.addForum("@#$%^&*"));
-            Assert.IsFalse(fs.addForum(""));
+            fs.addForum("@#$%^&*");
+            fs.addForum("");
         }
 
         [TestMethod]
         public void Test_ForumCreation_CatastophicInput()
         {
-            // Assert.isFalse(fs.addForum(null));
+            Assert.IsFalse(fs.addForum(null));
         }
     }
 }
