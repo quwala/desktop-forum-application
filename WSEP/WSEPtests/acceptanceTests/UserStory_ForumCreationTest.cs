@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WSEP.forumManagement;
+using WSEP.userManagement;
 
 namespace WSEPtests.acceptanceTests
 {
@@ -13,21 +14,21 @@ namespace WSEPtests.acceptanceTests
         [TestInitialize()]
         public void Initialize()
         {
-            fs = new ForumSystem();
+            fs = new ForumSystem("superAdmin");
         }
 
         [TestMethod]
         public void Test_ForumCreation_GoodInput()
         {
-            // Assert.isTrue(fs.addForum("forumName"));
-            // Assert.isFalse(fs.addForum("forumName"));
+            Assert.IsTrue(fs.addForum("forumName"));
+            Assert.IsFalse(fs.addForum("forumName"));
         }
 
         [TestMethod]
         public void Test_ForumCreation_BadInput()
         {
-            // Assert.isFalse(fs.addForum("invalidForumName"));
-            // Assert.isFalse(fs.addForum(""));
+            Assert.IsFalse(fs.addForum("@#$%^&*"));
+            Assert.IsFalse(fs.addForum(""));
         }
 
         [TestMethod]
