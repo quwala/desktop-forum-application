@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WSEP.forumManagement.forumHandler;
 
 namespace WSEP.forumManagement
@@ -30,8 +27,6 @@ namespace WSEP.forumManagement
 
         public bool addForum(string name)
         {
-
-            
             // verify there is no forum with that name
             foreach (Forum f in _forums)
                 if (f.getName().Equals(name))

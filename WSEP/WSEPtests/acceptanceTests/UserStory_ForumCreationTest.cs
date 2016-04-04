@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WSEP.forumManagement;
-using WSEP.userManagement;
 
 namespace WSEPtests.acceptanceTests
 {
@@ -14,7 +13,7 @@ namespace WSEPtests.acceptanceTests
         [TestInitialize()]
         public void Initialize()
         {
-            fs = new ForumSystem("superAdmin");
+           fs = new ForumSystem("superAdmin");
         }
 
         [TestMethod]

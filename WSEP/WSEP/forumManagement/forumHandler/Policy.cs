@@ -8,18 +8,21 @@ namespace WSEP.forumManagement.forumHandler
 {
     public class Policy
     {
-        private string v;
-
-        public string name
+        private string name;
+        public string Name
         {
-            get { return name; }
+            get {
+                return name;
+            }
 
             set {
                 checkPolicyName(value);
-                    name = value; }
+                    name = value;
+            }
         }
 
-        public int minAdmins
+        private int minAdmins;
+        public int MinAdmins
         {
             get { return minAdmins; }
             set {
@@ -30,7 +33,8 @@ namespace WSEP.forumManagement.forumHandler
                 minAdmins = value; }
         }
 
-        public int maxAdmins
+        private int maxAdmins;
+        public int MaxAdmins
         {
             get { return maxAdmins; }
             set {
@@ -40,7 +44,8 @@ namespace WSEP.forumManagement.forumHandler
                 maxAdmins = value; }
         }
 
-        public int minModerators
+        private int minModerators;
+        public int MinModerators
         {
             get { return minModerators; }
             set {
@@ -52,7 +57,8 @@ namespace WSEP.forumManagement.forumHandler
             }
         }
 
-        public int maxModerators
+        private int maxModerators;
+        public int MaxModerators
         {
             get { return maxModerators; }
             set {
@@ -63,7 +69,8 @@ namespace WSEP.forumManagement.forumHandler
             }
         }
 
-        public string forumRules
+        private string forumRules;
+        public string ForumRules
         {
             get { return forumRules; }
             set { forumRules = value; }
@@ -78,9 +85,11 @@ namespace WSEP.forumManagement.forumHandler
             this.minModerators = 1;
             this.maxModerators = 10;//default values
             this.forumRules = "Have Fun!";
+
+
         }
 
-      
+
         private void checkPolicyName(string name)
         {
             if (name == null)
@@ -90,9 +99,9 @@ namespace WSEP.forumManagement.forumHandler
                 throw new InvalidNameException("Name of the policy cannot be empty");
 
             if (name.Contains("%") || name.Contains("&") || name.Contains("@"))
-                throw new InvalidNameException("Name of the policy contains illegal character");
+                 throw new InvalidNameException("Name of the policy contains illegal character");
 
-            if (name[0].Equals(' '))
+           if (name[0].Equals(' '))
                 throw new InvalidNameException("Name of the policy cannot begin with a space character");
 
         }

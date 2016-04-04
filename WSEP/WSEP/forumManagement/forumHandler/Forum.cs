@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WSEP.forumManagement.forumHandler
 {
-    public class Forum
+     public class Forum
     {
         private Policy _policy;
         private string name;
@@ -14,16 +14,16 @@ namespace WSEP.forumManagement.forumHandler
         public Forum(string name) 
         {
             Policy nPolicy = new Policy("Default Policy");//defualt policy, can change later
-            _policy = nPolicy;
+            setPolicy(nPolicy);
             checkForumName(name);
-
-                this.name = name;
+            this.name = name;
         }
 
         public bool setPolicy(Policy p)
         {
             if (p == null)
                 throw new Exception("Cannot set a null policy");
+
             this._policy = p;
             return true;
         }
@@ -45,9 +45,9 @@ namespace WSEP.forumManagement.forumHandler
 
         }
 
-        void changePolicy()
+        void changePolicy(string name, int minAdmins, int maxAdmins, int minModerators, int maxModerators, string forumRules)
         {
-            //get params as strings, create new policy object and attach to Policy field.
+            //create new policy object and attach to Policy field.
         }
 
        public string getName()
