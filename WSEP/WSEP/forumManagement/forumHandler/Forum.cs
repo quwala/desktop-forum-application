@@ -6,27 +6,42 @@ using System.Threading.Tasks;
 
 namespace WSEP.forumManagement.forumHandler
 {
-    class Forum
+    public class Forum
     {
         private Policy _policy;
         private string name;
 
         public Forum(string name) 
         {
-            Policy nPolicy = new Policy();//defualt policy, can change later
+            Policy nPolicy = new Policy("Default Policy");//defualt policy, can change later
             _policy = nPolicy;
-            checkName(name);
+            checkForumName(name);
 
                 this.name = name;
         }
 
-        private void checkName(string name)
+        public bool setPolicy(Policy p)
         {
-            if(name.Equals("")) 
+            if (p == null)
+                throw new Exception("Cannot set a null policy");
+            this._policy = p;
+            return true;
+        }
+
+        private void checkForumName(string name)
+        {
+            if (name == null)
+                throw new InvalidNameException("Name of the forum cannot be null");
+
+
+            if ( name.Equals("")) 
                  throw new InvalidNameException("Name of the forum cannot be empty");
 
             if(name.Contains("%") || name.Contains("&") || name.Contains("@"))
                  throw new InvalidNameException("Name of the forum contains illegal character");
+
+            if(name[0].Equals(' '))
+                throw new InvalidNameException("Name of the forum cannot begin with a space character");
 
         }
 

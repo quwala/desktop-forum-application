@@ -45,7 +45,7 @@
     <Compile Include="bridgeProject\BridgeProxy.cs" />
     <Compile Include="bridgeProject\BridgeReal.cs" />
     <Compile Include="forumManagement\forumHandler\Forum.cs" />
-    <Compile Include="forumManagement\forumHandler\InvalidNameException.cs" />
+    <Compile Include="forumManagement\InvalidNameException.cs" />
     <Compile Include="forumManagement\forumHandler\Policy.cs" />
     <Compile Include="forumManagement\forumHandler\SubForum.cs" />
     <Compile Include="forumManagement\ForumSystem.cs" />

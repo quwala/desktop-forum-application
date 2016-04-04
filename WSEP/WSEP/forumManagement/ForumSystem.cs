@@ -19,29 +19,29 @@ namespace WSEP.forumManagement
             _forums = new List<Forum>();
         }
 
-       
+       public Forum getForum(string name)
+        {
+            foreach (Forum f in _forums)
+                if (f.getName().Equals(name))
+                    return f;
+
+            throw new Exception("A Forum with that name does not exist");
+        }
 
         public bool addForum(string name)
         {
 
-            if (name == null || name.Equals(""))
-            {
-                return false;
-            }
-
+            
             // verify there is no forum with that name
             foreach (Forum f in _forums)
-            {
                 if (f.getName().Equals(name))
-                {
-                    return false;
-                }
-            }
+                    throw new Exception("A Forum with that name already exists");
+            
 
             Forum nForum = new Forum(name);
             _forums.Add(nForum);
             if (!_forums.Contains(nForum))
-                return false;
+                throw new Exception("Failed to add forum to DB");
 
             return true;
 
