@@ -33,18 +33,36 @@ namespace WSEPtests.acceptanceTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNameException))]
-        public void Test_ForumCreation_BadInput()
+        [ExpectedException(typeof(InvalidNameException),
+            "Name of the forum contains illegal character")]
+        public void Test_ForumCreation_BadCharacter()
         {
             fs.addForum("@#$%^&*");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidNameException),
+            "Name of the forum cannot be empty")]
+        public void Test_ForumCreation_EmptyName()
+        {
             fs.addForum("");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNameException))]
+        [ExpectedException(typeof(InvalidNameException),
+            "Name of the forum cannot be null")]
         public void Test_ForumCreation_CatastophicInput()
         {
             fs.addForum(null);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidNameException), 
+            "Name of the forum cannot begin with a space character")]
+        public void Test_ForumCreation_SpaceFirstCharacter()
+        {
+            fs.addForum(" test");
         }
     }
 }

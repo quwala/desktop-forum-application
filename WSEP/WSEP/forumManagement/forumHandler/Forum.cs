@@ -32,6 +32,9 @@ namespace WSEP.forumManagement.forumHandler
             if(name.Contains("%") || name.Contains("&") || name.Contains("@"))
                  throw new InvalidNameException("Name of the forum contains illegal character");
 
+            if(name[0].Equals(' '))
+                throw new InvalidNameException("Name of the forum cannot begin with a space character");
+
         }
 
         void changePolicy()
