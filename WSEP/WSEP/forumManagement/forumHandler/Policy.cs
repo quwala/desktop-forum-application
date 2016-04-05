@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WSEP.forumManagement.forumHandler
 {
-    public class Policy
+    public class ForumPolicy
     {
         private string name;
         public string Name
@@ -44,30 +44,7 @@ namespace WSEP.forumManagement.forumHandler
                 maxAdmins = value; }
         }
 
-        private int minModerators;
-        public int MinModerators
-        {
-            get { return minModerators; }
-            set {
-                if (value < 1)
-                    throw new Exception(
-                        "Minimum number of moderators cannot be smaller than 1.");
-
-                minModerators = value;
-            }
-        }
-
-        private int maxModerators;
-        public int MaxModerators
-        {
-            get { return maxModerators; }
-            set {
-                if (value < minModerators)
-                    throw new Exception(
-                        "Maximum number of moderators cannot be smaller than minimal number of moderators");
-                maxModerators = value;
-            }
-        }
+     
 
         private string forumRules;
         public string ForumRules
@@ -76,14 +53,12 @@ namespace WSEP.forumManagement.forumHandler
             set { forumRules = value; }
         }
 
-        public Policy(string name)
+        public ForumPolicy(string name)
         {
             checkPolicyName(name);
             this.name = name;
             this.minAdmins = 1;
             this.maxAdmins = 10;//default values
-            this.minModerators = 1;
-            this.maxModerators = 10;//default values
             this.forumRules = "Have Fun!";
 
 

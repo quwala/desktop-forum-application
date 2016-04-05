@@ -8,18 +8,18 @@ namespace WSEP.forumManagement.forumHandler
 {
      public class Forum
     {
-        private Policy _policy;
+        private ForumPolicy _policy;
         private string name;
 
         public Forum(string name) 
         {
-            Policy nPolicy = new Policy("Default Policy");//defualt policy, can change later
+            ForumPolicy nPolicy = new ForumPolicy("Default Policy");//defualt policy, can change later
             setPolicy(nPolicy);
             checkForumName(name);
             this.name = name;
         }
 
-        public bool setPolicy(Policy p)
+        public bool setPolicy(ForumPolicy p)
         {
             if (p == null)
                 throw new Exception("Cannot set a null policy");

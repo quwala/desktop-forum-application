@@ -70,7 +70,7 @@ namespace WSEP.userManagement
             return true;
         }
 
-        public bool checkPolicy(int minAdmins, int maxAdmins, int minModerators, int maxModerators)
+        public bool checkForumPolicy(string forumName, int minAdmins, int maxAdmins)
         {
             return false;
             //Thanks Gal, glhf 
@@ -85,7 +85,12 @@ namespace WSEP.userManagement
             //Roy
         }
 
-        
+        public bool checkSubForumPolicy(string forumName, string subForumName, int minModerators, int maxModerators)
+        {
+            return false;
+        }
+
+
 
         public bool addSubForum(string forumName, string subForumName, string adminUsername)
         {
