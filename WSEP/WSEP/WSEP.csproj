@@ -47,7 +47,7 @@
     <Compile Include="forumManagement\forumHandler\Forum.cs" />
     <Compile Include="forumManagement\forumHandler\SubForumPolicy.cs" />
     <Compile Include="forumManagement\InvalidNameException.cs" />
-    <Compile Include="forumManagement\forumHandler\Policy.cs" />
+    <Compile Include="forumManagement\forumHandler\ForumPolicy.cs" />
     <Compile Include="forumManagement\forumHandler\SubForum.cs" />
     <Compile Include="forumManagement\ForumSystem.cs" />
     <Compile Include="forumManagement\IForumSystem.cs" />

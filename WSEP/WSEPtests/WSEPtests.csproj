@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="acceptanceTests\UserStory_ForumCreationTest.cs" />
     <Compile Include="acceptanceTests\UserStory_PolicyActionsTests.cs" />
+    <Compile Include="acceptanceTests\UserStory_SubForumCreationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="userManagementTests\UserManagerUnitTests.cs" />
     <Compile Include="userManagementTests\UserUnitTests.cs" />

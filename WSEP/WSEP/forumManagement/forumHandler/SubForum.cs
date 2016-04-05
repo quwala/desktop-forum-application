@@ -31,21 +31,21 @@ namespace WSEP.forumManagement.forumHandler
         private void checkForumName(string name)
         {
             if (name == null)
-                throw new InvalidNameException("Name of the forum cannot be null");
+                throw new InvalidNameException("Name of the Sub Forum cannot be null");
 
 
             if (name.Equals(""))
-                throw new InvalidNameException("Name of the forum cannot be empty");
+                throw new InvalidNameException("Name of the Sub Forum cannot be empty");
 
             if (name.Contains("%") || name.Contains("&") || name.Contains("@"))
-                throw new InvalidNameException("Name of the forum contains illegal character");
+                throw new InvalidNameException("Name of the Sub Forum contains illegal character");
 
             if (name[0].Equals(' '))
-                throw new InvalidNameException("Name of the forum cannot begin with a space character");
+                throw new InvalidNameException("Name of the Sub Forum cannot begin with a space character");
 
         }
 
-        void changePolicy(string name, int minAdmins, int maxAdmins, int minModerators, int maxModerators, string forumRules)
+        void changeSubForumPolicy(string name, int minModerators, int maxModerators, string subForumRules)
         {
             //create new policy object and attach to Policy field.
         }

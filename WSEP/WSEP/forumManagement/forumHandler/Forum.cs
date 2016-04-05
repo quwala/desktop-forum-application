@@ -9,14 +9,16 @@ namespace WSEP.forumManagement.forumHandler
      public class Forum
     {
         private ForumPolicy _policy;
-        private string name;
+        private string _name;
+        private List<SubForum> _subForums;
 
         public Forum(string name) 
         {
             ForumPolicy nPolicy = new ForumPolicy("Default Policy");//defualt policy, can change later
             setPolicy(nPolicy);
             checkForumName(name);
-            this.name = name;
+            this._name = name;
+            _subForums = new List<SubForum>();
         }
 
         public bool setPolicy(ForumPolicy p)
@@ -26,6 +28,28 @@ namespace WSEP.forumManagement.forumHandler
 
             this._policy = p;
             return true;
+        }
+
+        public bool addSubForum(string name)
+        {
+
+            foreach (SubForum s in _subForums)
+                if (s.getName().Equals(name))
+                    throw new Exception("A Sub Forum with that name already exists");
+
+            SubForum sf = new SubForum(name);
+
+            _subForums.Add(sf);
+            return true;
+        }
+
+        public SubForum getSubForum(string name)
+        {
+            foreach (SubForum s in _subForums)
+                if (s.getName().Equals(name))
+                    return s;
+
+           throw new Exception("No Sub Forum with the name: "+name+" was found");
         }
 
         private void checkForumName(string name)
@@ -45,14 +69,14 @@ namespace WSEP.forumManagement.forumHandler
 
         }
 
-        void changePolicy(string name, int minAdmins, int maxAdmins, int minModerators, int maxModerators, string forumRules)
+        void changeForumPolicy(string name, int minAdmins, int maxAdmins, string forumRules)
         {
             //create new policy object and attach to Policy field.
         }
 
        public string getName()
         {
-            return this.name;
+            return this._name;
         }
     }
 }
