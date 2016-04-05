@@ -76,6 +76,13 @@ namespace WSEP.userManagement
             //Thanks Gal, glhf 
             //only need to check stuff like if the minAdmins is 2 and there is 
             //currently only one, shit like that. 
+            //also accordring to UC3, 2.1.2 the user needs to be presented with
+            //which attribute of the new policy creates a problem, so i know you
+            //won't like it, but could you just throw an exception such as:
+            //throw new Exception("Cannot set new policy - Conflicting minimum number of Moderators");
+            //and if everything is okay return true?
+            //Thanks!
+            //Roy
         }
 
         
