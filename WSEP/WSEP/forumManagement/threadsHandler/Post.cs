@@ -8,5 +8,9 @@ namespace WSEP.forumManagement.threadsHandler
 {
     class Post
     {
+        private string _title;
+        private string _content;
+        private DateTime _date;
+        private List<Post> _replies;
     }
 }

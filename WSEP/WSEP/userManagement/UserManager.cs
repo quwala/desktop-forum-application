@@ -395,7 +395,8 @@ namespace WSEP.userManagement
             return false;
         }
 
-        public bool checkForumPolicy(string forumName, int minAdmins, int maxAdmins)
+        public bool checkForumPolicy(string forumName, int minAdmins, int maxAdmins, int minModerators,
+            int maxModerators)
         {
             return false;
             //Thanks Gal, glhf 

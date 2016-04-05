@@ -44,7 +44,32 @@ namespace WSEP.forumManagement.forumHandler
                 maxAdmins = value; }
         }
 
-     
+        private int minModerators;
+        public int MinModerators
+        {
+            get { return minModerators; }
+            set
+            {
+                if (value < 1)
+                    throw new Exception(
+                        "Minimum number of moderators cannot be smaller than 1.");
+
+                minModerators = value;
+            }
+        }
+
+        private int maxModerators;
+        public int MaxModerators
+        {
+            get { return maxModerators; }
+            set
+            {
+                if (value < minModerators)
+                    throw new Exception(
+                        "Maximum number of moderators cannot be smaller than minimal number of moderators");
+                maxModerators = value;
+            }
+        }
 
         private string forumRules;
         public string ForumRules

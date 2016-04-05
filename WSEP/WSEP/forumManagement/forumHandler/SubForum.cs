@@ -8,25 +8,15 @@ namespace WSEP.forumManagement.forumHandler
 {
     public class SubForum
     {
-        private SubForumPolicy _policy;
         private string name;
 
         public SubForum(string name)
         {
-            SubForumPolicy nPolicy = new SubForumPolicy("Default Policy");//defualt policy, can change later
-            setPolicy(nPolicy);
             checkForumName(name);
             this.name = name;
         }
 
-        public bool setPolicy(SubForumPolicy p)
-        {
-            if (p == null)
-                throw new Exception("Cannot set a null policy");
-
-            this._policy = p;
-            return true;
-        }
+       
 
         private void checkForumName(string name)
         {
