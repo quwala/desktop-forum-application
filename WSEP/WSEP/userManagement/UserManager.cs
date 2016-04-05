@@ -18,6 +18,15 @@ namespace WSEP.userManagement
         private List<Tuple<string, List<User>>> _forumsAdmins; // forum name and a list of admins
         private List<Tuple<string, string, List<User>>> _subForumsModerators; // forum name, sub forum name and a list of moderators
 
+        private const string SUCCESS = "true";
+        private const string FUNCTION_ERRROR = "An error has occured with C# internal function.";
+        private const string INVALID_FORUM_NAME = "Invalid forum name. Forum name cannot be null, \"null\" or empty.";
+        private const string INVALID_SUB_FORUM_NAME = "Invalid sub forum name. Sub forum name cannot be null, \"null\" or empty.";
+        private const string INVALID_USERNAME = "Invalid username. Username cannot be null, \"null\" or empty.";
+        private const string WRONG_FORUM_NAME = "Wrong forum name. No forum found with such a name.";
+        private const string WRONG_USERNAME = "Wrong username. There is no member of this forum with that username.";
+        private const string WRONG_SUB_FORUM_NAME = "Wrong sub forum name. No sub forum found with such a name found in this forum.";
+
         public UserManager()
         {
             _forumsMembers = new List<Tuple<string, List<User>>>();
@@ -27,25 +36,26 @@ namespace WSEP.userManagement
             _superAdmin = new User("superAdmin", "superAdmin", "superAdmin@gmail.com", this);
         }
 
-        public bool addForum(string forumName)
+        public string addForum(string forumName)
         {
-            if (forumName == null || forumName.Equals(""))
+            string forumNameTaken = "This forum name is already in use. Please select another name.";
+            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
             {
-                return false;
+                return INVALID_FORUM_NAME;
             }
             // verify there is no forum with that name
             foreach (Tuple<string, List<User>> list in _forumsMembers)
             {
                 if (list.Item1.Equals(forumName))
                 {
-                    return false;
+                    return forumNameTaken;
                 }
             }
             foreach (Tuple<string, List<User>> list in _forumsAdmins)
             {
                 if (list.Item1.Equals(forumName))
                 {
-                    return false;
+                    return forumNameTaken;
                 }
             }
             // add new forum lists to the DB
@@ -53,188 +63,138 @@ namespace WSEP.userManagement
             admins.Add(_superAdmin);
             if (!admins.Contains(_superAdmin))
             {
-                return false;
+                return FUNCTION_ERRROR;
             }
             Tuple<string, List<User>> newForumAdmins = new Tuple<string, List<User>>(forumName, admins);
             _forumsAdmins.Add(newForumAdmins);
             if (!_forumsAdmins.Contains(newForumAdmins))
             {
-                return false;
+                return FUNCTION_ERRROR;
             }
             Tuple<string, List<User>> newForumMembers = new Tuple<string, List<User>>(forumName, new List<User>());
             _forumsMembers.Add(newForumMembers);
             if (!_forumsMembers.Contains(newForumMembers))
             {
-                return false;
+                return FUNCTION_ERRROR;
             }
-            return true;
+            return SUCCESS;
         }
 
-        public bool checkForumPolicy(string forumName, int minAdmins, int maxAdmins)
+        public string addSubForum(string forumName, string subForumName, string adminUsername)
         {
-            return false;
-            //Thanks Gal, glhf 
-            //only need to check stuff like if the minAdmins is 2 and there is 
-            //currently only one, shit like that. 
-            //also accordring to UC3, 2.1.2 the user needs to be presented with
-            //which attribute of the new policy creates a problem, so i know you
-            //won't like it, but could you just throw an exception such as:
-            //throw new Exception("Cannot set new policy - Conflicting minimum number of Moderators");
-            //and if everything is okay return true?
-            //Thanks!
-            //Roy
-        }
-
-        public bool checkSubForumPolicy(string forumName, string subForumName, int minModerators, int maxModerators)
-        {
-            return false;
-        }
-
-
-
-        public bool addSubForum(string forumName, string subForumName, string adminUsername)
-        {
-            if (forumName == null || subForumName == null || adminUsername == null)
+            string subForumNameTaken = "This sub forum name is already in use in that forum. Please select another name.";
+            string wrongUsername = "Wrong admin username. No admin was found with that username in that forum.";
+            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
             {
-                return false;
+                return INVALID_FORUM_NAME;
             }
-            if (forumName.Equals("") || subForumName.Equals("") || adminUsername.Equals(""))
+            if (subForumName == null || subForumName.Equals("null") || subForumName.Equals(""))
             {
-                return false;
+                return INVALID_SUB_FORUM_NAME;
+            }
+            if (adminUsername == null || adminUsername.Equals("null") || adminUsername.Equals(""))
+            {
+                return INVALID_USERNAME;
             }
             // verify there is a forum with that name
-            bool forumFound = false;
-            foreach (Tuple<string, List<User>> list in _forumsMembers)
-            {
-                if (list.Item1.Equals(forumName))
-                {
-                    forumFound = true;
-                    break;
-                }
-            }
             // if list not found return false (wrong forum name)
-            if (!forumFound)
+            if (getForumMembers(forumName) == null)
             {
-                return false;
+                return WRONG_FORUM_NAME;
             }
-            forumFound = false;
-            List<User> admins = null;
-            foreach (Tuple<string, List<User>> list in _forumsAdmins)
-            {
-                if (list.Item1.Equals(forumName))
-                {
-                    forumFound = true;
-                    admins = list.Item2;
-                    break;
-                }
-            }
+            List<User> admins = getForumAdmins(forumName);
             // if list not found return false (wrong forum name)
             // should never be true as it should fail in the previous forumFound test
-            if (!forumFound || admins == null)
+            if (admins == null)
             {
-                return false;
+                return WRONG_FORUM_NAME;
             }
             // verify there is no sub forum with that name under a forum with that name
             foreach (Tuple<string, string, List<User>> subForum in _subForumsModerators)
             {
                 if (subForum.Item1.Equals(forumName) && subForum.Item2.Equals(subForumName))
                 {
-                    return false;
+                    return subForumNameTaken;
                 }
             }
             // add new sub forum list to the DB
             // get admin user to set as a moderator
-            User moderator = null;
-            foreach (User admin in admins)
-            {
-                if (admin.getUsername().Equals(adminUsername))
-                {
-                    moderator = admin;
-                    break;
-                }
-            }
+            User moderator = getAdmin(admins, adminUsername);
             // wrong admin username
             if (moderator == null)
             {
-                return false;
+                return wrongUsername;
             }
             List<User> moderators = new List<User>();
             moderators.Add(moderator);
             if (!moderators.Contains(moderator))
             {
-                return false;
+                return FUNCTION_ERRROR;
             }
             Tuple<string, string, List<User>> newSubForumModerators = new Tuple<string,string,List<User>>(forumName, subForumName, moderators);
             _subForumsModerators.Add(newSubForumModerators);
             if (!_subForumsModerators.Contains(newSubForumModerators))
             {
-                return false;
+                return FUNCTION_ERRROR;
             }
-            return true;
+            return SUCCESS;
         }
 
         // should be synchronized
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public bool registerMemberToForum(string forumName, string username, string password, string eMail)
+        public string registerMemberToForum(string forumName, string username, string password, string eMail)
         {
-            if (forumName == null || username == null || password == null || eMail == null)
+            string invalidPassword = "Invalid password. Password cannot be null, \"null\" or empty, or contain any of the following:\nSpace";
+            string invalidEMail = "Invalid eMail. eMail cannot be null, \"null\" or empty.";
+            string usernameTaken = "This username is already in use in that forum. Please select another name.";
+            string wrongEMail = "Illegal eMail address. Please enter a corrent eMail address.";
+            string eMailTaken = "This eMail address is already in use in that forum. Please enter another eMail address.";
+            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
             {
-                return false;
+                return INVALID_FORUM_NAME;
             }
-            if (username.Equals("") || password.Equals("") || eMail.Equals(""))
+            if (username == null || username.Equals("null") || username.Equals(""))
             {
-                return false;
+                return INVALID_USERNAME;
             }
-            if (username.IndexOf(' ') == 0 || password.Contains(" "))
+            if (password == null || password.Equals("null") || password.Equals("") || password.Contains(" "))
             {
-                return false;
+                return invalidPassword;
+            }
+            if (eMail == null || eMail.Equals("null") || eMail.Equals(""))
+            {
+                return invalidEMail;
             }
             #region valid username (also verifies valid forum name)
-            List<User> admins = null;
-            List<User> members = null;
-            // get list of forum admins
-            foreach (Tuple<string, List<User>> t in _forumsAdmins)
-            {
-                if (forumName.Equals(t.Item1))
-                {
-                    admins = t.Item2;
-                    break;
-                }
-            }
+            List<User> admins = getForumAdmins(forumName);
+            List<User> members = getForumMembers(forumName);
             // if list not found return false (wrong forum name)
-            if (admins == null)
+            if (admins == null || members == null)
             {
-                return false;
+                return WRONG_FORUM_NAME;
             }
             // check if there is an admin with that username
             foreach (User admin in admins)
             {
                 if (username.Equals(admin.getUsername()))
                 {
-                    return false;
+                    return usernameTaken;
                 }
-            }
-            // get list of forum members
-            foreach (Tuple<string, List<User>> t in _forumsMembers)
-            {
-                if (forumName.Equals(t.Item1))
+                if (eMail.Equals(admin.getEMail()))
                 {
-                    members = t.Item2;
-                    break;
+                    return eMailTaken;
                 }
-            }
-            // if list not found return false (wrong forum name)
-            // should never be true as it should fail in the test admins == null before
-            if (members == null)
-            {
-                return false;
             }
             // check if there is a member with that username
             foreach (User member in members)
             {
                 if (username.Equals(member.getUsername()))
                 {
-                    return false;
+                    return usernameTaken;
+                }
+                if (eMail.Equals(member.getEMail()))
+                {
+                    return eMailTaken;
                 }
             }
             #endregion
@@ -242,104 +202,66 @@ namespace WSEP.userManagement
             #region valid eMail
             if (!eMail.Contains("@"))
             {
-                return false;
+                return wrongEMail;
             }
             if (eMail.IndexOf('@') == 0)
             {
-                return false;
+                return wrongEMail;
             }
             string eMailSuffix = eMail.Substring(eMail.IndexOf('@') + 1);
             if (eMailSuffix.Contains("@") || !eMailSuffix.Contains("."))
             {
-                return false;
+                return wrongEMail;
             }
             if (eMailSuffix.IndexOf('.') == 0)
             {
-                return false;
+                return wrongEMail;
             }
             if (eMailSuffix.IndexOf('.') == eMailSuffix.Length - 1)
             {
-                return false;
+                return wrongEMail;
             }
             #endregion
             User newMember = new User(username, password, eMail, this);
             members.Add(newMember);
             if (!members.Contains(newMember))
             {
-                return false;
+                return FUNCTION_ERRROR;
             }
-            return true;
+            return SUCCESS;
         }
 
-        public bool aggainAdmin(string forumName, string username)
+        public string assignAdmin(string forumName, string username)
         {
-            List<User> admins = null;
-            List<User> members = null;
-            // get list of admins
-            foreach (Tuple<string, List<User>> t in _forumsAdmins)
+            string inputStatus = adminsAssignmeentInputValidation(forumName, username);
+            if (!inputStatus.Equals(SUCCESS))
             {
-                if (forumName.Equals(t.Item1))
-                {
-                    admins = t.Item2;
-                    break;
-                }
+                return inputStatus;
             }
-            // if list not found return false (wrong forum name)
-            if (admins == null)
+            List<User> admins = getForumAdmins(forumName);
+            List<User> members = getForumMembers(forumName);
+            if (admins == null || members == null)
             {
-                return false;
+                return WRONG_FORUM_NAME;
             }
-            User admin = null;
-            // search user in admins list
-            foreach (User user in admins)
-            {
-                if (username.Equals(user.getUsername()))
-                {
-                    admin = user;
-                    break;
-                }
-            }
+            User admin = getAdmin(admins, username);
             // if found return true
             if (admin != null)
             {
-                return true;
+                return SUCCESS;
             }
-            // get regular members list
-            foreach (Tuple<string, List<User>> t in _forumsMembers)
-            {
-                if (forumName.Equals(t.Item1))
-                {
-                    members = t.Item2;
-                    break;
-                }
-            }
-            // if list not found return false (wrong forum name)
-            // should never be true as it should fail in the test admins == null before
-            if (members == null)
-            {
-                return false;
-            }
-            User member = null;
-            // search user in members list
-            foreach (User user in members)
-            {
-                if (username.Equals(user.getUsername()))
-                {
-                    member = user;
-                    break;
-                }
-            }
+            User member = getMember(members, username);
             // if not found return false
             if (member == null)
             {
-                return false;
+                return WRONG_USERNAME;
             }
             // add user to list of admins
             admins.Add(member);
             // if not added return false
             if (!admins.Contains(member))
             {
-                return false;
+                return FUNCTION_ERRROR;
             }
             // remove user from regular members list
             members.Remove(member);
@@ -352,64 +274,38 @@ namespace WSEP.userManagement
                 throw new Exception (str1 + str2 + str3);
             }
             // success
-            return true;
+            return SUCCESS;
         }
 
-        public bool unassignAdmin(string forumName, string username)
+        public string unassignAdmin(string forumName, string username)
         {
-            // if username is super admins username return false
-            List<User> admins = null;
-            List<User> members = null;
-            // get list of admins
-            foreach (Tuple<string, List<User>> t in _forumsAdmins)
+            string inputStatus = adminsAssignmeentInputValidation(forumName, username);
+            if (!inputStatus.Equals(SUCCESS))
             {
-                if (forumName.Equals(t.Item1))
-                {
-                    admins = t.Item2;
-                    break;
-                }
+                return inputStatus;
             }
-            // if list not found return false (wrong forum name)
-            if (admins == null)
+            if (username.Equals(_superAdmin.getUsername()))
             {
-                return false;
+                return "Cannot unassign the super admin.";
             }
-            User admin = null;
-            // search user in admins list
-            foreach (User user in admins)
+            List<User> admins = getForumAdmins(forumName);
+            List<User> members = getForumMembers(forumName);
+            if (admins == null || members == null)
             {
-                if (username.Equals(user.getUsername()))
-                {
-                    admin = user;
-                    break;
-                }
+                return WRONG_FORUM_NAME;
             }
+            User admin = getAdmin(admins, username);
             // if not found return true
             if (admin == null)
             {
-                return true;
-            }
-            // get regular members list
-            foreach (Tuple<string, List<User>> t in _forumsMembers)
-            {
-                if (forumName.Equals(t.Item1))
-                {
-                    members = t.Item2;
-                    break;
-                }
-            }
-            // if list not found return false (wrong forum name)
-            // should never be true as it should fail in the test admins == null before
-            if (members == null)
-            {
-                return false;
+                return SUCCESS;
             }
             // add user to regular members list
             members.Add(admin);
             // if not added return false
             if (!members.Contains(admin))
             {
-                return false;
+                return FUNCTION_ERRROR;
             }
             // remove user from admins list
             admins.Remove(admin);
@@ -422,24 +318,64 @@ namespace WSEP.userManagement
                 throw new Exception(str1 + str2 + str3);
             }
             // success
-            return true;
+            return SUCCESS;
         }
 
-        public bool assignModerator(string forumName, string subForumName, string username)
+        public string assignModerator(string forumName, string subForumName, string username)
         {
-            // if username is super admins username return false
+            string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
+            if (!inputStatus.Equals(SUCCESS))
+            {
+                return inputStatus;
+            }
+            // verify correct forum name
+            List<User> admins = getForumAdmins(forumName);
+            List<User> members = getForumMembers(forumName);
+            if (admins == null || members == null)
+            {
+                return WRONG_FORUM_NAME;
+            }
+            // verify user exists in this forum
+            User moderator = getAdmin(admins, username);
+            if (moderator == null)
+            {
+                moderator = getMember(members, username);
+            }
+            if (moderator == null)
+            {
+                return WRONG_USERNAME;
+            }
+            // verify correct sub forum name
+            List<User> moderators = getSubForumModerators(forumName, subForumName);
+            if (moderators == null)
+            {
+                return WRONG_SUB_FORUM_NAME;
+            }
+            // if user is a moderator return success
+            if (moderators.Contains(moderator))
+            {
+                return SUCCESS;
+            }
             // set user as moderator
-            // if succedded return true
-            // else return false
-            return false;
+            moderators.Add(moderator);
+            if (!moderators.Contains(moderator))
+            {
+                return FUNCTION_ERRROR;
+            }
+            return SUCCESS;
         }
 
-        public bool unassignModerator(string forumName, string subForumName, string username)
+        public string unassignModerator(string forumName, string subForumName, string username)
         {
+            string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
+            if (!inputStatus.Equals(SUCCESS))
+            {
+                return inputStatus;
+            }
             // set user as regular member
             // if succedded return true
             // else return false
-            return false;
+            return SUCCESS;
         }
 
         public void getUserPermissionsForForum(string forumName, string username)
@@ -457,6 +393,121 @@ namespace WSEP.userManagement
             // get user with that username from that forum
             // activate user method getPM
             return false;
+        }
+
+        public bool checkForumPolicy(string forumName, int minAdmins, int maxAdmins)
+        {
+            return false;
+            //Thanks Gal, glhf 
+            //only need to check stuff like if the minAdmins is 2 and there is 
+            //currently only one, shit like that. 
+            //also accordring to UC3, 2.1.2 the user needs to be presented with
+            //which attribute of the new policy creates a problem, so i know you
+            //won't like it, but could you just throw an exception such as:
+            //throw new Exception("Cannot set new policy - Conflicting minimum number of Moderators");
+            //and if everything is okay return true?
+            //Thanks!
+            //Roy
+        }
+
+        private List<User> getForumAdmins(string forumName)
+        {
+            List<User> admins = null;
+            foreach (Tuple<string, List<User>> t in _forumsAdmins)
+            {
+                if (forumName.Equals(t.Item1))
+                {
+                    admins = t.Item2;
+                    break;
+                }
+            }
+            return admins;
+        }
+
+        private List<User> getForumMembers(string forumName)
+        {
+            List<User> members = null;
+            foreach (Tuple<string, List<User>> t in _forumsMembers)
+            {
+                if (forumName.Equals(t.Item1))
+                {
+                    members = t.Item2;
+                    break;
+                }
+            }
+            return members;
+        }
+
+        private User getAdmin(List<User> admins, string username)
+        {
+            User admin = null;
+            foreach (User u in admins)
+            {
+                if (username.Equals(u.getUsername()))
+                {
+                    admin = u;
+                    break;
+                }
+            }
+            return admin;
+        }
+
+        private User getMember(List<User> members, string username)
+        {
+            User member = null;
+            foreach (User u in members)
+            {
+                if (username.Equals(u.getUsername()))
+                {
+                    member = u;
+                    break;
+                }
+            }
+            return member;
+        }
+
+        private List<User> getSubForumModerators(string forumName, string subForumName)
+        {
+            List<User> moderators = null;
+            foreach (Tuple<string, string, List<User>> subForumModerators in _subForumsModerators)
+            {
+                if (forumName.Equals(subForumModerators.Item1) && subForumName.Equals(subForumModerators.Item2))
+                {
+                    moderators = subForumModerators.Item3;
+                    break;
+                }
+            }
+            return moderators;
+        }
+
+        private string adminsAssignmeentInputValidation(string forumName, string username)
+        {
+            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
+            {
+                return INVALID_FORUM_NAME;
+            }
+            if (username == null || username.Equals("null") || username.Equals(""))
+            {
+                return INVALID_USERNAME;
+            }
+            return SUCCESS;
+        }
+
+        private string moderatorsAssignmentInputValidation(string forumName, string subForumName, string username)
+        {
+            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
+            {
+                return INVALID_FORUM_NAME;
+            }
+            if (subForumName == null || subForumName.Equals("null") || subForumName.Equals(""))
+            {
+                return INVALID_SUB_FORUM_NAME;
+            }
+            if (username == null || username.Equals("null") || username.Equals(""))
+            {
+                return INVALID_USERNAME;
+            }
+            return SUCCESS;
         }
     }
 }

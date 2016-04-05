@@ -10,3 +10,5 @@ C:\Users\quwala\Documents\gmrrs.git\WSEP\WSEP\bin\Debug\WSEP.pdb
 C:\Users\quwala\Documents\gmrrs.git\WSEP\WSEP\obj\Debug\WSEP.exe
 C:\Users\quwala\Documents\gmrrs.git\WSEP\WSEP\obj\Debug\WSEP.pdb
 C:\Users\quwala\Documents\gmrrs.git\WSEP\WSEP\obj\Debug\WSEP.csprojResolveAssemblyReference.cache
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP\bin\Debug\WSEP.exe.config
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP\obj\Debug\WSEP.csprojResolveAssemblyReference.cache

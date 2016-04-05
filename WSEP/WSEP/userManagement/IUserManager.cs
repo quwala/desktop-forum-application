@@ -8,13 +8,13 @@ namespace WSEP.userManagement
 {
     public interface IUserManager
     {
-        bool addForum(string forumName);
-        bool addSubForum(string forumName, string subForumName, string adminUsername);
-        bool registerMemberToForum(string forumName, string username, string password, string eMail);
-        bool aggainAdmin(string forumName, string username);
-        bool unassignAdmin(string forumName, string username);
-        bool assignModerator(string forumName, string subForumName, string username);
-        bool unassignModerator(string forumName, string subForumName, string username);
+        string addForum(string forumName); // has tests
+        string addSubForum(string forumName, string subForumName, string adminUsername); // has tests
+        string registerMemberToForum(string forumName, string username, string password, string eMail); // has tests
+        string assignAdmin(string forumName, string username); // has tests
+        string unassignAdmin(string forumName, string username); // has tests
+        string assignModerator(string forumName, string subForumName, string username); // has tests
+        string unassignModerator(string forumName, string subForumName, string username);
         void getUserPermissionsForForum(string forumName, string username);
         void getUserPermissionsForSubForum(string forumName, string subForumName, string username);
     }

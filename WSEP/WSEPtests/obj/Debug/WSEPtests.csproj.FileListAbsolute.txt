@@ -13,3 +13,4 @@ C:\Users\quwala\Documents\gmrrs.git\WSEP\WSEPtests\bin\Debug\WSEP.pdb
 C:\Users\quwala\Documents\gmrrs.git\WSEP\WSEPtests\obj\Debug\WSEPtests.csprojResolveAssemblyReference.cache
 C:\Users\quwala\Documents\gmrrs.git\WSEP\WSEPtests\obj\Debug\WSEPtests.dll
 C:\Users\quwala\Documents\gmrrs.git\WSEP\WSEPtests\obj\Debug\WSEPtests.pdb
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEPtests\obj\Debug\WSEPtests.csprojResolveAssemblyReference.cache
