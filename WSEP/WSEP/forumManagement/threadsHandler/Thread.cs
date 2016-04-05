@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WSEP.forumManagement.threadsHandler;
 
-namespace WSEP.forumManagement.forumHandler
+namespace WSEP.forumManagement.threadsHandler
 {
     class Thread
     {
