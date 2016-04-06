@@ -16,3 +16,9 @@ C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP\bin\Debug\WSEP.exe
 C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP\bin\Debug\WSEP.pdb
 C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP\obj\Debug\WSEP.exe
 C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP\obj\Debug\WSEP.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEP\bin\Debug\WSEP.exe.config
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEP\obj\Debug\WSEP.csprojResolveAssemblyReference.cache
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEP\bin\Debug\WSEP.exe
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEP\bin\Debug\WSEP.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEP\obj\Debug\WSEP.exe
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEP\obj\Debug\WSEP.pdb

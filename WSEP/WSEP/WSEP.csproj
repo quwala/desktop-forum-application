@@ -54,6 +54,8 @@
     <Compile Include="forumManagement\ForumSystem.cs" />
     <Compile Include="forumManagement\IForumSystem.cs" />
     <Compile Include="forumManagement\threadsHandler\Post.cs" />
+    <Compile Include="INotificationManagerObserver.cs" />
+    <Compile Include="notificationManagementService\NotificationManagerService.cs" />
     <Compile Include="notificationManagement\INotificationsManager.cs" />
     <Compile Include="notificationManagement\NotificationManager.cs" />
     <Compile Include="Program.cs" />
