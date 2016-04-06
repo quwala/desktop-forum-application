@@ -15,9 +15,9 @@ namespace WSEPtests.acceptanceTests
             fs = new ForumSystem("superAdmin");
             //fs.addForum("forumName");                                              //adding the new forum..      
             //fs.addForum("forumName2");                                              //adding the new forum..      
-            //fs.SendingPrivateMassage("forumName","UserName","UserPassword1");             //register to forum new user1
-            //fs.SendingPrivateMassage("forumName","UserName2","UserPassword2");             //register to forum another user2
-            //fs.SendingPrivateMassage("forumName2","UserName3","UserPassword3");            //register to another forum a new user3
+            //fs.RegisterToForum("forumName","UserName","UserPassword1","galMor1007@gmail.com")      //register to forum new user
+            //fs.RegisterToForum("forumName","UserName2","UserPassword2","shay.dayan1007@gmail.com");             //register to forum another user2
+            //fs.RegisterToForum("forumName2","UserName3","UserPassword3","shay.dayan1007@gmail.com");            //register to another forum a new user3
 
         }
 

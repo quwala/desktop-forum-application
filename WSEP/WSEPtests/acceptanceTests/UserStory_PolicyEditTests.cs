@@ -16,11 +16,10 @@ namespace WSEPtests.acceptanceTests
             //fs.addForum("forumName");                              //adding the new forum.. superadmin is the new forum admin           
 
 
-            //admin should be loged in as a pre condition, not sure if to check it here or not..
 
         }
 
-        public void Test_Policy_GoodInput()                         //set Policy for forum
+        public void Test_Policy_GoodInput()                        
         {
             //Assert.isTrue(fs.SetPolicy("forumName",1,3,1,3,"Forum rules"));
             //Assert.isFalse(fs.SetPolicy("forumName",1,3,1,3,""));
