@@ -26,6 +26,7 @@ namespace WSEP.userManagement
         private const string WRONG_FORUM_NAME = "Wrong forum name. No forum found with such a name.";
         private const string WRONG_USERNAME = "Wrong username. There is no member of this forum with that username.";
         private const string WRONG_SUB_FORUM_NAME = "Wrong sub forum name. No sub forum found with such a name found in this forum.";
+        private const string ILLEGAL_ACTION = "Action is illegal according to forum policy.";
 
         public UserManager()
         {
@@ -33,7 +34,7 @@ namespace WSEP.userManagement
             _forumsAdmins = new List<Tuple<string, List<User>>>();
             _subForumsModerators = new List<Tuple<string, string, List<User>>>();
             // WTF should I do with the super admin?
-            _superAdmin = new User("superAdmin", "superAdmin", "superAdmin@gmail.com", this);
+            _superAdmin = User.create("superAdmin", "superAdmin", "superAdmin@gmail.com", this);
         }
 
         public string addForum(string forumName)
@@ -165,6 +166,10 @@ namespace WSEP.userManagement
             {
                 return invalidEMail;
             }
+            if (username.IndexOf(' ') == 0)
+            {
+                return "Username cannot begin with a space.";
+            }
             #region valid username (also verifies valid forum name)
             List<User> admins = getForumAdmins(forumName);
             List<User> members = getForumMembers(forumName);
@@ -209,20 +214,12 @@ namespace WSEP.userManagement
                 return wrongEMail;
             }
             string eMailSuffix = eMail.Substring(eMail.IndexOf('@') + 1);
-            if (eMailSuffix.Contains("@") || !eMailSuffix.Contains("."))
-            {
-                return wrongEMail;
-            }
-            if (eMailSuffix.IndexOf('.') == 0)
-            {
-                return wrongEMail;
-            }
-            if (eMailSuffix.IndexOf('.') == eMailSuffix.Length - 1)
+            if (eMailSuffix.Contains("@") || !eMailSuffix.Contains(".") || eMailSuffix.IndexOf('.') == 0 || eMailSuffix.IndexOf('.') == eMailSuffix.Length - 1)
             {
                 return wrongEMail;
             }
             #endregion
-            User newMember = new User(username, password, eMail, this);
+            User newMember = User.create(username, password, eMail, this);
             members.Add(newMember);
             if (!members.Contains(newMember))
             {
@@ -231,9 +228,9 @@ namespace WSEP.userManagement
             return SUCCESS;
         }
 
-        public string assignAdmin(string forumName, string username)
+        public string assignAdmin(string forumName, string username, int maxNumOfAdmins)
         {
-            string inputStatus = adminsAssignmeentInputValidation(forumName, username);
+            string inputStatus = adminsAssignmentInputValidation(forumName, username);
             if (!inputStatus.Equals(SUCCESS))
             {
                 return inputStatus;
@@ -257,6 +254,10 @@ namespace WSEP.userManagement
                 return WRONG_USERNAME;
             }
             // add user to list of admins
+            if (admins.Count == maxNumOfAdmins)
+            {
+                return ILLEGAL_ACTION;
+            }
             admins.Add(member);
             // if not added return false
             if (!admins.Contains(member))
@@ -277,9 +278,9 @@ namespace WSEP.userManagement
             return SUCCESS;
         }
 
-        public string unassignAdmin(string forumName, string username)
+        public string unassignAdmin(string forumName, string username, int minNumOfAdmins)
         {
-            string inputStatus = adminsAssignmeentInputValidation(forumName, username);
+            string inputStatus = adminsAssignmentInputValidation(forumName, username);
             if (!inputStatus.Equals(SUCCESS))
             {
                 return inputStatus;
@@ -299,6 +300,10 @@ namespace WSEP.userManagement
             if (admin == null)
             {
                 return SUCCESS;
+            }
+            if (admins.Count == minNumOfAdmins)
+            {
+                return ILLEGAL_ACTION;
             }
             // add user to regular members list
             members.Add(admin);
@@ -321,7 +326,7 @@ namespace WSEP.userManagement
             return SUCCESS;
         }
 
-        public string assignModerator(string forumName, string subForumName, string username)
+        public string assignModerator(string forumName, string subForumName, string username, int maxNumOfModerators)
         {
             string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
             if (!inputStatus.Equals(SUCCESS))
@@ -356,6 +361,10 @@ namespace WSEP.userManagement
             {
                 return SUCCESS;
             }
+            if (moderators.Count == maxNumOfModerators)
+            {
+                return ILLEGAL_ACTION;
+            }
             // set user as moderator
             moderators.Add(moderator);
             if (!moderators.Contains(moderator))
@@ -365,39 +374,133 @@ namespace WSEP.userManagement
             return SUCCESS;
         }
 
-        public string unassignModerator(string forumName, string subForumName, string username)
+        public string unassignModerator(string forumName, string subForumName, string username, int minNumOfModerators)
         {
             string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
             if (!inputStatus.Equals(SUCCESS))
             {
                 return inputStatus;
             }
-            // set user as regular member
-            // if succedded return true
-            // else return false
+            // verify correct forum name
+            List<User> members = getForumMembers(forumName);
+            if (members == null)
+            {
+                return WRONG_FORUM_NAME;
+            }
+            // verify correct sub forum name
+            List<User> moderators = getSubForumModerators(forumName, subForumName);
+            if (moderators == null)
+            {
+                return WRONG_SUB_FORUM_NAME;
+            }
+            // if username is not a moderator than it is a success
+            User moderator = getUser(moderators, username);
+            if (moderator == null)
+            {
+                return SUCCESS;
+            }
+            if (moderators.Count == minNumOfModerators)
+            {
+                return ILLEGAL_ACTION;
+            }
+            // remove user from moderators list
+            moderators.Remove(moderator);
+            if (moderators.Contains(moderator))
+            {
+                return FUNCTION_ERRROR;
+            }
             return SUCCESS;
         }
 
+        // unimplemented
         public void getUserPermissionsForForum(string forumName, string username)
         {
             // check if user is a regular member, an admin or the super admin
         }
 
+        // unimplemented
         public void getUserPermissionsForSubForum(string forumName, string subForumName, string username)
         {
             // check if user us a regular member, a moderator, an admin or the super admin
         }
 
-        public bool sendPM(string forumName, string from, string to, string msg)
+        public string sendPM(string forumName, string from, string to, string msg)
         {
-            // get user with that username from that forum
-            // activate user method getPM
-            return false;
+            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
+            {
+                return INVALID_FORUM_NAME;
+            }
+            if (from == null || from.Equals("null") || from.Equals(""))
+            {
+                return INVALID_USERNAME;
+            }
+            if (to == null || to.Equals("null") || to.Equals(""))
+            {
+                return INVALID_USERNAME;
+            }
+            if (msg == null || msg.Equals("null") || msg.Equals(""))
+            {
+                return INVALID_USERNAME;
+            }
+            // get both users
+            List<User> admins = getForumAdmins(forumName);
+            List<User> members = getForumMembers(forumName);
+            if (admins == null || members == null)
+            {
+                return WRONG_FORUM_NAME;
+            }
+            User sender = getUser(admins, from);
+            if (sender == null)
+            {
+                sender = getUser(members, from);
+            }
+            if (sender == null)
+            {
+                return from + " - " + WRONG_USERNAME;
+            }
+            User receiver = getUser(admins, to);
+            if (receiver == null)
+            {
+                receiver = getUser(members, to);
+            }
+            if (receiver == null)
+            {
+                return to + " - " + WRONG_USERNAME;
+            }
+            // add msg to both users PM collections
+            if (!receiver.getMessage(from, msg).Equals(SUCCESS))
+            {
+                return FUNCTION_ERRROR;
+            }
+            if (!sender.sendMessage(to, msg).Equals(SUCCESS))
+            {
+                string str1 = "Private Message was added only to one user collection of private messages.\n";
+                string str2 = "This  caused a critical error.\n";
+                throw new Exception(str1 + str2);
+            }
+            return SUCCESS;
         }
 
-        public bool checkForumPolicy(string forumName, int minAdmins, int maxAdmins)
+        public string checkForumPolicy(string forumName, int minNumOfAdmins, int maxNumOfAdmins)
         {
-            return false;
+            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
+            {
+                return INVALID_FORUM_NAME;
+            }
+            List<User> admins = getForumAdmins(forumName);
+            if (admins == null)
+            {
+                return WRONG_FORUM_NAME;
+            }
+            if (admins.Count < minNumOfAdmins)
+            {
+                return "Forum have " + admins.Count + " admins. Cannot edit policy so minimum amout of admin will be higher than current amount.";
+            }
+            if (admins.Count > maxNumOfAdmins)
+            {
+                return "Forum have " + admins.Count + " admins. Cannot edit policy so maximum amout of admin will be lower than current amount.";
+            }
+            return SUCCESS;
             //Thanks Gal, glhf 
             //only need to check stuff like if the minAdmins is 2 and there is 
             //currently only one, shit like that. 
@@ -480,7 +583,21 @@ namespace WSEP.userManagement
             return moderators;
         }
 
-        private string adminsAssignmeentInputValidation(string forumName, string username)
+        private User getUser(List<User> users, string username)
+        {
+            User user = null;
+            foreach (User u in users)
+            {
+                if (username.Equals(u.getUsername()))
+                {
+                    user = u;
+                    break;
+                }
+            }
+            return user;
+        }
+
+        private string adminsAssignmentInputValidation(string forumName, string username)
         {
             if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
             {
