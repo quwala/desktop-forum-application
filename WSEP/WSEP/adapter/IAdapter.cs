@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WSEP.forumManagement.threadsHandler
+namespace WSEP.adapter
 {
-    class Post
+    interface IAdapter
     {
-
     }
 }
