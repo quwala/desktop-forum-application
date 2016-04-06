@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace WSEP.notificationManagement
 {
-    class NotificationManager : INotificationsManager
+    public class NotificationManager : INotificationsManager
     {
         private string systemsEmail;
-        private string emailAddressIP;
 
         public NotificationManager()
         {
             systemsEmail = "magal@post.bgu.ac.il";
-            emailAddressIP = "216.58.211.69"; // gmail.com IP Address
         }
 
         public bool NotifyPost(string postResponser_username, string postOwner_username, string postOwner_email)
@@ -30,29 +29,37 @@ namespace WSEP.notificationManagement
                 Console.WriteLine("One of the parameters is empty");
                 return false;
             }
-
-            string To = postOwner_email;
-            string From = systemsEmail;
-            string Subject = "New Forums System Notification";
-            string Body = "Hi " + postOwner_username + ", " + postResponser_username + " has comment your post in the Forums System";
-
-            // create the email message
-            MailMessage completeMessage = new MailMessage(From, To, Subject, Body);
-
-            // create smtp client at mail server location
-            SmtpClient client = new SmtpClient(emailAddressIP);
-
-            // add credentials
-            client.UseDefaultCredentials = true;
+            // ensures good email format by using regular expression
+            if (!Regex.IsMatch(postOwner_email,
+                @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
+                RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)))
+            {
+                Console.WriteLine("Wrong email format");
+                return false;
+            }
 
             try
             {
-                // send message
-                client.Send(completeMessage);
+                string Subject = "New Forums System Notification";
+                string Body = "Hi " + postOwner_username + ", " + postResponser_username + " has comment your post in the Forums System";
+
+                SmtpClient client = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Credentials = new System.Net.NetworkCredential(systemsEmail, "pjRpac5b"),
+                    Timeout = 10000,
+                };
+
+                MailMessage mm = new MailMessage(systemsEmail, postOwner_email, Subject, Body);
+                client.Send(mm);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Console.WriteLine("Problem occured while trying to send an email");
+                Console.WriteLine("Could not send email: " + e.ToString());
                 return false;
             }
             return true;

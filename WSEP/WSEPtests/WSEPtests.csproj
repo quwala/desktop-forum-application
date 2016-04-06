@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="acceptanceTests\UserStory_ForumCreationTest.cs" />
     <Compile Include="acceptanceTests\UserStory_SubForumCreationTests.cs" />
+    <Compile Include="notificationManagementTests\NotificationManagementTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="userManagementTests\UserManagerUnitTests.cs" />
   </ItemGroup>
@@ -63,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="forumManagementTests\" />
-    <Folder Include="notificationManagementTests\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

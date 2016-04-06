@@ -20,3 +20,10 @@ C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEPtests\bin\Debug\WSEP.exe
 C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEPtests\bin\Debug\WSEP.pdb
 C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEPtests\obj\Debug\WSEPtests.dll
 C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEPtests\obj\Debug\WSEPtests.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEPtests\bin\Debug\WSEPtests.dll
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEPtests\bin\Debug\WSEPtests.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEPtests\bin\Debug\WSEP.exe
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEPtests\bin\Debug\WSEP.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEPtests\obj\Debug\WSEPtests.csprojResolveAssemblyReference.cache
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEPtests\obj\Debug\WSEPtests.dll
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP\WSEPtests\obj\Debug\WSEPtests.pdb
