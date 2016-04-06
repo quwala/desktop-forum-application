@@ -34,7 +34,7 @@ namespace WSEP.userManagement
             _forumsAdmins = new List<Tuple<string, List<User>>>();
             _subForumsModerators = new List<Tuple<string, string, List<User>>>();
             // WTF should I do with the super admin?
-            _superAdmin = User.create("superAdmin", "superAdmin", "superAdmin@gmail.com", this);
+            _superAdmin = User.create("superAdmin", "superAdmin", "superAdmin@gmail.com");
         }
 
         public string addForum(string forumName)
@@ -81,10 +81,9 @@ namespace WSEP.userManagement
             return SUCCESS;
         }
 
-        public string addSubForum(string forumName, string subForumName, string adminUsername)
+        public string addSubForum(string forumName, string subForumName, List<string> setModerators, int minNumOfModerators, int maxNumOfModerators)
         {
             string subForumNameTaken = "This sub forum name is already in use in that forum. Please select another name.";
-            string wrongUsername = "Wrong admin username. No admin was found with that username in that forum.";
             if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
             {
                 return INVALID_FORUM_NAME;
@@ -93,20 +92,18 @@ namespace WSEP.userManagement
             {
                 return INVALID_SUB_FORUM_NAME;
             }
-            if (adminUsername == null || adminUsername.Equals("null") || adminUsername.Equals(""))
+            if (setModerators == null || setModerators.Contains(null) || setModerators.Contains("null") || setModerators.Contains(""))
             {
                 return INVALID_USERNAME;
             }
-            // verify there is a forum with that name
-            // if list not found return false (wrong forum name)
-            if (getForumMembers(forumName) == null)
+            if (setModerators.Count < minNumOfModerators || setModerators.Count > maxNumOfModerators)
             {
-                return WRONG_FORUM_NAME;
+                return ILLEGAL_ACTION;
             }
+            // verify there is a forum with that name
             List<User> admins = getForumAdmins(forumName);
-            // if list not found return false (wrong forum name)
-            // should never be true as it should fail in the previous forumFound test
-            if (admins == null)
+            List<User> members = getForumMembers(forumName);
+            if (admins == null || members == null)
             {
                 return WRONG_FORUM_NAME;
             }
@@ -118,20 +115,26 @@ namespace WSEP.userManagement
                     return subForumNameTaken;
                 }
             }
-            // add new sub forum list to the DB
-            // get admin user to set as a moderator
-            User moderator = getAdmin(admins, adminUsername);
-            // wrong admin username
-            if (moderator == null)
-            {
-                return wrongUsername;
-            }
+            // verify all new moderators are registered to the forum and add to moderators list
             List<User> moderators = new List<User>();
-            moderators.Add(moderator);
-            if (!moderators.Contains(moderator))
+            foreach (string newModerator in setModerators)
             {
-                return FUNCTION_ERRROR;
+                User user = getUser(admins, newModerator);
+                if (user == null)
+                {
+                    user = getUser(members, newModerator);
+                }
+                if (user == null)
+                {
+                    return "Moderators list contains a non existing user: " + newModerator;
+                }
+                moderators.Add(user);
+                if (!moderators.Contains(user))
+                {
+                    return FUNCTION_ERRROR;
+                }
             }
+            // add new sub forum list to the DB
             Tuple<string, string, List<User>> newSubForumModerators = new Tuple<string,string,List<User>>(forumName, subForumName, moderators);
             _subForumsModerators.Add(newSubForumModerators);
             if (!_subForumsModerators.Contains(newSubForumModerators))
@@ -219,7 +222,7 @@ namespace WSEP.userManagement
                 return wrongEMail;
             }
             #endregion
-            User newMember = User.create(username, password, eMail, this);
+            User newMember = User.create(username, password, eMail);
             members.Add(newMember);
             if (!members.Contains(newMember))
             {
@@ -254,7 +257,7 @@ namespace WSEP.userManagement
                 return WRONG_USERNAME;
             }
             // add user to list of admins
-            if (admins.Count == maxNumOfAdmins)
+            if (admins.Count >= maxNumOfAdmins)
             {
                 return ILLEGAL_ACTION;
             }
@@ -301,7 +304,7 @@ namespace WSEP.userManagement
             {
                 return SUCCESS;
             }
-            if (admins.Count == minNumOfAdmins)
+            if (admins.Count <= minNumOfAdmins)
             {
                 return ILLEGAL_ACTION;
             }
@@ -361,7 +364,7 @@ namespace WSEP.userManagement
             {
                 return SUCCESS;
             }
-            if (moderators.Count == maxNumOfModerators)
+            if (moderators.Count >= maxNumOfModerators)
             {
                 return ILLEGAL_ACTION;
             }
@@ -399,7 +402,7 @@ namespace WSEP.userManagement
             {
                 return SUCCESS;
             }
-            if (moderators.Count == minNumOfModerators)
+            if (moderators.Count <= minNumOfModerators)
             {
                 return ILLEGAL_ACTION;
             }
@@ -412,16 +415,79 @@ namespace WSEP.userManagement
             return SUCCESS;
         }
 
-        // unimplemented
-        public void getUserPermissionsForForum(string forumName, string username)
+        public permission getUserPermissionsForForum(string forumName, string username)
         {
-            // check if user is a regular member, an admin or the super admin
+            string inputStatus = adminsAssignmentInputValidation(forumName, username);
+            if (!inputStatus.Equals(SUCCESS))
+            {
+                return permission.INVALID;
+            }
+            // verify correct forum name
+            List<User> admins = getForumAdmins(forumName);
+            List<User> members = getForumMembers(forumName);
+            if (admins == null || members == null)
+            {
+                return permission.INVALID;
+            }
+            // check if the user is the super admin
+            if (username.Equals(_superAdmin.getUsername()))
+            {
+                return permission.SUPER_ADMIN;
+            }
+            // check if the user is an admin
+            User user = getUser(admins, username);
+            if (user != null)
+            {
+                return permission.ADMIN;
+            }
+            // check if the user is a member
+            user = getUser(members, username);
+            if (user != null)
+            {
+                return permission.MEMBER;
+            }
+            return permission.GUEST;
         }
 
-        // unimplemented
-        public void getUserPermissionsForSubForum(string forumName, string subForumName, string username)
+        public permission getUserPermissionsForSubForum(string forumName, string subForumName, string username)
         {
-            // check if user us a regular member, a moderator, an admin or the super admin
+            string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
+            if (!inputStatus.Equals(SUCCESS))
+            {
+                return permission.INVALID;
+            }
+            // verify correct forum name
+            List<User> admins = getForumAdmins(forumName);
+            List<User> moderators = getSubForumModerators(forumName, subForumName);
+            List<User> members = getForumMembers(forumName);
+            if (admins == null || members == null || moderators == null)
+            {
+                return permission.INVALID;
+            }
+            // check if the user is the super admin
+            if (username.Equals(_superAdmin.getUsername()))
+            {
+                return permission.SUPER_ADMIN;
+            }
+            // check if the user is an admin
+            User user = getUser(admins, username);
+            if (user != null)
+            {
+                return permission.ADMIN;
+            }
+            // check if the user is a moderator
+            user = getUser(moderators, username);
+            if (user != null)
+            {
+                return permission.MODERATOR;
+            }
+            // check if the user is a member
+            user = getUser(members, username);
+            if (user != null)
+            {
+                return permission.MEMBER;
+            }
+            return permission.GUEST;
         }
 
         public string sendPM(string forumName, string from, string to, string msg)

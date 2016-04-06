@@ -14,14 +14,13 @@ namespace WSEP.userManagement
         private string _password;
         private string _eMail;
         private List<Tuple<string, List<PrivateMessage>>> _privateMessages;
-        private UserManager _manager;
 
         private const string SUCCESS = "true";
         private const string FUNCTION_ERRROR = "An error has occured with C# internal function.";
         private const string INVALID_USERNAME = "Invalid username. Username cannot be null, \"null\" or empty.";
         private const string INVALID_MESSAGE = "Invalid message. Message cannot be null, \"null\" or empty.";
 
-        public static User create(string username, string password, string eMail, UserManager manager)
+        public static User create(string username, string password, string eMail)
         {
             if (username == null || username.Equals("null") || username.Equals("") || username.IndexOf(' ') == 0)
             {
@@ -40,16 +39,15 @@ namespace WSEP.userManagement
             {
                 return null;
             }
-            return new User(username, password, eMail, manager);
+            return new User(username, password, eMail);
         }
 
-        private User(string username, string password, string eMail, UserManager manager)
+        private User(string username, string password, string eMail)
         {
             _username = username;
             _password = password;
             _eMail = eMail;
             _privateMessages = new List<Tuple<string, List<PrivateMessage>>>();
-            _manager = manager;
         }
 
         #region getters

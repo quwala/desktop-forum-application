@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WSEP.userManagement;
+using System.Collections.Generic;
 
 namespace WSEPtests.userManagementTests
 {
@@ -40,10 +41,14 @@ namespace WSEPtests.userManagementTests
         {
             // start conditions:
             // there is a forum
+            // that forum has a member
             um.addForum("forum1");
-
+            um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
+            List<string> moderators = new List<string>();
+            moderators.Add("user1");
+            /*
             // invalid input
-            Assert.IsTrue(um.addSubForum(null, "subforum5", "superAdmin").Contains("Invalid"));
+            Assert.IsTrue(um.addSubForum(null, "subforum1", moderators, 1, 1).Contains("Invalid"));
             Assert.IsTrue(um.addSubForum("null", "subforum5", "superAdmin").Contains("Invalid"));
             Assert.IsTrue(um.addSubForum("", "subforum5", "superAdmin").Contains("Invalid"));
             Assert.IsTrue(um.addSubForum("forum1", null, "superAdmin").Contains("Invalid"));
@@ -70,7 +75,7 @@ namespace WSEPtests.userManagementTests
             Assert.IsFalse(um.addSubForum("forum1", "", "admin").Equals("true"));
             // empty admin username
             Assert.IsFalse(um.addSubForum("forum1", "subforum4", "").Equals("true"));
-            
+            */
         }
 
         [TestMethod]
@@ -193,7 +198,9 @@ namespace WSEPtests.userManagementTests
             // that forrum has a sub forum
             // there are 2 members in the forum
             um.addForum("forum1");
-            um.addSubForum("forum1", "subforum1", "superAdmin");
+            List<string> moderators = new List<string>();
+            moderators.Add("superAdmin");
+            um.addSubForum("forum1", "subforum1", moderators, 1, 1);
             um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
             um.registerMemberToForum("forum1", "user2", "pass2", "eMail2@gmail.com");
 
@@ -224,13 +231,100 @@ namespace WSEPtests.userManagementTests
         {
             // start conditions:
             // there is a forum
-            // that forrum has a sub forum
+            // that forum has a sub forum
+            // that forum has a member
             // that sub forum has a moderator
             um.addForum("forum1");
-            um.addSubForum("forum1", "subforum1", "superAdmin");
+            List<string> moderators = new List<string>();
+            moderators.Add("superAdmin");
+            um.addSubForum("forum1", "subforum1", moderators, 1, 1);
+            um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
+            um.assignModerator("forum1", "subforum1", "user1", 2);
             
             // invalid input
+            Assert.IsTrue(um.unassignModerator(null, "subforum1", "user1", 1).Contains("Invalid"));
+            Assert.IsTrue(um.unassignModerator("null", "subforum1", "user1", 1).Contains("Invalid"));
+            Assert.IsTrue(um.unassignModerator("", "subforum1", "user1", 1).Contains("Invalid"));
+            Assert.IsTrue(um.unassignModerator("forum1", null, "user1", 1).Contains("Invalid"));
+            Assert.IsTrue(um.unassignModerator("forum1", "null", "user1", 1).Contains("Invalid"));
+            Assert.IsTrue(um.unassignModerator("forum1", "", "user1", 1).Contains("Invalid"));
+            Assert.IsTrue(um.unassignModerator("forum1", "subforum1", null, 1).Contains("Invalid"));
+            Assert.IsTrue(um.unassignModerator("forum1", "subforum1", "null", 1).Contains("Invalid"));
+            Assert.IsTrue(um.unassignModerator("forum1", "subforum1", "", 1).Contains("Invalid"));
 
+            // valid inputs that should succeed
+            Assert.IsTrue(um.unassignModerator("forum1", "subforum1", "user1", 1).Equals("true"));
+            Assert.IsTrue(um.unassignModerator("forum1", "subforum1", "user2", 1).Equals("true"));
+            Assert.IsTrue(um.unassignModerator("forum1", "subforum1", "superAdmin", 0).Equals("true"));
+
+            um.assignModerator("forum1", "subforum1", "user1", 2);
+            um.assignModerator("forum1", "subforum1", "superAdmin", 2);
+
+            // valid inputs that should fail
+            Assert.IsFalse(um.unassignModerator("forum2", "subforum1", "user1", 2).Equals("true"));
+            Assert.IsFalse(um.unassignModerator("forum1", "subforum2", "user1", 2).Equals("true"));
+            Assert.IsFalse(um.unassignModerator("forum1", "subforum1", "user1", 2).Equals("true"));
+        }
+
+        [TestMethod]
+        public void UnitTest_sendPM()
+        {
+            // start conditions:
+            // there is a forum
+            // that forum has two members
+            um.addForum("forum1");
+            um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
+            um.registerMemberToForum("forum1", "user2", "pass1", "eMail2@gmail.com");
+
+            // invalid inputs
+            Assert.IsTrue(um.sendPM(null, "user1", "user2", "msg").Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("null", "user1", "user2", "msg").Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("", "user1", "user2", "msg").Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("forum1", null, "user2", "msg").Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("forum1", "null", "user2", "msg").Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("forum1", "", "user2", "msg").Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("forum1", "user1", null, "msg").Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("forum1", "user1", "null", "msg").Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("forum1", "user1", "", "msg").Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("forum1", "user1", "user2", null).Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("forum1", "user1", "user2", "null").Contains("Invalid"));
+            Assert.IsTrue(um.sendPM("forum1", "user1", "user2", "").Contains("Invalid"));
+
+            // valid inputs that should succeed
+            Assert.IsTrue(um.sendPM("forum1", "user1", "user2", "msg").Equals("true"));
+
+            // valid inputs that should fail
+            Assert.IsFalse(um.sendPM("forum2", "user1", "user2", "msg").Equals("true"));
+            Assert.IsFalse(um.sendPM("forum1", "user3", "user2", "msg").Equals("true"));
+            Assert.IsFalse(um.sendPM("forum1", "user1", "user3", "msg").Equals("true"));
+        }
+
+        [TestMethod]
+        public void UnitTest_checkForumPolicy()
+        {
+            // start conditions:
+            // there is a forum
+            // that forum has a member
+            um.addForum("forum1");
+            um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
+
+            // invalid inputs
+            Assert.IsTrue(um.checkForumPolicy(null, 1, 2).Contains("Invalid"));
+            Assert.IsTrue(um.checkForumPolicy("null", 1, 2).Contains("Invalid"));
+            Assert.IsTrue(um.checkForumPolicy("", 1, 2).Contains("Invalid"));
+
+            // valid inputs that should succeed
+            Assert.IsTrue(um.checkForumPolicy("forum1", 1, 1).Equals("true"));
+            Assert.IsTrue(um.checkForumPolicy("forum1", 1, 2).Equals("true"));
+
+            um.assignAdmin("forum1", "user1", 2);
+
+            Assert.IsTrue(um.checkForumPolicy("forum1", 2, 2).Equals("true"));
+
+            // valid inputs that should fail
+            Assert.IsFalse(um.checkForumPolicy("forum2", 1, 1).Equals("true"));
+            Assert.IsFalse(um.checkForumPolicy("forum1", 3, 5).Equals("true"));
+            Assert.IsFalse(um.checkForumPolicy("forum1", 7, 5).Equals("true"));
         }
     }
 }
