@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WSEP.notificationManagement
 {
-    class NotificationManager : INotificationsManager
+    public class NotificationManager : INotificationsManager
     {
         private string systemsEmail;
         private string emailAddressIP;
