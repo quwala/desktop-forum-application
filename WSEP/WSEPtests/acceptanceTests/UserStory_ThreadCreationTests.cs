@@ -17,18 +17,15 @@ namespace WSEPtests.acceptanceTests
             //fs.RegisterToFurom("forumName","UserName","UserPassword");             //register to forum new user
             //fs.addSubForum("forumName","subForumName","UserName");                 //open new subforum in the forum
 
-            //user should be loged in as a pre condition, not sure if to check it here or not..
-            //
-            //fs.ForumLogIn("forumName","UserName","UserPassword"))
-            //if so, we need to add test to check validation with user loged in and out..
+            //List<Post> list = fs.getThreadFromSubForum("forumName", "subForumName");
         }
 
         [TestMethod]
         public void Test_ThreadCreation_GoodInput()
         {
-            //Assert.AreEqual(fs.NumOfThreads("forumName","subForumName"),0);                                   //check number of threads in the subforum
+            //Assert.AreEqual(list.Count ,0);                                                                   //check number of threads in the subforum
             //Assert.isTrue(fs.CreateThread("forumName","subForumName","thread title","someContent");           //creation of new thread in subforum
-            //Assert.AreEqual(fs.NumOfThreads("forumName","subForumName"),1);                                   //check number of threads in the subforum
+            //Assert.AreEqual(list.Count ,1);                                                                   //check number of threads in the subforum
             //Assert.isFalse(fs.CreateThread("invalidForumName","subForumName","title","someContent");          //good input bad validation       
             //Assert.isFalse(fs.CreateThread("forumName","invalidSubForumName","title","someContent");          //good input bad validation       
 

@@ -66,6 +66,6 @@ namespace WSEPtests.acceptanceTests
         }
 
 
-        //addSubForumModerator("forumName","subForumName","ModeratorName")
+        
     }
 }

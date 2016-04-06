@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WSEP.forumManagement;
+using System.Collections.Generic;
 
 namespace WSEPtests.acceptanceTests
 {
@@ -28,6 +29,7 @@ namespace WSEPtests.acceptanceTests
         [TestMethod]
         public void Test_ReplyCreation_GoodInput()
         {
+            //Assert.isTrue(list.Count == 1);                                                                      //check list size
             //Assert.isTrue(fs.CreateReply("forumName","subForumName",list.first(),"someContent");                   //creation of new reply in Thread number 1
             //Assert.isFalse(fs.CreateReply("invalidForumName","subForumName",list.first(),"someContent");          //good input bad validation       
 

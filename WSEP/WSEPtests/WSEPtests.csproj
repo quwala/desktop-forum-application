@@ -50,6 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="acceptanceTests\UserStory_DeletePost.cs" />
+    <Compile Include="acceptanceTests\UserStory_EditModeratorTime.cs" />
     <Compile Include="acceptanceTests\UserStory_ForumCreationTests.cs" />
     <Compile Include="acceptanceTests\UserStory_LogInTests.cs" />
     <Compile Include="acceptanceTests\UserStory_ModeratorAppointment.cs" />
