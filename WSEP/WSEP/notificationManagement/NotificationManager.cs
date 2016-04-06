@@ -37,25 +37,33 @@ namespace WSEP.notificationManagement
             string Body = "Hi " + postOwner_username + ", " + postResponser_username + " has comment your post in the Forums System";
 
             // create the email message
-            MailMessage completeMessage = new MailMessage(From, To, Subject, Body);
-
-            // create smtp client at mail server location
-            SmtpClient client = new SmtpClient(emailAddressIP);
-
-            // add credentials
-            client.UseDefaultCredentials = true;
-
             try
             {
-                // send message
-                client.Send(completeMessage);
+                MailMessage completeMessage = new MailMessage(From, To, Subject, Body);
+
+
+                // create smtp client at mail server location
+                SmtpClient client = new SmtpClient(emailAddressIP);
+
+                // add credentials
+                client.UseDefaultCredentials = true;
+
+                try
+                {
+                    // send message
+                    client.Send(completeMessage);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Problem occured while trying to send an email");
+                    return false;
+                }
+                return true;
             }
             catch (Exception)
             {
-                Console.WriteLine("Problem occured while trying to send an email");
                 return false;
             }
-            return true;
         }
     }
 }

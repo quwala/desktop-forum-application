@@ -20,3 +20,10 @@ C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEPtests\bin\Debug\WSEP.exe
 C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEPtests\bin\Debug\WSEP.pdb
 C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEPtests\obj\Debug\WSEPtests.dll
 C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEPtests\obj\Debug\WSEPtests.pdb
+C:\Users\roie dominitz\Desktop\GMRRS1\WSEP\WSEPtests\obj\Debug\WSEPtests.csprojResolveAssemblyReference.cache
+C:\Users\roie dominitz\Desktop\GMRRS1\WSEP\WSEPtests\obj\Debug\WSEPtests.dll
+C:\Users\roie dominitz\Desktop\GMRRS1\WSEP\WSEPtests\obj\Debug\WSEPtests.pdb
+C:\Users\roie dominitz\Desktop\GMRRS1\WSEP\WSEPtests\bin\Debug\WSEPtests.dll
+C:\Users\roie dominitz\Desktop\GMRRS1\WSEP\WSEPtests\bin\Debug\WSEPtests.pdb
+C:\Users\roie dominitz\Desktop\GMRRS1\WSEP\WSEPtests\bin\Debug\WSEP.exe
+C:\Users\roie dominitz\Desktop\GMRRS1\WSEP\WSEPtests\bin\Debug\WSEP.pdb

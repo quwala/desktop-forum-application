@@ -29,6 +29,19 @@ namespace WSEP.adapter
 
         List<Post> getThreadsFromSubForum(string forumName, string subForumName);
 
+        bool DeletePost(string forumName, string subForumName, List<Post> posts);
+
+        bool ModeratorAppointment(string forumName, string subForumName, string moderatorName, int howMuchTime);
+        bool EditModeratorTime(string ForumName, string SubForumName, string UserName, int time);
+
+
+        bool CreateReply(string forumName, string subForumName, Post post, string content);
+
+        bool SendingPrivateMassage(string forumName, string sender, string receiver, string content);
+
+        bool ContainSubForum(string forumName, string subForum);
+
+        List<Post> getThreadFromSubForum(string forumName, string subForumName);
 
 
     }
