@@ -52,9 +52,11 @@
   <ItemGroup>
     <Compile Include="acceptanceTests\UserStory_ForumCreationTests.cs" />
     <Compile Include="acceptanceTests\UserStory_LogInTests.cs" />
+    <Compile Include="acceptanceTests\UserStory_ModeratorAppointment.cs" />
     <Compile Include="acceptanceTests\UserStory_PolicyEditTests.cs" />
     <Compile Include="acceptanceTests\UserStory_RegistrationTests.cs" />
     <Compile Include="acceptanceTests\UserStory_ReplyCreationTests.cs" />
+    <Compile Include="acceptanceTests\UserStory_SendingPrivateMassage.cs" />
     <Compile Include="acceptanceTests\UserStory_SubForumCreationTests.cs" />
     <Compile Include="acceptanceTests\UserStory_SystemSetUp.cs" />
     <Compile Include="acceptanceTests\UserStory_ThreadCreationTests.cs" />
