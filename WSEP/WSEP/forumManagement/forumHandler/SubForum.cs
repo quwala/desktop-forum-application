@@ -35,10 +35,6 @@ namespace WSEP.forumManagement.forumHandler
 
         }
 
-        void changeSubForumPolicy(string name, int minModerators, int maxModerators, string subForumRules)
-        {
-            //create new policy object and attach to Policy field.
-        }
 
         public string getName()
         {

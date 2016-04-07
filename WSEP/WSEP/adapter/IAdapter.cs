@@ -9,25 +9,32 @@ namespace WSEP.adapter
 {
     interface IAdapter
     {
-        bool addForum(string forumName);
+        bool addForum(string forumName);//via ForumSystem
 
-        bool containForum(string forumName);
+        bool containForum(string forumName);//via ForumSystem
 
-        bool RegisterToForum(string forumName, string userName, string userPassword, string userMail);
+        bool registerToForum(string forumName, string userName, string userPassword, string userMail);//via UserManager
 
-        bool ForumLogIn(string forumName, string userName, string userPassword);
+        bool forumLogIn(string forumName, string userName, string userPassword);//via UserManager
 
-        bool SetPolicy(string forumName, int minNumAdmins, int maxNumAdmins, int minNummoderator, int maxNumModerator, string freeText);
+        bool setPolicy(string forumName, int minNumAdmins, int maxNumAdmins, int minNummoderator, int maxNumModerator, string freeText);//via ForumSystem
 
-        bool addSubForum(string forumName, string subForumName, List<string> moderatorsNames);
+        bool addSubForum(string forumName, string subForumName, List<string> moderators);//via ForumSystem
 
-        bool addForumAdmin(string forumName, string adminName);
+        bool addForumAdmin(string forumName, string adminName);//via UserManager
 
-        bool addSubForumModerator(string forumName, string subForumName, string moderatorName);
+        bool addSubForumModerator(string forumName, string subForumName, string moderatorName);//via UserManager
 
-        bool CreateThread(string forumName, string subForumName, string threadTitle, string content);
+        //note: ForumSystem has a function that generates and returns ID's for the thread and the opening post,
+        //you can just call that function and if you got codes just return "true"
+        bool createThread(string forumName, string subForumName, string threadTitle, string content);//via ForumSystem 
 
-        List<Post> getThreadsFromSubForum(string forumName, string subForumName);
+        //same as above
+        bool createReply(string forumName, string subForumName, string postToReplyToId, string title, string content);//via ForumSystem
+
+        List<string> getThreadIDSFromSubForum(string forumName, string subForumName);//via ForumSystem
+
+        bool deletePost(string forumName, string subForumName, string postId);
 
 
 

@@ -12,7 +12,7 @@ namespace WSEPtests.acceptanceTests
         [TestInitialize()]
         public void Initialize()
         {
-            fs = new ForumSystem("superAdmin");
+            fs = new ForumSystem("superAdmin",new WSEP.userManagement.UserManager());
             //fs.addForum("forumName");                //adding the new forum..      
             //fs.RegisterToFurom("forumName","UserName","UserPassword");   //register new user for this forum
             
