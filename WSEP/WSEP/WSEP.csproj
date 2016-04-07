@@ -41,17 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bridgeProject\BridgeProject.cs" />
-    <Compile Include="bridgeProject\BridgeProxy.cs" />
-    <Compile Include="bridgeProject\BridgeReal.cs" />
+    <Compile Include="adapter\IAdapter.cs" />
     <Compile Include="forumManagement\forumHandler\Forum.cs" />
+    <Compile Include="forumManagement\forumHandler\Post.cs" />
+    <Compile Include="forumManagement\forumHandler\SubForumPolicy.cs" />
+    <Compile Include="forumManagement\forumHandler\Thread.cs" />
     <Compile Include="forumManagement\InvalidNameException.cs" />
     <Compile Include="forumManagement\forumHandler\ForumPolicy.cs" />
     <Compile Include="forumManagement\forumHandler\SubForum.cs" />
     <Compile Include="forumManagement\ForumSystem.cs" />
     <Compile Include="forumManagement\IForumSystem.cs" />
     <Compile Include="forumManagement\threadsHandler\Post.cs" />
-    <Compile Include="forumManagement\threadsHandler\Thread.cs" />
+    <Compile Include="notificationManagementService\INotificationManagerObserver.cs" />
+    <Compile Include="notificationManagementService\NotificationManagerService.cs" />
     <Compile Include="notificationManagement\INotificationsManager.cs" />
     <Compile Include="notificationManagement\NotificationManager.cs" />
     <Compile Include="Program.cs" />

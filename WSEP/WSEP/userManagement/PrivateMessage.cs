@@ -13,6 +13,8 @@ namespace WSEP.userManagement
         private string _msg;
         private DateTime _time;
 
+        // add creator like user for input control
+
         public PrivateMessage(string writer, string msg)
         {
             _writer = writer;
