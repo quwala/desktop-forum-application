@@ -27,10 +27,12 @@ namespace WSEP.adapter
 
         //note: ForumSystem has a function that generates and returns ID's for the thread and the opening post,
         //you can just call that function and if you got codes just return "true"
-        bool createThread(string forumName, string subForumName, string threadTitle, string content);//via ForumSystem 
+        bool createThread(string forumName, string subForumName, string threadTitle, string content
+            ,string userName);//via ForumSystem 
 
         //same as above
-        bool createReply(string forumName, string subForumName, string postToReplyToId, string title, string content);//via ForumSystem
+        bool createReply(string forumName, string subForumName, string title, string content
+            ,string userName, string postIdToReplyTo);//via ForumSystem
 
 
         bool deletePost(string forumName, string subForumName, string postId);//via ForumSystem

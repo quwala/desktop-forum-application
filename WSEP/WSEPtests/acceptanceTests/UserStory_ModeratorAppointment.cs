@@ -16,8 +16,8 @@ namespace WSEPtests.acceptanceTests
             //fs.addForum("forumName");                                               //adding the new forum..      
             //fs.RegisterToFurom("forumName","UserName","UserPassword");             //register to forum new user
             //fs.addSubForum("forumName","subForumName","UserName");                 //open new subforum in the forum
-            int time = 10;
-            int time2 = 0;
+           // int time = 10;
+            //int time2 = 0;
             
         }
 

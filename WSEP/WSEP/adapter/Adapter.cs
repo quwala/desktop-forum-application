@@ -49,12 +49,12 @@ namespace WSEP.adapter
             throw new NotImplementedException();
         }
 
-        public bool createReply(string forumName, string subForumName, string postToReplyToId, string title, string content)
+        public bool createReply(string forumName, string subForumName, string title, string content, string userName, string postIdToReplyTo)
         {
             throw new NotImplementedException();
         }
 
-        public bool createThread(string forumName, string subForumName, string threadTitle, string content)
+        public bool createThread(string forumName, string subForumName, string threadTitle, string content, string userName)
         {
             throw new NotImplementedException();
         }

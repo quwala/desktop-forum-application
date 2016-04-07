@@ -10,7 +10,17 @@ namespace WSEP.forumManagement.forumHandler
     {
         private ForumPolicy _policy;
         private string _name;
+
         private List<SubForum> _subForums;
+        public List<SubForum> SubForums
+        {
+            get
+            {
+                return _subForums;
+            }
+        }
+
+
 
         public Forum(string name) 
         {
@@ -29,6 +39,8 @@ namespace WSEP.forumManagement.forumHandler
             this._policy = p;
             return true;
         }
+
+        public ForumPolicy getPolicy() { return this._policy; }
 
         public bool addSubForum(string name)
         {

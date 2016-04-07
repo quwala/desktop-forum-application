@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WSEP.forumManagement.forumHandler;
+using WSEP.forumManagement.threadsHandler;
 using WSEP.userManagement;
 namespace WSEP.forumManagement
 {
@@ -55,30 +56,42 @@ namespace WSEP.forumManagement
             if (!_forums.Contains(nForum))
                 throw new Exception("Failed to add forum");
 
-            if (um.addForum(name).Equals("true"))
+            string message = um.addForum(name);
+            if (message.Equals("true"))
                 return true;
             else
-                return false;
+                throw new Exception(message); 
 
         }
 
-        public bool addSubForum(string forumName, string subForumName)
+        public bool addSubForum(string forumName, string subForumName, List<string> mods)
         {
             Forum forum = getForum(forumName);
                if(forum==null)
                      throw new Exception("Cannot add Sub Forum - Forum was not found");
 
-            
-            return forum.addSubForum(subForumName);
+            foreach (SubForum sf in forum.SubForums)
+                if (sf.getName().Equals(subForumName))
+                    throw new Exception("A Sub Forum with that name already exists");
+
+            int minModerators = forum.getPolicy().MinModerators;
+            int maxModerators = forum.getPolicy().MaxModerators;
+
+            string message = um.addSubForum(forumName, subForumName, mods, minModerators, maxModerators);
+
+            if (message.Equals("true"))
+                return true;
+            else
+                throw new Exception(message); 
         }
 
         //need a user manager to perform
-        public bool changeForumPolicy(string forumName, int minAdmins, int maxAdmins, 
+        public bool setForumPolicy(string forumName, int minAdmins, int maxAdmins, 
             int minModerators, int maxModerators, string forumRules)
         {
             Forum forum = getForum(forumName);
             if (forum == null)
-                throw new Exception("Cannot change policy - Forum was not found");
+                throw new Exception("Cannot set policy - Forum was not found");
 
             ForumPolicy nPolicy = new ForumPolicy(forumName, minAdmins, maxAdmins,
                 minModerators, maxModerators, forumRules);
@@ -92,23 +105,31 @@ namespace WSEP.forumManagement
                 return forum.setPolicy(nPolicy);
         }
 
-        public bool addSubForum(string forumName, string subForumName, List<string> mods)
+
+
+
+        public bool createThread(string forumName, string subForumName, string title, string content
+            ,string userName)
         {
-            throw new NotImplementedException();
+            if (!hasForum(forumName))
+                throw new Exception("Cannot create Thread - Forum was not found");
+
+            Forum forum = getForum(forumName);
+            SubForum subForum=null;
+            foreach (SubForum sf in forum.SubForums)
+                if (sf.getName().Equals(subForumName))
+                    subForum = sf;
+
+            if(subForum == null)
+                throw new Exception("Cannot create Thread - Sub Forum was not found");
+
+            Post thread = new Post(title,content,userName);
+
+            return subForum.createThread(thread);
+
         }
 
-        public bool setForumPolicy(string forumName, int minAdmins, int maxAdmins, int minModerators, int maxModerators, string forumRules)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public bool createThread(string forumName, string subForumName, string title, string content)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool createReply(string forumName, string subForumName, string threadID, string postToReplyToID)
+        public bool createReply(string forumName, string subForumName, string title, string content, string userName, string postToReplyToID)
         {
             throw new NotImplementedException();
         }
@@ -118,7 +139,7 @@ namespace WSEP.forumManagement
             throw new NotImplementedException();
         }
 
-      
+       
     }
     
 }

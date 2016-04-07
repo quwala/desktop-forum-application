@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WSEP.forumManagement.threadsHandler;
 
 namespace WSEP.forumManagement.forumHandler
 {
     public class SubForum
     {
-        private string name;
+        private string _name;
+        private List<Post> _threads;
 
         public SubForum(string name)
         {
             checkForumName(name);
-            this.name = name;
+            this._name = name;
+            this._threads = new List<Post>();
         }
 
        
@@ -38,7 +41,17 @@ namespace WSEP.forumManagement.forumHandler
 
         public string getName()
         {
-            return this.name;
+            return this._name;
+        }
+
+        public bool createThread(Post thread)
+        {
+            foreach (Post t in _threads)
+                if (t.Id.Equals(thread.Id))
+                    throw new Exception("Cannot create thread, a thread ID duplication was detected. <br> Please try again");
+
+            _threads.Add(thread);
+            return true;
         }
     }
 }

@@ -9,14 +9,47 @@ namespace WSEP.forumManagement.threadsHandler
     public class Post
     {
         private string _id;
+        public string Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
+
         private string _title;
-        private string _userName;
         private string _content;
+        private string _userName;
         private DateTime _date;
         private List<Post> _replies;
+        private Post _replyTo;
 
-        public Post()
+        //thread constructor
+        public Post(string title, string content, string userName)
         {
+            _replyTo = null;
+            _title = title;
+            _content = content;
+            _userName = userName;
+            _date = DateTime.Now;
+            _replies = new List<Post>();
+
+            Guid guid = Guid.NewGuid();
+            _id = guid.ToString();//generate code
+        }
+
+        //reply constructor
+        public Post(string title, string content, string userName, Post replyTo)
+        {
+            this._replyTo = replyTo;
+            _title = title;
+            _content = content;
+            _userName = userName;
+            _date = DateTime.Now;
+            _replies = new List<Post>();
+
+            Guid guid = Guid.NewGuid();
+            _id = guid.ToString();
         }
 
     }
