@@ -309,22 +309,22 @@ namespace WSEPtests.userManagementTests
             um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
 
             // invalid inputs
-            Assert.IsTrue(um.checkForumPolicy(null, 1, 2).Contains("Invalid"));
-            Assert.IsTrue(um.checkForumPolicy("null", 1, 2).Contains("Invalid"));
-            Assert.IsTrue(um.checkForumPolicy("", 1, 2).Contains("Invalid"));
+            Assert.IsTrue(um.checkForumPolicy(null, 1, 2, 1, 2).Contains("Invalid"));
+            Assert.IsTrue(um.checkForumPolicy("null", 1, 2, 1, 2).Contains("Invalid"));
+            Assert.IsTrue(um.checkForumPolicy("", 1, 2, 1, 2).Contains("Invalid"));
 
             // valid inputs that should succeed
-            Assert.IsTrue(um.checkForumPolicy("forum1", 1, 1).Equals("true"));
-            Assert.IsTrue(um.checkForumPolicy("forum1", 1, 2).Equals("true"));
+            Assert.IsTrue(um.checkForumPolicy("forum1", 1, 1, 1, 2).Equals("true"));
+            Assert.IsTrue(um.checkForumPolicy("forum1", 1, 2, 1, 2).Equals("true"));
 
             um.assignAdmin("forum1", "user1", 2);
 
-            Assert.IsTrue(um.checkForumPolicy("forum1", 2, 2).Equals("true"));
+            Assert.IsTrue(um.checkForumPolicy("forum1", 2, 2, 1, 2).Equals("true"));
 
             // valid inputs that should fail
-            Assert.IsFalse(um.checkForumPolicy("forum2", 1, 1).Equals("true"));
-            Assert.IsFalse(um.checkForumPolicy("forum1", 3, 5).Equals("true"));
-            Assert.IsFalse(um.checkForumPolicy("forum1", 7, 5).Equals("true"));
+            Assert.IsFalse(um.checkForumPolicy("forum2", 1, 1, 1, 2).Equals("true"));
+            Assert.IsFalse(um.checkForumPolicy("forum1", 3, 5, 1, 2).Equals("true"));
+            Assert.IsFalse(um.checkForumPolicy("forum1", 7, 5, 1, 2).Equals("true"));
         }
     }
 }

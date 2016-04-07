@@ -21,6 +21,6 @@ namespace WSEP.userManagement
         permission getUserPermissionsForForum(string forumName, string username); // implemented - no tests
         permission getUserPermissionsForSubForum(string forumName, string subForumName, string username); // implemented - no tests
         string sendPM(string forumName, string from, string to, string msg); // has tests
-        string checkForumPolicy(string forumName, int minNumOfAdmins, int maxNumOfAdmins); // has tests
+        string checkForumPolicy(string forumName, int minNumOfAdmins, int maxNumOfAdminsm, int minModerators, int maxModerators); // has tests
     }
 }

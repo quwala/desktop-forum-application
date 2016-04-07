@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WSEP.forumManagement.forumHandler;
+using WSEP.forumManagement.threadsHandler;
 
 namespace WSEP.adapter
 {

@@ -547,7 +547,8 @@ namespace WSEP.userManagement
             return SUCCESS;
         }
 
-        public string checkForumPolicy(string forumName, int minNumOfAdmins, int maxNumOfAdmins)
+        public string checkForumPolicy(string forumName, int minNumOfAdmins, int maxNumOfAdmins
+            ,int minModerators, int maxModerators)
         {
             if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
             {
