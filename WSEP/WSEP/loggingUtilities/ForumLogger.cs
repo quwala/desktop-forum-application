@@ -11,23 +11,35 @@ namespace WSEP.loggingUtilities
 {
     public class ForumLogger
     {
-        StreamWriter logFile;
+       
+        private string path;
+        private string _text;
 
         public ForumLogger(string section)
         {
-            logFile = new System.IO.StreamWriter("/log" + section + ".txt", true);
+            path = section+"Log.txt";
+            _text = "";
+
         }
 
         public void log(string text)
         {
-            logFile.WriteLine(DateTime.Now.ToShortDateString() + ", " + DateTime.Now.ToShortTimeString() + ": " + text);
+            File.AppendAllText(path, DateTime.Now.ToShortDateString() 
+                + ", " + DateTime.Now.ToShortTimeString() +
+                ": " + text+"\n");
+            _text = File.ReadAllText(path);
         }
 
-        public void close() { logFile.Close(); }
+      
 
         internal void logException(Exception e)
         {
             throw new NotImplementedException();
+        }
+
+        public string getLog()
+        {
+            return _text;
         }
     }
 }

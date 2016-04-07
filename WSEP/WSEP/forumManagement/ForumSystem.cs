@@ -48,30 +48,27 @@ namespace WSEP.forumManagement
                 if (f.getName().Equals(name))
                 {
                     Exception e = new Exception("A Forum with that name already exists");
-                    _logger.logException(e);
                     throw e;
                 }
-            
+
 
             Forum nForum = new Forum(name);
             _forums.Add(nForum);
             if (!_forums.Contains(nForum))
             {
                 Exception e = new Exception("Failed to add forum");
-                _logger.logException(e);
                 throw e;
             }
 
             string message = um.addForum(name);
             if (message.Equals("true"))
             {
-                _logger.log("Successfully added forum " + name);
+                _logger.log("Successfully added forum " + name + ".");
                 return true;
             }
             else
             {
                 Exception e = new Exception(message);
-                _logger.logException(e);
                 throw e;
             }
         }
@@ -82,7 +79,6 @@ namespace WSEP.forumManagement
             if (forum == null)
             {
                 Exception e = new Exception("Cannot add Sub Forum - Forum was not found");
-                _logger.logException(e);
                 throw e;
             }
 
@@ -90,7 +86,6 @@ namespace WSEP.forumManagement
                 if (sf.getName().Equals(subForumName))
                 {
                     Exception e = new Exception("A Sub Forum with that name already exists");
-                    _logger.logException(e);
                     throw e;
                 }
 
@@ -108,13 +103,13 @@ namespace WSEP.forumManagement
             else
             {
                 Exception e = new Exception(message);
-                _logger.logException(e);
                 throw e;
             }
         }
 
+
         //need a user manager to perform
-        public bool setForumPolicy(string forumName, int minAdmins, int maxAdmins, 
+        public bool setForumPolicy(string forumName, int minAdmins, int maxAdmins,
             int minModerators, int maxModerators, string forumRules)
         {
             Forum forum = getForum(forumName);
@@ -130,30 +125,36 @@ namespace WSEP.forumManagement
                 throw new Exception(message);
 
             else
-                return forum.setPolicy(nPolicy);
+            {
+                forum.setPolicy(nPolicy);
+                _logger.log("Successfully set new policy.");
+                return true;
+            }
         }
 
 
 
 
         public bool createThread(string forumName, string subForumName, string title, string content
-            ,string userName)
+            , string userName)
         {
             if (!hasForum(forumName))
                 throw new Exception("Cannot create Thread - Forum was not found");
 
             Forum forum = getForum(forumName);
-            SubForum subForum=null;
+            SubForum subForum = null;
             foreach (SubForum sf in forum.SubForums)
                 if (sf.getName().Equals(subForumName))
                     subForum = sf;
 
-            if(subForum == null)
+            if (subForum == null)
                 throw new Exception("Cannot create Thread - Sub Forum was not found");
 
-            Post thread = new Post(title,content,userName);
+            Post thread = new Post(title, content, userName);
 
-            return subForum.createThread(thread);
+            subForum.createThread(thread);
+            _logger.log("Successfully created Thread " + title+" in Sub Forum +"+subForumName);
+            return true;
 
         }
 
@@ -173,12 +174,14 @@ namespace WSEP.forumManagement
                 throw new Exception("Cannot create Reply - Sub Forum was not found");
 
             Post replyTo = subForum.getPostById(postToReplyToID);
-            if(replyTo== null)
+            if (replyTo == null)
                 throw new Exception("Cannot create Reply - original Post was not found");
 
-            Post reply = new Post(title, content, userName,replyTo );
+            Post reply = new Post(title, content, userName, replyTo);
 
-            return replyTo.addReply(reply);
+            replyTo.addReply(reply);
+            _logger.log("Successfully created Reply " + title + " in Sub Forum +" + subForumName);
+            return true;
 
         }
 
@@ -213,8 +216,13 @@ namespace WSEP.forumManagement
             if (subForum == null)
                 throw new Exception("Cannot delete post - Sub Forum was not found");
 
-            return subForum.deletePost(postId);
+            subForum.deletePost(postId);
+            _logger.log("Successfully deleted post " + postId + " in Sub Forum +" + subForumName);
+            return true;
+
         }
+
+        public ForumLogger getLogger() { return this._logger; }
     }
-    
+
 }
