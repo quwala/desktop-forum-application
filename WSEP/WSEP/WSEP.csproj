@@ -44,6 +44,7 @@
     <Compile Include="adapter\Adapter.cs" />
     <Compile Include="adapter\IAdapter.cs" />
     <Compile Include="forumManagement\forumHandler\Forum.cs" />
+    <Compile Include="loggingUtilities\ForumLogger.cs" />
     <Compile Include="forumManagement\InvalidNameException.cs" />
     <Compile Include="forumManagement\forumHandler\ForumPolicy.cs" />
     <Compile Include="forumManagement\forumHandler\SubForum.cs" />

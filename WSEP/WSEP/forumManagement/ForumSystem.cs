@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using WSEP.forumManagement.forumHandler;
 using WSEP.forumManagement.threadsHandler;
+using WSEP.loggingUtilities;
 using WSEP.userManagement;
+
 namespace WSEP.forumManagement
 {
     public class ForumSystem : IForumSystem
@@ -11,19 +13,15 @@ namespace WSEP.forumManagement
         private string _superAdmin;
         private List<Forum> _forums;
         private IUserManager um;
-
-        //public ForumSystem(string superAdmin)
-        //{
-        //    _superAdmin = superAdmin;
-        //    _forums = new List<Forum>();
-        //     um = null;
-        //}
+        private ForumLogger _logger;
 
         public ForumSystem(string superAdmin, UserManager um)
         {
             _superAdmin = superAdmin;
             _forums = new List<Forum>();
             this.um = um;
+            _logger = new ForumLogger("Forum_management");
+            _logger.log("Forum System was created.");
         }
 
         public Forum getForum(string name)
@@ -48,31 +46,54 @@ namespace WSEP.forumManagement
             // verify there is no forum with that name
             foreach (Forum f in _forums)
                 if (f.getName().Equals(name))
-                    throw new Exception("A Forum with that name already exists");
+                {
+                    Exception e = new Exception("A Forum with that name already exists");
+                    _logger.logException(e);
+                    throw e;
+                }
             
 
             Forum nForum = new Forum(name);
             _forums.Add(nForum);
             if (!_forums.Contains(nForum))
-                throw new Exception("Failed to add forum");
+            {
+                Exception e = new Exception("Failed to add forum");
+                _logger.logException(e);
+                throw e;
+            }
 
             string message = um.addForum(name);
             if (message.Equals("true"))
+            {
+                _logger.log("Successfully added forum " + name);
                 return true;
+            }
             else
-                throw new Exception(message); 
-
+            {
+                Exception e = new Exception(message);
+                _logger.logException(e);
+                throw e;
+            }
         }
 
         public bool addSubForum(string forumName, string subForumName, List<string> mods)
         {
             Forum forum = getForum(forumName);
-               if(forum==null)
-                     throw new Exception("Cannot add Sub Forum - Forum was not found");
+            if (forum == null)
+            {
+                Exception e = new Exception("Cannot add Sub Forum - Forum was not found");
+                _logger.logException(e);
+                throw e;
+            }
 
             foreach (SubForum sf in forum.SubForums)
                 if (sf.getName().Equals(subForumName))
-                    throw new Exception("A Sub Forum with that name already exists");
+                {
+                    Exception e = new Exception("A Sub Forum with that name already exists");
+                    _logger.logException(e);
+                    throw e;
+                }
+
 
             int minModerators = forum.getPolicy().MinModerators;
             int maxModerators = forum.getPolicy().MaxModerators;
@@ -80,9 +101,16 @@ namespace WSEP.forumManagement
             string message = um.addSubForum(forumName, subForumName, mods, minModerators, maxModerators);
 
             if (message.Equals("true"))
+            {
+                _logger.log("Successfully added Sub Forum " + subForumName);
                 return true;
+            }
             else
-                throw new Exception(message); 
+            {
+                Exception e = new Exception(message);
+                _logger.logException(e);
+                throw e;
+            }
         }
 
         //need a user manager to perform
