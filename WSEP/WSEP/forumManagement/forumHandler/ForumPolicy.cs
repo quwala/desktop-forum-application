@@ -86,7 +86,6 @@ namespace WSEP.forumManagement.forumHandler
             this.maxAdmins = 10;//default values
             this.forumRules = "Have Fun!";
 
-
         }
 
 

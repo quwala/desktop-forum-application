@@ -42,6 +42,14 @@ namespace WSEP.forumManagement
 
         }
 
+        public bool addSubForum(string forumName, string subForumName)
+        {
+            throw new NotImplementedException();
+        }
 
+        public bool changeForumPolicy(string forumName, int minAdmins, int maxAdmins, int minModerators, int maxModerators, string forumRules)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

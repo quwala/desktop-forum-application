@@ -40,8 +40,7 @@ namespace WSEPtests.acceptanceTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception),
-            "Minimum number of admins cannot be smaller than 1.")]
+        [ExpectedException(typeof(Exception))]
         public void Test_PolicyActions_BadData()
         {
             ForumPolicy nPolicy = new ForumPolicy("Bad Policy");
@@ -61,8 +60,8 @@ namespace WSEPtests.acceptanceTests
             nPolicy.MaxAdmins = 1;
             nPolicy.ForumRules = "Don't have any fun please";
 
-            //Assert.IsFalse(um.checkForumPolicy(nPolicy.Name,nPolicy.MinAdmins, nPolicy.MaxAdmins,
-              //  nPolicy.MinModerators,nPolicy.MaxModerators));
+            Assert.AreNotEqual(um.checkForumPolicy(nPolicy.Name, nPolicy.MinAdmins, nPolicy.MaxAdmins,
+                nPolicy.MinModerators, nPolicy.MaxModerators), "true");
         }
     }
 }
