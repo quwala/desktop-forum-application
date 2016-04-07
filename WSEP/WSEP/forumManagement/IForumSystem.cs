@@ -12,11 +12,21 @@ namespace WSEP.forumManagement
     public interface IForumSystem
     {
         bool addForum(string name);
-        Forum getForum(string name);
-        bool addSubForum(string forumName, string subForumName);
-        bool changeForumPolicy(string forumName, int minAdmins, int maxAdmins,
+
+        Forum getForum(string name);//adds it in the usermanager as well.
+
+        bool addSubForum(string forumName, string subForumName, List<string> mods);
+
+        bool setForumPolicy(string forumName, int minAdmins, int maxAdmins,
             int minModerators, int maxModerators, string forumRules);
 
+        bool hasForum(string name);
+
+        bool createThread(string forumName, string subForumName, string title, string content);
+
+        bool createReply(string forumName, string subForumName, string threadID, string postToReplyToID);
+
+        List<string> getThreadIDSFromSubForum(string forumName, string subForumName);
 
     }
 }

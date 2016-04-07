@@ -8,83 +8,97 @@ namespace WSEP.forumManagement.forumHandler
 {
     public class ForumPolicy
     {
-        private string name;
+        private string _name;
         public string Name
         {
             get {
-                return name;
+                return _name;
             }
 
             set {
                 checkPolicyName(value);
-                    name = value;
+                    _name = value;
             }
         }
 
-        private int minAdmins;
+        private int _minAdmins;
         public int MinAdmins
         {
-            get { return minAdmins; }
+            get { return _minAdmins; }
             set {
                 if (value < 1)
                     throw new Exception(
                         "Minimum number of admins cannot be smaller than 1.");
                        
-                minAdmins = value; }
+                _minAdmins = value; }
         }
 
-        private int maxAdmins;
+        private int _maxAdmins;
         public int MaxAdmins
         {
-            get { return maxAdmins; }
+            get { return _maxAdmins; }
             set {
-                if (value < minAdmins)
+                if (value < MinAdmins)
                     throw new Exception(
                         "Maximum number of admins cannot be smaller than minimal number of admins");
-                maxAdmins = value; }
+                _maxAdmins = value; }
         }
 
-        private int minModerators;
+        private int _minModerators;
         public int MinModerators
         {
-            get { return minModerators; }
+            get { return _minModerators; }
             set
             {
                 if (value < 1)
                     throw new Exception(
                         "Minimum number of moderators cannot be smaller than 1.");
 
-                minModerators = value;
+                _minModerators = value;
             }
         }
 
-        private int maxModerators;
+        private int _maxModerators;
         public int MaxModerators
         {
-            get { return maxModerators; }
+            get { return _maxModerators; }
             set
             {
-                if (value < minModerators)
+                if (value < MinModerators)
                     throw new Exception(
                         "Maximum number of moderators cannot be smaller than minimal number of moderators");
-                maxModerators = value;
+                _maxModerators = value;
             }
         }
 
-        private string forumRules;
+        private string _forumRules;
         public string ForumRules
         {
-            get { return forumRules; }
-            set { forumRules = value; }
+            get { return _forumRules; }
+            set { _forumRules = value; }
         }
 
+        //default policy
         public ForumPolicy(string name)
         {
-            checkPolicyName(name);
-            this.name = name;
-            this.minAdmins = 1;
-            this.maxAdmins = 10;//default values
-            this.forumRules = "Have Fun!";
+            this.Name = name;
+            this.MinAdmins = 1;
+            this.MaxAdmins = 10;//default values
+            this.MinModerators = 1;
+            this.MaxModerators = 10;//default values
+            this.ForumRules = "Have Fun!";
+
+        }
+
+        public ForumPolicy(string name, int minAdmins, int maxAdmins,
+            int minModerators, int maxModerators, string forumRules)
+        {
+            this.Name = name;
+            this.MinAdmins = minAdmins;
+            this.MaxAdmins = maxAdmins;
+            this.MinModerators = minModerators;
+            this.MaxModerators = maxModerators;
+            this.ForumRules = forumRules;
 
         }
 

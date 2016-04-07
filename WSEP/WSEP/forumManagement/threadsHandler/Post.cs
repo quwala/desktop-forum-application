@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace WSEP.forumManagement.threadsHandler
 {
-    class Post
+    public class Post
     {
+        private string _id;
         private string _title;
+        private string _userName;
         private string _content;
         private DateTime _date;
         private List<Post> _replies;
+
+        public Post()
+        {
+        }
+
     }
 }

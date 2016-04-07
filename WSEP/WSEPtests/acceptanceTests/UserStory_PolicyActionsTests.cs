@@ -21,10 +21,11 @@ namespace WSEPtests.acceptanceTests
         [TestInitialize()]
         public void Initialize()
         {
-            ForumSystem fs = new ForumSystem("superAdmin");
             um = new UserManager();
+
+            ForumSystem fs = new ForumSystem("superAdmin",um);
             fs.addForum("Test Forum");
-           um.addForum("Test Forum");
+            um.addForum("Test Forum");
             f = fs.getForum("Test Forum");
         }
 
