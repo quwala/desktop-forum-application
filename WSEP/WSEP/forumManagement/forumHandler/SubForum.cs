@@ -62,5 +62,14 @@ namespace WSEP.forumManagement.forumHandler
             _threads.Add(thread);
             return true;
         }
+
+        internal List<string> getThreadIDS()
+        {
+            List<string> ids = new List<string>();
+            foreach (Post t in _threads)
+                ids.Add(t.Id);
+
+            return ids;
+        }
     }
 }

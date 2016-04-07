@@ -156,7 +156,19 @@ namespace WSEP.forumManagement
 
         public List<string> getThreadIDSFromSubForum(string forumName, string subForumName)
         {
-            throw new NotImplementedException();
+            if (!hasForum(forumName))
+                throw new Exception("Cannot retrieve threads - Forum was not found");
+
+            Forum forum = getForum(forumName);
+            SubForum subForum = null;
+            foreach (SubForum sf in forum.SubForums)
+                if (sf.getName().Equals(subForumName))
+                    subForum = sf;
+
+            if (subForum == null)
+                throw new Exception("Cannot retrieve threads - Sub Forum was not found");
+
+            return subForum.getThreadIDS();
         }
 
        
