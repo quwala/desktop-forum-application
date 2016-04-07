@@ -71,5 +71,13 @@ namespace WSEP.forumManagement.threadsHandler
             _replies.Add(reply);
             return true;
         }
+
+        //delete this post and all of it's replies 
+        public bool delete()
+        {
+            if (_replyTo != null)
+                _replyTo._replies.Remove(this);
+            return true;
+        }
     }
 }

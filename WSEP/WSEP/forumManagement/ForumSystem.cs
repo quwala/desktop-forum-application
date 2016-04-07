@@ -171,7 +171,22 @@ namespace WSEP.forumManagement
             return subForum.getThreadIDS();
         }
 
-       
+        public bool deletePost(string forumName, string subForumName, string postId)
+        {
+            if (!hasForum(forumName))
+                throw new Exception("Cannot delete post - Forum was not found");
+
+            Forum forum = getForum(forumName);
+            SubForum subForum = null;
+            foreach (SubForum sf in forum.SubForums)
+                if (sf.getName().Equals(subForumName))
+                    subForum = sf;
+
+            if (subForum == null)
+                throw new Exception("Cannot delete post - Sub Forum was not found");
+
+            return subForum.deletePost(postId);
+        }
     }
     
 }

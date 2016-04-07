@@ -71,5 +71,25 @@ namespace WSEP.forumManagement.forumHandler
 
             return ids;
         }
+
+       public bool deletePost(string postId)
+        {
+            List<string> threadIDS = getThreadIDS();
+            Post toDelete = null;
+            foreach (string tid in threadIDS)
+                if (tid.Equals(postId))
+                {
+                    toDelete = getPostById(tid);
+                    _threads.Remove(toDelete);
+                    return true;
+                }
+
+            //else: not a thread, just a normal post
+
+            toDelete = getPostById(postId);
+            return toDelete.delete();
+        }
+
+
     }
 }
