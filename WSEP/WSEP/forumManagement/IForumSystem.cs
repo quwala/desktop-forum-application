@@ -30,5 +30,8 @@ namespace WSEP.forumManagement
 
         List<string> getThreadIDSFromSubForum(string forumName, string subForumName);
 
+        bool deletePost(string forumName, string subForumName, string postId);
+
+
     }
 }

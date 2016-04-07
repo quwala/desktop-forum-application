@@ -19,7 +19,16 @@ namespace WSEP.forumManagement.forumHandler
             this._threads = new List<Post>();
         }
 
-       
+       public Post getPostById(string id)
+        {
+            foreach(Post p in _threads)
+            {
+                Post found = p.findPost(id);
+                if (found != null)
+                    return found;
+            }
+            return null;
+        }
 
         private void checkForumName(string name)
         {
@@ -53,5 +62,34 @@ namespace WSEP.forumManagement.forumHandler
             _threads.Add(thread);
             return true;
         }
+
+        internal List<string> getThreadIDS()
+        {
+            List<string> ids = new List<string>();
+            foreach (Post t in _threads)
+                ids.Add(t.Id);
+
+            return ids;
+        }
+
+       public bool deletePost(string postId)
+        {
+            List<string> threadIDS = getThreadIDS();
+            Post toDelete = null;
+            foreach (string tid in threadIDS)
+                if (tid.Equals(postId))
+                {
+                    toDelete = getPostById(tid);
+                    _threads.Remove(toDelete);
+                    return true;
+                }
+
+            //else: not a thread, just a normal post
+
+            toDelete = getPostById(postId);
+            return toDelete.delete();
+        }
+
+
     }
 }

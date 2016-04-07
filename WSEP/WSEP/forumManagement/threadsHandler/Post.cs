@@ -38,6 +38,20 @@ namespace WSEP.forumManagement.threadsHandler
             _id = guid.ToString();//generate code
         }
 
+        internal Post findPost(string id)
+        {
+            if (this.Id == id)
+                return this;
+
+            foreach (Post p in _replies)
+            {
+                Post found = p.findPost(id);
+                if (found != null)
+                    return found;
+            }
+            return null;
+        }
+
         //reply constructor
         public Post(string title, string content, string userName, Post replyTo)
         {
@@ -52,5 +66,18 @@ namespace WSEP.forumManagement.threadsHandler
             _id = guid.ToString();
         }
 
+        internal bool addReply(Post reply)
+        {
+            _replies.Add(reply);
+            return true;
+        }
+
+        //delete this post and all of it's replies 
+        public bool delete()
+        {
+            if (_replyTo != null)
+                _replyTo._replies.Remove(this);
+            return true;
+        }
     }
 }
