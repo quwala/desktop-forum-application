@@ -19,7 +19,16 @@ namespace WSEP.forumManagement.forumHandler
             this._threads = new List<Post>();
         }
 
-       
+       public Post getPostById(string id)
+        {
+            foreach(Post p in _threads)
+            {
+                Post found = p.findPost(id);
+                if (found != null)
+                    return found;
+            }
+            return null;
+        }
 
         private void checkForumName(string name)
         {

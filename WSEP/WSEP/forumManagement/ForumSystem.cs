@@ -129,9 +129,29 @@ namespace WSEP.forumManagement
 
         }
 
-        public bool createReply(string forumName, string subForumName, string title, string content, string userName, string postToReplyToID)
+        public bool createReply(string forumName, string subForumName, string title, string content,
+            string userName, string postToReplyToID)
         {
-            throw new NotImplementedException();
+            if (!hasForum(forumName))
+                throw new Exception("Cannot create Reply - Forum was not found");
+
+            Forum forum = getForum(forumName);
+            SubForum subForum = null;
+            foreach (SubForum sf in forum.SubForums)
+                if (sf.getName().Equals(subForumName))
+                    subForum = sf;
+
+            if (subForum == null)
+                throw new Exception("Cannot create Reply - Sub Forum was not found");
+
+            Post replyTo = subForum.getPostById(postToReplyToID);
+            if(replyTo== null)
+                throw new Exception("Cannot create Reply - original Post was not found");
+
+            Post reply = new Post(title, content, userName,replyTo );
+
+            return replyTo.addReply(reply);
+
         }
 
         public List<string> getThreadIDSFromSubForum(string forumName, string subForumName)
