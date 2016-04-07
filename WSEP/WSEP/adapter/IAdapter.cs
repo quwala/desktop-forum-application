@@ -32,23 +32,19 @@ namespace WSEP.adapter
         //same as above
         bool createReply(string forumName, string subForumName, string postToReplyToId, string title, string content);//via ForumSystem
 
-        List<string> getThreadIDSFromSubForum(string forumName, string subForumName);//via ForumSystem
 
-        bool deletePost(string forumName, string subForumName, string postId);
-
-        bool DeletePost(string forumName, string subForumName, List<Post> posts);
-
-        bool ModeratorAppointment(string forumName, string subForumName, string moderatorName, int howMuchTime);
-        bool EditModeratorTime(string ForumName, string SubForumName, string UserName, int time);
+        bool deletePost(string forumName, string subForumName, string postId);//via ForumSystem
 
 
-        bool CreateReply(string forumName, string subForumName, Post post, string content);
+        bool moderatorAppointment(string forumName, string subForumName, string moderatorName, int howMuchTime);//via UserManager
 
-        bool SendingPrivateMassage(string forumName, string sender, string receiver, string content);
+        bool editModeratorTime(string ForumName, string SubForumName, string UserName, int time);//via UserManager
 
-        bool ContainSubForum(string forumName, string subForum);
+        bool sendingPrivateMassage(string forumName, string sender, string receiver, string content);//via UserManager
 
-        List<Post> getThreadFromSubForum(string forumName, string subForumName);
+        bool containSubForum(string forumName, string subForum);//via ForumSystem
+
+        List<string> getThreadsFromSubForum(string forumName, string subForumName);//via ForumSystem
 
 
     }
