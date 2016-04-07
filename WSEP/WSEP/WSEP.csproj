@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="adapter\Adapter.cs" />
     <Compile Include="adapter\IAdapter.cs" />
     <Compile Include="forumManagement\forumHandler\Forum.cs" />
     <Compile Include="forumManagement\InvalidNameException.cs" />
