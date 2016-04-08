@@ -53,17 +53,17 @@ namespace WSEP.forumManagement.forumHandler
             return this._name;
         }
 
-        public bool createThread(Post thread)
+        public string createThread(Post thread)
         {
             foreach (Post t in _threads)
                 if (t.Id.Equals(thread.Id))
                     throw new Exception("Cannot create thread, a thread ID duplication was detected. <br> Please try again");
 
             _threads.Add(thread);
-            return true;
+            return thread.Id;
         }
 
-        internal List<string> getThreadIDS()
+        public List<string> getThreadIDS()
         {
             List<string> ids = new List<string>();
             foreach (Post t in _threads)
@@ -87,6 +87,8 @@ namespace WSEP.forumManagement.forumHandler
             //else: not a thread, just a normal post
 
             toDelete = getPostById(postId);
+            if (toDelete == null)
+                throw new Exception("Cannot delete post - no such post was found");
             return toDelete.delete();
         }
 

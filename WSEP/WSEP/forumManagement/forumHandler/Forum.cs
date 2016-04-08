@@ -55,7 +55,7 @@ namespace WSEP.forumManagement.forumHandler
             return true;
         }
 
-         SubForum getSubForum(string name)
+         public SubForum getSubForum(string name)
         {
             foreach (SubForum s in _subForums)
                 if (s.getName().Equals(name))
