@@ -22,10 +22,10 @@ namespace WSEP.forumManagement
 
         bool hasForum(string name);
 
-        bool createThread(string forumName, string subForumName, string title, string content,
+        string createThread(string forumName, string subForumName, string title, string content,
             string userName);
 
-        bool createReply(string forumName, string subForumName, string title, string content,
+        string createReply(string forumName, string subForumName, string title, string content,
             string userName, string postToReplyToID);
 
         List<string> getThreadIDSFromSubForum(string forumName, string subForumName);

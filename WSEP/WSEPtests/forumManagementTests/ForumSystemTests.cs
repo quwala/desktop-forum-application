@@ -206,5 +206,134 @@ namespace WSEPtests.forumManagementTests
             fs.setForumPolicy("Test Forum", "Test Policy", 1, 10, 1, 1, "");
         }
 
+
+        //test the createThread() with accepted standard input.
+        [TestMethod]
+        public void Test_createThread_StandardInput()
+        {
+            fs.createThread("Test Forum", "Test Sub Forum", "Test Thread", "content", "Avi");
+            Assert.AreNotEqual(0,sf.getThreadIDS().Count);
+            Assert.IsTrue(fs.getLogger().getLog().Contains(
+               "Successfully created Thread Test Thread in Sub Forum Test Sub Forum"));
+        }
+
+        //test the createThread() with empty content and title.
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+           "Post could not be created; title and content both are empty")]
+        public void Test_createThread_NoContentNoTitle()
+        {
+            fs.createThread("Test Forum", "Test Sub Forum", "", "", "Avi");
+        }
+
+        //test the createThread() with non existant Sub Forum.
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+          "Cannot create Thread - Forum was not found")]
+        public void Test_createThread_NonExistingSubForum()
+        {
+            fs.createThread("Test Forum", "dummy", "title", "", "Avi");
+        }
+
+        //test the createReply() with accepted standard input.
+        [TestMethod]
+        public void Test_createReplyStandardInput()
+        {
+            string postId=fs.createThread("Test Forum", "Test Sub Forum", "Test Thread", "content", "Avi");
+            fs.createReply("Test Forum", "Test Sub Forum", "title", "content", "Shlomo", postId);
+            Assert.IsNotNull(sf.getPostById(postId));
+            Assert.IsTrue(fs.getLogger().getLog().Contains(
+"Successfully created Reply title in Sub Forum Test Sub Forum"));
+        }
+
+        //test the createReply() with non existing post to reply to
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+           "Cannot create Reply - original Post was not found")]
+        public void Test_createReply_NoPostToReplyTo()
+        {
+            fs.createReply("Test Forum", "Test Sub Forum", "title", "content", "Shlomo", "made_up_id");
+        }
+
+        //test the getThreadIDSFromSubForum() with accepted standard input.
+        [TestMethod]
+        public void Test_getThreadIDSFromSubForum_StandardInput()
+        {
+            string postId1 = fs.createThread("Test Forum", "Test Sub Forum", "Test Thread1", "content", "Avi");
+            string postId2 = fs.createThread("Test Forum", "Test Sub Forum", "Test Thread2", "content", "Avi");
+            string postId3 = fs.createThread("Test Forum", "Test Sub Forum", "Test Thread3", "content", "Shlomo");
+
+            string postId4 = fs.createReply("Test Forum", "Test Sub Forum", "title", "content", "Shlomo", postId1);
+            Assert.IsNotNull(sf.getPostById(postId1));
+            Assert.IsNotNull(sf.getPostById(postId2));
+            Assert.IsNotNull(sf.getPostById(postId3));
+            Assert.IsNotNull(sf.getPostById(postId4));
+
+            List<string> l = new List<string>();
+            bool res = fs.getThreadIDSFromSubForum("Test Forum", "Test Sub Forum").Contains(postId1)
+                && fs.getThreadIDSFromSubForum("Test Forum", "Test Sub Forum").Contains(postId2)
+                && fs.getThreadIDSFromSubForum("Test Forum", "Test Sub Forum").Contains(postId3)
+                && !fs.getThreadIDSFromSubForum("Test Forum", "Test Sub Forum").Contains(postId4);
+
+            Assert.IsTrue(res);
+        }
+
+        //test the deletePost() with accepted standard input.
+        [TestMethod]
+        public void Test_deletePost_StandardInput()
+        {
+            string postId1 = fs.createThread("Test Forum", "Test Sub Forum", "Test Thread1", "content", "Avi");
+           
+
+            string postId4 = fs.createReply("Test Forum", "Test Sub Forum", "title", "content", "Shlomo", postId1);
+
+            Assert.IsTrue(fs.deletePost("Test Forum", "Test Sub Forum", postId4));
+            Assert.IsNull(sf.getPostById(postId4));
+            Assert.IsNotNull(sf.getPostById(postId1));
+        }
+
+        //test the deletePost() with non existing post.
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+           "Cannot delete post - no such post was found")]
+        public void Test_deletePost_NoPost()
+        {
+            fs.deletePost("Test Forum", "Test SubForum", "made_up_post");    
+        }
+
+        //test the deletePost() with a thread deletion - all replies should be erased.
+        [TestMethod]
+        public void Test_deletePost_DeleteEnitreThread()
+        {
+            string postId1 = fs.createThread("Test Forum", "Test Sub Forum", "Test Thread1", "content", "Avi");
+            string postId2 = fs.createThread("Test Forum", "Test Sub Forum", "Test Thread2", "content", "Shlomo");
+            string postId3 = fs.createThread("Test Forum", "Test Sub Forum", "Test Thread3", "content", "Avi");
+
+
+            string postId4 = fs.createReply("Test Forum", "Test Sub Forum", "title", "content", "Shlomo", postId1);
+            string postId5 = fs.createReply("Test Forum", "Test Sub Forum", "title2", "content", "Shlomo", postId4);
+            string postId6 = fs.createReply("Test Forum", "Test Sub Forum", "title3", "content", "Shlomo", postId4);
+            string postId7 = fs.createReply("Test Forum", "Test Sub Forum", "title3", "content", "Avi", postId4);
+            string postId8 = fs.createReply("Test Forum", "Test Sub Forum", "title3", "content", "Avi", postId1);
+            string postId9 = fs.createReply("Test Forum", "Test Sub Forum", "title3", "content", "Avi", postId6);
+
+            Assert.IsTrue(fs.deletePost("Test Forum", "Test Sub Forum", postId1));
+            Assert.IsNull(sf.getPostById(postId1));
+            Assert.IsNotNull(sf.getPostById(postId2));
+            Assert.IsNotNull(sf.getPostById(postId3));
+            Assert.IsNull(sf.getPostById(postId4));
+            Assert.IsNull(sf.getPostById(postId5));
+            Assert.IsNull(sf.getPostById(postId6));
+            Assert.IsNull(sf.getPostById(postId7));
+            Assert.IsNull(sf.getPostById(postId8));
+            Assert.IsNull(sf.getPostById(postId9));
+
+        }
+
+
+
+
+
+
     }
 }

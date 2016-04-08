@@ -136,7 +136,7 @@ namespace WSEP.forumManagement
 
 
 
-        public bool createThread(string forumName, string subForumName, string title, string content
+        public string createThread(string forumName, string subForumName, string title, string content
             , string userName)
         {
             if (!hasForum(forumName))
@@ -153,13 +153,13 @@ namespace WSEP.forumManagement
 
             Post thread = new Post(title, content, userName);
 
-            subForum.createThread(thread);
-            _logger.log("Successfully created Thread " + title+" in Sub Forum +"+subForumName);
-            return true;
+            string nId=subForum.createThread(thread);
+            _logger.log("Successfully created Thread " + title+" in Sub Forum "+subForumName);
+            return nId;
 
         }
 
-        public bool createReply(string forumName, string subForumName, string title, string content,
+        public string createReply(string forumName, string subForumName, string title, string content,
             string userName, string postToReplyToID)
         {
             if (!hasForum(forumName))
@@ -180,9 +180,9 @@ namespace WSEP.forumManagement
 
             Post reply = new Post(title, content, userName, replyTo);
 
-            replyTo.addReply(reply);
-            _logger.log("Successfully created Reply " + title + " in Sub Forum +" + subForumName);
-            return true;
+            string nId = replyTo.addReply(reply);
+            _logger.log("Successfully created Reply " + title + " in Sub Forum " + subForumName);
+            return nId;
 
         }
 
@@ -218,7 +218,7 @@ namespace WSEP.forumManagement
                 throw new Exception("Cannot delete post - Sub Forum was not found");
 
             subForum.deletePost(postId);
-            _logger.log("Successfully deleted post " + postId + " in Sub Forum +" + subForumName);
+            _logger.log("Successfully deleted post " + postId + " in Sub Forum " + subForumName);
             return true;
 
         }

@@ -27,6 +27,9 @@ namespace WSEP.forumManagement.threadsHandler
         //thread constructor
         public Post(string title, string content, string userName)
         {
+            if (content.Equals("") && title.Equals(""))
+                throw new Exception("Post could not be created; title and content both are empty");
+
             _replyTo = null;
             _title = title;
             _content = content;
@@ -66,10 +69,10 @@ namespace WSEP.forumManagement.threadsHandler
             _id = guid.ToString();
         }
 
-        internal bool addReply(Post reply)
+        internal string addReply(Post reply)
         {
             _replies.Add(reply);
-            return true;
+            return reply.Id;
         }
 
         //delete this post and all of it's replies 
