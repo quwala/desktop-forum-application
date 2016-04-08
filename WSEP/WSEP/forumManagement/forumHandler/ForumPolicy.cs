@@ -28,7 +28,7 @@ namespace WSEP.forumManagement.forumHandler
             set {
                 if (value < 1)
                     throw new Exception(
-                        "Minimum number of admins cannot be smaller than 1.");
+                        "Minimum number of admins cannot be smaller than 1");
                        
                 _minAdmins = value; }
         }

@@ -147,6 +147,64 @@ namespace WSEPtests.forumManagementTests
             Assert.AreEqual("Default Policy", f.getPolicy().Name);
         }
 
+        //test the setForumPolicy() with 0 minadmins.
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+          "Minimum number of admins cannot be smaller than 1")]
+        public void Test_setForumPolicy_ZeroAdmins()
+        {
+            fs.setForumPolicy("Test Forum","Test Policy", 0, 0,0,0,"");
+        }
+
+        //test the setForumPolicy() with maxmods < minmods.
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+          "Maximum number of moderators cannot be smaller than minimal number of moderators")]
+        public void Test_setForumPolicy_MoreMaxModsThanMinMods()
+        {
+            fs.setForumPolicy("Test Forum", "Test Policy", 1, 10, 2, 1, "");
+        }
+
+        //test the setForumPolicy() with bad policy name.
+        [TestMethod]
+        [ExpectedException(typeof(InvalidNameException),
+          "Name of the policy cannot be empty")]
+        public void Test_setForumPolicy_EmptyPolicyName()
+        {
+            fs.setForumPolicy("Test Forum", "", 1, 10, 2, 10, "");
+        }
+
+        //test the setForumPolicy() with a policy that conflicts with
+        //the current number of admins in the forum.
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void Test_setForumPolicy_ConliftingMaxAdminNumber()
+        {
+            um.registerMemberToForum("Test Forum", "Adminos1", "Adminos1", "Adminos1@hotmail.com");
+            um.registerMemberToForum("Test Forum", "Adminos2", "Adminos2", "Adminos2@hotmail.com");
+            um.assignAdmin("Test Forum", "Adminos1", 10);
+            um.assignAdmin("Test Forum", "Adminos2", 10);
+
+            fs.setForumPolicy("Test Forum", "Test Policy", 1, 1, 2, 10, "");
+        }
+
+        //test the setForumPolicy() with a policy that conflicts with
+        //the current number of admins in the forum.
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void Test_setForumPolicy_ConliftingMinAdminNumber()
+        {
+            fs.setForumPolicy("Test Forum", "Test Policy", 2, 10, 2, 10, "");
+        }
+
+        //test the setForumPolicy() with a policy that conflicts with
+        //the current number of moderators in the forum.
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void Test_setForumPolicy_ConliftingMaxModNumber()
+        {
+            fs.setForumPolicy("Test Forum", "Test Policy", 1, 10, 1, 1, "");
+        }
 
     }
 }
