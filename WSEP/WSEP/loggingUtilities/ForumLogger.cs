@@ -14,27 +14,28 @@ namespace WSEP.loggingUtilities
        
         private string path;
         private string _text;
-
         public ForumLogger(string section)
         {
             path = section+"Log.txt";
             _text = "";
-
+            if (File.Exists(path))//some concurrency issues here
+                File.Delete(path);
         }
 
         public void log(string text)
         {
+       
             File.AppendAllText(path, DateTime.Now.ToShortDateString() 
                 + ", " + DateTime.Now.ToShortTimeString() +
-                ": " + text+"\n");
+                ": " + text+".\r\n");
             _text = File.ReadAllText(path);
         }
 
       
 
-        internal void logException(Exception e)
+        public void logException(Exception e)
         {
-            throw new NotImplementedException();
+            log("Exception caught: "+e.Message);
         }
 
         public string getLog()

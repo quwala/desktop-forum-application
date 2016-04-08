@@ -50,5 +50,22 @@ namespace WSEPtests.acceptanceTests
 
         }
 
+        [TestMethod]
+        public void Test_ExceptionLogging()
+        {
+            string expected1 = "Name of the Sub Forum cannot be empty";
+            try
+            {
+                f.addSubForum("");
+            }
+            catch (Exception e)
+            {
+                fl.logException(e);
+            }
+               
+            Assert.IsTrue(fl.getLog().Contains(expected1));
+
+        }
+
     }
 }
