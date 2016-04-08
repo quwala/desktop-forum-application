@@ -17,7 +17,7 @@ namespace WSEP.forumManagement
 
         bool addSubForum(string forumName, string subForumName, List<string> mods);
 
-        bool setForumPolicy(string forumName, int minAdmins, int maxAdmins,
+        bool setForumPolicy(string forumName, string policyName, int minAdmins, int maxAdmins,
             int minModerators, int maxModerators, string forumRules);
 
         bool hasForum(string name);

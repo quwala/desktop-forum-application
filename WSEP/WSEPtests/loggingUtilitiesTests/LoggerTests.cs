@@ -41,7 +41,7 @@ namespace WSEPtests.acceptanceTests
         [TestMethod]
         public void Test_BasicLogging()
         {
-            string expected1 = "Forum System was created.\n";
+            string expected1 = "Forum System was created.";
             string expected2 = "Successfully added forum Test Forum.";
 
             fl.log("Testing Logger successfully completed.");

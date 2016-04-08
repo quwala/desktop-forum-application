@@ -119,5 +119,9 @@ namespace WSEP.forumManagement.forumHandler
 
         }
 
+        public string getName()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

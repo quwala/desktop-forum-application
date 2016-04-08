@@ -110,14 +110,14 @@ namespace WSEP.forumManagement
 
 
         //need a user manager to perform
-        public bool setForumPolicy(string forumName, int minAdmins, int maxAdmins,
+        public bool setForumPolicy(string forumName, string policyName, int minAdmins, int maxAdmins,
             int minModerators, int maxModerators, string forumRules)
         {
             Forum forum = getForum(forumName);
             if (forum == null)
                 throw new Exception("Cannot set policy - Forum was not found");
 
-            ForumPolicy nPolicy = new ForumPolicy(forumName, minAdmins, maxAdmins,
+            ForumPolicy nPolicy = new ForumPolicy(policyName, minAdmins, maxAdmins,
                 minModerators, maxModerators, forumRules);
 
             string message = um.checkForumPolicy(forumName, minAdmins, maxAdmins, minModerators, maxModerators);
