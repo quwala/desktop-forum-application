@@ -97,6 +97,7 @@ namespace WSEP.forumManagement
 
             if (message.Equals("true"))
             {
+                forum.addSubForum(subForumName);
                 _logger.log("Successfully added Sub Forum " + subForumName);
                 return true;
             }
