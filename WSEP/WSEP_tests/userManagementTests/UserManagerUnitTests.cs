@@ -106,7 +106,7 @@ namespace WSEP_tests.userManagementTests
             // valid inputs that should succeed
             Assert.IsTrue(um.registerMemberToForum("forum1", "user1", "pass1", "email1@gmail.com").Equals("true"));
             Assert.IsTrue(um.registerMemberToForum("forum1", "user2", "pass1", "email2@gmail.com").Equals("true"));
-
+            
             // valid inputs that should fail
             // email exists in this forum
             Assert.IsFalse(um.registerMemberToForum("forum1", "user3", "pass1", "email2@gmail.com").Equals("true"));

@@ -122,7 +122,7 @@ namespace WSEP_tests.adapter
 
         public bool forumLogIn(string forumName, string userName, string userPassword)
         {
-            throw new NotImplementedException();
+            return um.login(forumName, userName, userPassword);
         }
 
         public List<string> getThreadsFromSubForum(string forumName, string subForumName)

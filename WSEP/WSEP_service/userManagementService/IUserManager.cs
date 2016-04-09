@@ -21,6 +21,7 @@ namespace WSEP_service.userManagementService
         permission getUserPermissionsForForum(string forumName, string username); // has tests with perfect coverage & log
         permission getUserPermissionsForSubForum(string forumName, string subForumName, string username); // has tests with perfect coverage & log
         string sendPM(string forumName, string from, string to, string msg); // has tests with perfect coverage & log
-        string checkForumPolicy(string forumName, int minNumOfAdmins, int maxNumOfAdminsm, int minModerators, int maxModerators); // has tests but not enough
+        string checkForumPolicy(string forumName, int minNumOfAdmins, int maxNumOfAdminsm, int minModerators, int maxModerators); // has tests with perfect coverage & log
+        bool login(string forumname, string username, string password); // no tests, has log
     }
 }

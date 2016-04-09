@@ -12,19 +12,22 @@ namespace WSEP_service.userManagementService
     public class UserManager : IUserManager
     {
 
-        // add logger
-
         private User _superAdmin;
         private List<Tuple<string, List<User>>> _forumsMembers; // forum name and a list of members
         private List<Tuple<string, List<User>>> _forumsAdmins; // forum name and a list of admins
         private List<Tuple<string, string, List<User>>> _subForumsModerators; // forum name, sub forum name and a list of moderators
         private static StringBuilder _log = new StringBuilder("User Manaager log:" + Environment.NewLine);
 
+        private const string NULL = "null";
+        private const string EMPTY = "";
+        private List<string> ILLEGAL_VALUES = new List<string>() { NULL, EMPTY };
+
+        private const string NEWLINE = "\n";
+        private List<string> ILLEGAL_CONTENT = new List<string>() { NEWLINE };
+
         private const string SUCCESS = "true";
         private const string FUNCTION_ERRROR = "An error has occured with C# internal function.";
-        private const string INVALID_FORUM_NAME = "Invalid forum name. Forum name cannot be null, \"null\" or empty.";
-        private const string INVALID_SUB_FORUM_NAME = "Invalid sub forum name. Sub forum name cannot be null, \"null\" or empty.";
-        private const string INVALID_USERNAME = "Invalid username. Username cannot be null, \"null\" or empty.";
+        private const string INVALID_INPUT = "Invalid input.";
         private const string WRONG_FORUM_NAME = "Wrong forum name. No forum found with such a name.";
         private const string WRONG_USERNAME = "Wrong username. There is no member of this forum with that username.";
         private const string WRONG_SUB_FORUM_NAME = "Wrong sub forum name. No sub forum found with such a name found in this forum.";
@@ -41,12 +44,13 @@ namespace WSEP_service.userManagementService
 
         public string addForum(string forumName)
         {
-            string forumNameTaken = "This forum name is already in use. Please select another name.";
-            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
+            List<string> input = new List<string>() { forumName };
+            if (!isValidInput(input))
             {
-                _log.Append(DateTime.Now.ToString() + ": New forum creation faild. " + INVALID_FORUM_NAME + Environment.NewLine);
-                return INVALID_FORUM_NAME;
+                _log.Append(DateTime.Now.ToString() + ": New forum creation faild. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
             }
+            string forumNameTaken = "This forum name is already in use. Please select another name.";
             // verify there is no forum with that name
             List<User> admins = getForumAdmins(forumName);
             List<User> member = getForumMembers(forumName);
@@ -83,22 +87,22 @@ namespace WSEP_service.userManagementService
 
         public string addSubForum(string forumName, string subForumName, List<string> setModerators, int minNumOfModerators, int maxNumOfModerators)
         {
+            if (setModerators == null)
+            {
+                _log.Append(DateTime.Now.ToString() + ": New sub forum creation faild. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
+            }
+            List<string> input = new List<string>() { forumName, subForumName };
+            foreach (string username in setModerators)
+            {
+                input.Add(username);
+            }
+            if (!isValidInput(input))
+            {
+                _log.Append(DateTime.Now.ToString() + ": New sub forum creation faild. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
+            }
             string subForumNameTaken = "This sub forum name is already in use in that forum. Please select another name.";
-            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
-            {
-                _log.Append(DateTime.Now.ToString() + ": New sub forum creation faild. " + INVALID_FORUM_NAME + Environment.NewLine);
-                return INVALID_FORUM_NAME;
-            }
-            if (subForumName == null || subForumName.Equals("null") || subForumName.Equals(""))
-            {
-                _log.Append(DateTime.Now.ToString() + ": New sub forum creation faild. " + INVALID_SUB_FORUM_NAME + Environment.NewLine);
-                return INVALID_SUB_FORUM_NAME;
-            }
-            if (setModerators == null || setModerators.Contains(null) || setModerators.Contains("null") || setModerators.Contains(""))
-            {
-                _log.Append(DateTime.Now.ToString() + ": New sub forum creation faild. " + INVALID_USERNAME + Environment.NewLine);
-                return INVALID_USERNAME;
-            }
             if (setModerators.Count < minNumOfModerators || setModerators.Count > maxNumOfModerators)
             {
                 _log.Append(DateTime.Now.ToString() + ": New sub forum creation faild. " + ILLEGAL_ACTION + Environment.NewLine);
@@ -158,31 +162,15 @@ namespace WSEP_service.userManagementService
         [MethodImpl(MethodImplOptions.Synchronized)]
         public string registerMemberToForum(string forumName, string username, string password, string eMail)
         {
-            string invalidPassword = "Invalid password. Password cannot be null, \"null\" or empty, or contain any of the following:\nSpace";
-            string invalidEMail = "Invalid eMail. eMail cannot be null, \"null\" or empty.";
+            List<string> input = new List<string>() { forumName, username, password, eMail };
+            if (!isValidInput(input) || password.Contains(" "))
+            {
+                _log.Append(DateTime.Now.ToString() + ": Registration faild. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
+            }
             string usernameTaken = "This username is already in use in that forum. Please select another name.";
             string wrongEMail = "Illegal eMail address. Please enter a corrent eMail address.";
             string eMailTaken = "This eMail address is already in use in that forum. Please enter another eMail address.";
-            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
-            {
-                _log.Append(DateTime.Now.ToString() + ": Registration faild. " + INVALID_FORUM_NAME + Environment.NewLine);
-                return INVALID_FORUM_NAME;
-            }
-            if (username == null || username.Equals("null") || username.Equals(""))
-            {
-                _log.Append(DateTime.Now.ToString() + ": Registration faild. " + INVALID_USERNAME + Environment.NewLine);
-                return INVALID_USERNAME;
-            }
-            if (password == null || password.Equals("null") || password.Equals("") || password.Contains(" "))
-            {
-                _log.Append(DateTime.Now.ToString() + ": Registration faild. " + invalidPassword + Environment.NewLine);
-                return invalidPassword;
-            }
-            if (eMail == null || eMail.Equals("null") || eMail.Equals(""))
-            {
-                _log.Append(DateTime.Now.ToString() + ": Registration faild. " + invalidEMail + Environment.NewLine);
-                return invalidEMail;
-            }
             if (username.IndexOf(' ') == 0)
             {
                 _log.Append(DateTime.Now.ToString() + ": Registration faild. Username cannot begin with a space." + Environment.NewLine);
@@ -258,11 +246,11 @@ namespace WSEP_service.userManagementService
 
         public string assignAdmin(string forumName, string username, int maxNumOfAdmins)
         {
-            string inputStatus = adminsAssignmentInputValidation(forumName, username);
-            if (!inputStatus.Equals(SUCCESS))
+            List<string> input = new List<string>() { forumName, username };
+            if (!isValidInput(input))
             {
-                _log.Append(DateTime.Now.ToString() + ": Admin assignment faild. " + inputStatus + Environment.NewLine);
-                return inputStatus;
+                _log.Append(DateTime.Now.ToString() + ": Admin assignment faild. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
             }
             List<User> admins = getForumAdmins(forumName);
             List<User> members = getForumMembers(forumName);
@@ -315,11 +303,11 @@ namespace WSEP_service.userManagementService
 
         public string unassignAdmin(string forumName, string username, int minNumOfAdmins)
         {
-            string inputStatus = adminsAssignmentInputValidation(forumName, username);
-            if (!inputStatus.Equals(SUCCESS))
+            List<string> input = new List<string>() { forumName, username };
+            if (!isValidInput(input))
             {
-                _log.Append(DateTime.Now.ToString() + ": Admin unassignment faild. " + inputStatus + Environment.NewLine);
-                return inputStatus;
+                _log.Append(DateTime.Now.ToString() + ": Admin unassignment faild. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
             }
             if (username.Equals(_superAdmin.getUsername()))
             {
@@ -370,11 +358,11 @@ namespace WSEP_service.userManagementService
 
         public string assignModerator(string forumName, string subForumName, string username, int maxNumOfModerators)
         {
-            string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
-            if (!inputStatus.Equals(SUCCESS))
+            List<string> input = new List<string>() { forumName, subForumName, username };
+            if (!isValidInput(input))
             {
-                _log.Append(DateTime.Now.ToString() + ": Moderator assignment faild. " + inputStatus + Environment.NewLine);
-                return inputStatus;
+                _log.Append(DateTime.Now.ToString() + ": Moderator assignment faild. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
             }
             // verify correct forum name
             List<User> admins = getForumAdmins(forumName);
@@ -426,11 +414,11 @@ namespace WSEP_service.userManagementService
 
         public string unassignModerator(string forumName, string subForumName, string username, int minNumOfModerators)
         {
-            string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
-            if (!inputStatus.Equals(SUCCESS))
+            List<string> input = new List<string>() { forumName, subForumName, username };
+            if (!isValidInput(input))
             {
-                _log.Append(DateTime.Now.ToString() + ": Moderator unassignment faild. " + inputStatus + Environment.NewLine);
-                return inputStatus;
+                _log.Append(DateTime.Now.ToString() + ": Moderator unassignment faild. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
             }
             // verify correct forum name
             List<User> members = getForumMembers(forumName);
@@ -471,8 +459,8 @@ namespace WSEP_service.userManagementService
 
         public permission getUserPermissionsForForum(string forumName, string username)
         {
-            string inputStatus = adminsAssignmentInputValidation(forumName, username);
-            if (!inputStatus.Equals(SUCCESS))
+            List<string> input = new List<string>() { forumName, username };
+            if (!isValidInput(input))
             {
                 _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " is INVALID." + Environment.NewLine);
                 return permission.INVALID;
@@ -511,8 +499,8 @@ namespace WSEP_service.userManagementService
 
         public permission getUserPermissionsForSubForum(string forumName, string subForumName, string username)
         {
-            string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
-            if (!inputStatus.Equals(SUCCESS))
+            List<string> input = new List<string>() { forumName, subForumName, username };
+            if (!isValidInput(input))
             {
                 _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " in sub forum " + subForumName + " is INVALID." + Environment.NewLine);
                 return permission.INVALID;
@@ -559,25 +547,16 @@ namespace WSEP_service.userManagementService
 
         public string sendPM(string forumName, string from, string to, string msg)
         {
-            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
+            List<string> input = new List<string>() { forumName, from, to };
+            if (!isValidInput(input))
             {
-                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + INVALID_FORUM_NAME + Environment.NewLine);
-                return INVALID_FORUM_NAME;
-            }
-            if (from == null || from.Equals("null") || from.Equals(""))
-            {
-                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + INVALID_USERNAME + Environment.NewLine);
-                return INVALID_USERNAME;
-            }
-            if (to == null || to.Equals("null") || to.Equals(""))
-            {
-                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + INVALID_USERNAME + Environment.NewLine);
-                return INVALID_USERNAME;
+                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
             }
             if (msg == null || msg.Equals("null") || msg.Equals(""))
             {
-                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + INVALID_USERNAME + Environment.NewLine);
-                return INVALID_USERNAME;
+                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
             }
             // get both users
             List<User> admins = getForumAdmins(forumName);
@@ -625,10 +604,11 @@ namespace WSEP_service.userManagementService
 
         public string checkForumPolicy(string forumName, int minNumOfAdmins, int maxNumOfAdmins, int minNumOfModerators, int maxNumOfModerators)
         {
-            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
+            List<string> input = new List<string>() { forumName };
+            if (!isValidInput(input))
             {
-                _log.Append(DateTime.Now.ToString() + ": Bad forum policy. " + INVALID_FORUM_NAME + Environment.NewLine);
-                return INVALID_FORUM_NAME;
+                _log.Append(DateTime.Now.ToString() + ": Bad forum policy. " + INVALID_INPUT + Environment.NewLine);
+                return INVALID_INPUT;
             }
             List<User> admins = getForumAdmins(forumName);
             if (admins == null)
@@ -665,6 +645,40 @@ namespace WSEP_service.userManagementService
                 }
             }
             return SUCCESS;
+        }
+
+        public bool login(string forumName, string username, string password)
+        {
+            List<string> input = new List<string>() { forumName, username, password };
+            if (!isValidInput(input))
+            {
+                _log.Append(DateTime.Now.ToString() + ": Login failed. " + INVALID_INPUT + Environment.NewLine);
+                return false;
+            }
+            List<User> admins = getForumAdmins(forumName);
+            List<User> members = getForumMembers(forumName);
+            if (admins == null || members == null)
+            {
+                _log.Append(DateTime.Now.ToString() + ": Login failed. " + WRONG_FORUM_NAME + Environment.NewLine);
+                return false;
+            }
+            User user = getUser(admins, username);
+            if (user == null)
+            {
+                user = getUser(members, username);
+            }
+            if (user == null)
+            {
+                _log.Append(DateTime.Now.ToString() + ": Login failed. " + WRONG_USERNAME + Environment.NewLine);
+                return false;
+            }
+            if (!user.getPAssword().Equals(password))
+            {
+                _log.Append(DateTime.Now.ToString() + ": Login failed. Wrong password." + Environment.NewLine);
+                return false;
+            }
+            _log.Append(DateTime.Now.ToString() + ": " + username + " is logged in to " + forumName + "." + Environment.NewLine);
+            return true;
         }
 
         private List<User> getForumAdmins(string forumName)
@@ -723,34 +737,33 @@ namespace WSEP_service.userManagementService
             return user;
         }
 
-        private string adminsAssignmentInputValidation(string forumName, string username)
+        private bool isValidInput(List<string> input)
         {
-            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
+            foreach (string str in input)
             {
-                return INVALID_FORUM_NAME;
+                if (str == null)
+                {
+                    return false;
+                }
             }
-            if (username == null || username.Equals("null") || username.Equals(""))
+            foreach (string str in input)
             {
-                return INVALID_USERNAME;
+                if (ILLEGAL_VALUES.Contains(str))
+                {
+                    return false;
+                }
             }
-            return SUCCESS;
-        }
-
-        private string moderatorsAssignmentInputValidation(string forumName, string subForumName, string username)
-        {
-            if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
+            foreach (string str in input)
             {
-                return INVALID_FORUM_NAME;
+                foreach (string bad in ILLEGAL_CONTENT)
+                {
+                    if (str.Contains(bad))
+                    {
+                        return false;
+                    }
+                }
             }
-            if (subForumName == null || subForumName.Equals("null") || subForumName.Equals(""))
-            {
-                return INVALID_SUB_FORUM_NAME;
-            }
-            if (username == null || username.Equals("null") || username.Equals(""))
-            {
-                return INVALID_USERNAME;
-            }
-            return SUCCESS;
+            return true;
         }
     }
 }
