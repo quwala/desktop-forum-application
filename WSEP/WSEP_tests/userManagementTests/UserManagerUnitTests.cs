@@ -75,11 +75,6 @@ namespace WSEP_tests.userManagementTests
             Assert.IsFalse(um.addSubForum("forum2", "subforum3", moderators).Equals("true"));
             // user does not exist
             Assert.IsFalse(um.addSubForum("forum1", "subforum4", wrongUsername).Equals("true"));
-            // not enough moderators
-            Assert.IsFalse(um.addSubForum("forum1", "subforum4", moderators).Equals("true"));
-            // too much moderators
-            moderators.Add("user3");
-            Assert.IsFalse(um.addSubForum("forum1", "subforum4", moderators).Equals("true"));
         }
 
         [TestMethod]
