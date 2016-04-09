@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WSEP.notificationManagement;
+using WSEP_service.notificationManagementService;
 
-namespace WSEPtests.notificationManagementTests
+namespace WSEP_tests.notificationManagementTests
 {
     [TestClass]
     public class NotificationManagementTests

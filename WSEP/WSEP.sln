@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSEP", "WSEP\WSEP.csproj", "{17A3A2EE-368F-40E1-8B69-7F3F9EEE5D26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSEP_domain", "WSEP\WSEP_domain.csproj", "{17A3A2EE-368F-40E1-8B69-7F3F9EEE5D26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSEPtests", "WSEPtests\WSEPtests.csproj", "{8283A0BA-36D0-403A-993C-60DCBFD333CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSEP_tests", "WSEPtests\WSEP_tests.csproj", "{8283A0BA-36D0-403A-993C-60DCBFD333CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSEP_service", "WSEP_service\WSEP_service.csproj", "{414C67CC-82F1-4A0A-94DD-C33573033F58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8283A0BA-36D0-403A-993C-60DCBFD333CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8283A0BA-36D0-403A-993C-60DCBFD333CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8283A0BA-36D0-403A-993C-60DCBFD333CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414C67CC-82F1-4A0A-94DD-C33573033F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414C67CC-82F1-4A0A-94DD-C33573033F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414C67CC-82F1-4A0A-94DD-C33573033F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414C67CC-82F1-4A0A-94DD-C33573033F58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

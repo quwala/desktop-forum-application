@@ -1,12 +1,12 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WSEP.forumManagement;
-using WSEP.forumManagement.forumHandler;
-using WSEP.forumManagement.threadsHandler;
-using WSEP.userManagement;
+using WSEP_service.forumManagementService;
+using WSEP_service.userManagementService;
 using System.Collections.Generic;
+using WSEP_domain.forumManagementDomain.forumHandler;
+using WSEP_doamin.forumManagementDomain;
 
-namespace WSEPtests.forumManagementTests
+namespace WSEP_tests.forumManagementTests
 {
     [TestClass]
     public class ForumSystemTests

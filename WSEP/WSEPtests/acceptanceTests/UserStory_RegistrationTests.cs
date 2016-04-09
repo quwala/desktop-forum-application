@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WSEP.forumManagement;
+using WSEP_service.forumManagementService;
 
-namespace WSEPtests.acceptanceTests
+namespace WSEP_tests.acceptanceTests
 {
     [TestClass]
     public class UserStory_RegistrationTests
@@ -12,7 +12,7 @@ namespace WSEPtests.acceptanceTests
         [TestInitialize()]
         public void Initialize()
         {
-            fs = new ForumSystem("superAdmin", new WSEP.userManagement.UserManager());
+            fs = new ForumSystem("superAdmin", new WSEP_service.userManagementService.UserManager());
             //fs.addForum("forumName");                //adding the new forum..      
             //fs.addForum("forumName2");                //adding the new forum..      
 

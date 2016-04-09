@@ -7,7 +7,7 @@ using System.Security;
 using System.Threading.Tasks;
 
 
-namespace WSEP.loggingUtilities
+namespace WSEP_doamin.loggingUtilities
 {
     public class ForumLogger
     {

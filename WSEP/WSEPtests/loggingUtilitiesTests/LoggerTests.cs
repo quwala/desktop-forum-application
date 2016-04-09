@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WSEP.forumManagement.forumHandler;
-using WSEP.forumManagement;
-using WSEP.userManagement;
-using WSEP.loggingUtilities;
+using WSEP_domain.forumManagementDomain.forumHandler;
+using WSEP_service.forumManagementService;
+using WSEP_service.userManagementService;
+using WSEP_doamin.loggingUtilities;
 using System.IO;
 
-namespace WSEPtests.acceptanceTests
+namespace WSEP_tests.acceptanceTests
 {
     [TestClass]
     public class LoggerTests

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WSEP.userManagement;
+using WSEP_service.userManagementService;
 using System.Collections.Generic;
 
-namespace WSEPtests.userManagementTests
+namespace WSEP_tests.userManagementTests
 {
     [TestClass]
     public class UserManagerUnitTests

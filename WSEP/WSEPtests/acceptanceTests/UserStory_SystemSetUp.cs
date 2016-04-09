@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WSEP.forumManagement;
+using WSEP_service.forumManagementService;
 
-namespace WSEPtests.acceptanceTests
+namespace WSEP_tests.acceptanceTests
 {
     [TestClass]
     public class UserStory_SystemSetUp
