@@ -7,24 +7,24 @@ namespace WSEP_tests.acceptanceTests
     [TestClass]
     public class UserStory_ModeratorAppointment
     {
-        private IForumSystem fs;
+        
 
         [TestInitialize()]
         public void Initialize()
         {
-            fs = new ForumSystem("superAdmin", new WSEP_service.userManagementService.UserManager());
+           // fs = new ForumSystem("superAdmin", new WSEP.userManagement.UserManager());
             //fs.addForum("forumName");                                               //adding the new forum..      
             //fs.RegisterToFurom("forumName","UserName","UserPassword");             //register to forum new user
             //fs.addSubForum("forumName","subForumName","UserName");                 //open new subforum in the forum
-           // int time = 10;
+            // int time = 10;
             //int time2 = 0;
-            
+
         }
 
         [TestMethod]
         public void Test_ModeratorAppointment_GoodInput()
         {
-            
+
             //Assert.isTrue(fs.ModeratorAppointment("forumName","subForumName","UserName",time);                //Moderator Appointment to subforum with time = 10
             //Assert.isFalse(fs.ModeratorAppointment("forumName","subForumName","UserName",time2);              //Moderator Appointment to subforum with time = 0
             //Assert.isFalse(fs.ModeratorAppointment("invalidForumName","subForumName","UserName",time2);       //Moderator Appointment bad forum name

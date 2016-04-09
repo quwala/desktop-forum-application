@@ -61,6 +61,7 @@
     <Compile Include="acceptanceTests\UserStory_SubForumCreationTests.cs" />
     <Compile Include="acceptanceTests\UserStory_SystemSetUp.cs" />
     <Compile Include="acceptanceTests\UserStory_ThreadCreationTests.cs" />
+    <Compile Include="acceptanceTests\UserStroy_PostDeletion.cs" />
     <Compile Include="adapter\Adapter.cs" />
     <Compile Include="adapter\IAdapter.cs" />
     <Compile Include="forumManagementTests\ForumSystemTests.cs" />
