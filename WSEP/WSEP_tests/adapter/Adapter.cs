@@ -22,7 +22,10 @@ namespace WSEP_tests.adapter
 
         public bool addForumAdmin(string forumName, string adminName)
         {
-            throw new NotImplementedException();
+            string ans = "um.AssignAdmin(forumName, adminName)";
+            if (ans.Equals("true"))
+                return true;
+            return false;
         }
 
         public bool addSubForum(string forumName, string subForumName, List<string> moderators)

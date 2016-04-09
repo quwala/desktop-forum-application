@@ -60,8 +60,6 @@ namespace WSEP_tests.acceptanceTests
             Assert.IsTrue(adapter.addSubForum("forumName", "subForumName", list));  //TID 44                     //creation of new subforum with 2 moderators from the forum members  
             Assert.IsFalse(adapter.addSubForum("forumName", "subForumName", list));    //TID 45                  //try again with the same subforum name
             Assert.IsFalse(adapter.addSubForum("forumName", "subForumName2", list3));  //TID 46                  //try to create subforum with moderator not from this forum
-
-
         }
 
         [TestMethod]
