@@ -11,16 +11,16 @@ namespace WSEP_service.userManagementService
 
     public interface IUserManager
     {
-        string addForum(string forumName); // has tests & log
-        string addSubForum(string forumName, string subForumName, List<string> moderators, int minNumOfModerators, int maxNumOfModerators); // changed - no tests, has log
-        string registerMemberToForum(string forumName, string username, string password, string eMail); // has tests & log
-        string assignAdmin(string forumName, string username, int maxNumOfAdmins); // has tests & log
-        string unassignAdmin(string forumName, string username,  int minNumOfAdmins); // has tests & log
-        string assignModerator(string forumName, string subForumName, string username, int maxNumOfModerators); // has tests & log
-        string unassignModerator(string forumName, string subForumName, string username, int minNumOfModerators); // has tests & log
-        permission getUserPermissionsForForum(string forumName, string username); // implemented - no tests
-        permission getUserPermissionsForSubForum(string forumName, string subForumName, string username); // implemented - no tests
-        string sendPM(string forumName, string from, string to, string msg); // has tests
+        string addForum(string forumName); // has tests with perfect coverage & log
+        string addSubForum(string forumName, string subForumName, List<string> moderators, int minNumOfModerators, int maxNumOfModerators); // has tests with perfect coverage & log
+        string registerMemberToForum(string forumName, string username, string password, string eMail); // has tests with perfect coverage & log
+        string assignAdmin(string forumName, string username, int maxNumOfAdmins); // has tests with perfect coverage & log
+        string unassignAdmin(string forumName, string username, int minNumOfAdmins); // has tests with perfect coverage & log
+        string assignModerator(string forumName, string subForumName, string username, int maxNumOfModerators); // has tests with perfect coverage & log
+        string unassignModerator(string forumName, string subForumName, string username, int minNumOfModerators); // has tests with perfect coverage & log
+        permission getUserPermissionsForForum(string forumName, string username); // has tests with perfect coverage & log
+        permission getUserPermissionsForSubForum(string forumName, string subForumName, string username); // has tests with perfect coverage & log
+        string sendPM(string forumName, string from, string to, string msg); // has tests with perfect coverage & log
         string checkForumPolicy(string forumName, int minNumOfAdmins, int maxNumOfAdminsm, int minModerators, int maxModerators); // has tests but not enough
     }
 }

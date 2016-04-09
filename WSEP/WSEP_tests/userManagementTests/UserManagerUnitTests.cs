@@ -46,36 +46,40 @@ namespace WSEP_tests.userManagementTests
             um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
             List<string> moderators = new List<string>();
             moderators.Add("user1");
-            /*
+            List<string> invalidList1 = new List<string>();
+            invalidList1.Add("null");
+            List<string> invalidList2 = new List<string>();
+            invalidList2.Add("");
+            List<string> wrongUsername = new List<string>();
+            wrongUsername.Add("user2");
+
             // invalid input
             Assert.IsTrue(um.addSubForum(null, "subforum1", moderators, 1, 1).Contains("Invalid"));
-            Assert.IsTrue(um.addSubForum("null", "subforum5", "superAdmin").Contains("Invalid"));
-            Assert.IsTrue(um.addSubForum("", "subforum5", "superAdmin").Contains("Invalid"));
-            Assert.IsTrue(um.addSubForum("forum1", null, "superAdmin").Contains("Invalid"));
-            Assert.IsTrue(um.addSubForum("forum1", "null", "superAdmin").Contains("Invalid"));
-            Assert.IsTrue(um.addSubForum("forum1", "", "superAdmin").Contains("Invalid"));
-            Assert.IsTrue(um.addSubForum("forum1", "subforum5", null).Contains("Invalid"));
-            Assert.IsTrue(um.addSubForum("forum1", "subforum5", "null").Contains("Invalid"));
-            Assert.IsTrue(um.addSubForum("forum1", "subforum5", "").Contains("Invalid"));
+            Assert.IsTrue(um.addSubForum("null", "subforum1", moderators, 1, 1).Contains("Invalid"));
+            Assert.IsTrue(um.addSubForum("", "subforum1", moderators, 1, 1).Contains("Invalid"));
+            Assert.IsTrue(um.addSubForum("forum1", null, moderators, 1, 1).Contains("Invalid"));
+            Assert.IsTrue(um.addSubForum("forum1", "null", moderators, 1, 1).Contains("Invalid"));
+            Assert.IsTrue(um.addSubForum("forum1", "", moderators, 1, 1).Contains("Invalid"));
+            Assert.IsTrue(um.addSubForum("forum1", "subforum1", null, 1, 1).Contains("Invalid"));
+            Assert.IsTrue(um.addSubForum("forum1", "subforum1", invalidList1, 1, 1).Contains("Invalid"));
+            Assert.IsTrue(um.addSubForum("forum1", "subforum1", invalidList2, 1, 1).Contains("Invalid"));
 
             // valid inputs that should succeed
-            Assert.IsTrue(um.addSubForum("forum1", "subforum1", "superAdmin").Equals("true"));
-            Assert.IsTrue(um.addSubForum("forum1", "subforum2", "superAdmin").Equals("true"));
+            Assert.IsTrue(um.addSubForum("forum1", "subforum1", moderators, 1, 1).Equals("true"));
+            Assert.IsTrue(um.addSubForum("forum1", "subforum2", moderators, 1, 1).Equals("true"));
 
             // valid inputs that should fail
             // sub forum exists in forum
-            Assert.IsFalse(um.addSubForum("forum1", "subforum1", "superAdmin").Equals("true"));
+            Assert.IsFalse(um.addSubForum("forum1", "subforum1", moderators, 1, 1).Equals("true"));
             // forum does not exist
-            Assert.IsFalse(um.addSubForum("forum2", "subforum3", "superAdmin").Equals("true"));
-            // admin does not exist
-            Assert.IsFalse(um.addSubForum("forum1", "subforum4", "admin").Equals("true"));
-            // empty forum name
-            Assert.IsFalse(um.addSubForum("", "subforum4", "admin").Equals("true"));
-            // empty sub forum name
-            Assert.IsFalse(um.addSubForum("forum1", "", "admin").Equals("true"));
-            // empty admin username
-            Assert.IsFalse(um.addSubForum("forum1", "subforum4", "").Equals("true"));
-            */
+            Assert.IsFalse(um.addSubForum("forum2", "subforum3", moderators, 1, 1).Equals("true"));
+            // user does not exist
+            Assert.IsFalse(um.addSubForum("forum1", "subforum4", wrongUsername, 1, 1).Equals("true"));
+            // not enough moderators
+            Assert.IsFalse(um.addSubForum("forum1", "subforum4", moderators, 2, 2).Equals("true"));
+            // too much moderators
+            moderators.Add("user3");
+            Assert.IsFalse(um.addSubForum("forum1", "subforum4", moderators, 1, 1).Equals("true"));
         }
 
         [TestMethod]
@@ -98,11 +102,11 @@ namespace WSEP_tests.userManagementTests
             Assert.IsTrue(um.registerMemberToForum("forum1", "user8", "pass2", null).Contains("Invalid"));
             Assert.IsTrue(um.registerMemberToForum("forum1", "user8", "pass2", "null").Contains("Invalid"));
             Assert.IsTrue(um.registerMemberToForum("forum1", "user8", "pass2", "").Contains("Invalid"));
-            
+
             // valid inputs that should succeed
             Assert.IsTrue(um.registerMemberToForum("forum1", "user1", "pass1", "email1@gmail.com").Equals("true"));
             Assert.IsTrue(um.registerMemberToForum("forum1", "user2", "pass1", "email2@gmail.com").Equals("true"));
-            
+
             // valid inputs that should fail
             // email exists in this forum
             Assert.IsFalse(um.registerMemberToForum("forum1", "user3", "pass1", "email2@gmail.com").Equals("true"));
@@ -153,11 +157,14 @@ namespace WSEP_tests.userManagementTests
             Assert.IsTrue(um.assignAdmin("forum1", "", 2).Contains("Invalid"));
 
             // valid inputs that should succeed
+            Assert.IsTrue(um.assignAdmin("forum1", "superAdmin", 2).Equals("true"));
+            Assert.IsTrue(um.assignAdmin("forum1", "user1", 2).Equals("true"));
             Assert.IsTrue(um.assignAdmin("forum1", "user1", 2).Equals("true"));
 
             // valid inputs that should fail
             Assert.IsFalse(um.assignAdmin("forum2", "user1", 2).Equals("true"));
             Assert.IsFalse(um.assignAdmin("forum1", "user2", 2).Equals("true"));
+            Assert.IsFalse(um.assignAdmin("forum1", "user3", 2).Equals("true"));
 
             // valid inputs that should succeed
             Assert.IsTrue(um.assignAdmin("forum1", "user2", 3).Equals("true"));
@@ -168,10 +175,12 @@ namespace WSEP_tests.userManagementTests
         {
             // start conditions:
             // there is a forum
-            // there is an admin to that forum (other than super admin)
+            // there is are 2 admins to that forum (other than super admin)
             um.addForum("forum1");
             um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
-            um.assignAdmin("forum1", "suer1", 2);
+            um.registerMemberToForum("forum1", "user2", "pass2", "eMail2@gmail.com");
+            um.assignAdmin("forum1", "user1", 2);
+            um.assignAdmin("forum1", "user2", 3);
 
             // invalid input
             Assert.IsTrue(um.unassignAdmin(null, "user1", 1).Contains("Invalid"));
@@ -180,14 +189,15 @@ namespace WSEP_tests.userManagementTests
             Assert.IsTrue(um.unassignAdmin("forum1", null, 1).Contains("Invalid"));
             Assert.IsTrue(um.unassignAdmin("forum1", "null", 1).Contains("Invalid"));
             Assert.IsTrue(um.unassignAdmin("forum1", "", 1).Contains("Invalid"));
-            
+
             // valid inputs that should pass
             Assert.IsTrue(um.unassignAdmin("forum1", "user1", 1).Equals("true"));
-            Assert.IsTrue(um.unassignAdmin("forum1", "user2", 1).Equals("true"));
+            Assert.IsTrue(um.unassignAdmin("forum1", "user3", 1).Equals("true"));
 
             // valid inputs that should fail
             Assert.IsFalse(um.unassignAdmin("forum2", "user1", 2).Equals("true"));
             Assert.IsFalse(um.unassignAdmin("forum1", "superAdmin", 0).Equals("true"));
+            Assert.IsFalse(um.unassignAdmin("forum1", "user2", 2).Equals("true"));
         }
 
         [TestMethod]
@@ -224,6 +234,78 @@ namespace WSEP_tests.userManagementTests
             Assert.IsFalse(um.assignModerator("forum2", "subforum1", "user1", 2).Equals("true"));
             Assert.IsFalse(um.assignModerator("forum1", "subforum2", "user2", 2).Equals("true"));
             Assert.IsFalse(um.assignModerator("forum1", "subforum1", "user2", 2).Equals("true"));
+            Assert.IsFalse(um.assignModerator("forum1", "subforum1", "user3", 5).Equals("true"));
+        }
+
+        [TestMethod]
+        public void UnitTest_getUserPermissionsForForum()
+        {
+            // start conditions:
+            // there is a forum
+            // there is a member
+            // there is a user
+            // there is an admin
+            um.addForum("forum1");
+            um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
+            um.registerMemberToForum("forum1", "user2", "pass2", "eMail2@gmail.com");
+            um.assignAdmin("forum1", "user1", 2);
+
+            // invalid input
+            Assert.IsTrue(um.getUserPermissionsForForum(null, "user1").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForForum("null", "user1").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForForum("", "user1").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForForum("forum1", null).Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForForum("forum1", "null").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForForum("forum1", "").Equals(permission.INVALID));
+
+            // valid inputs that should succeed
+            Assert.IsTrue(um.getUserPermissionsForForum("forum1", "superAdmin").Equals(permission.SUPER_ADMIN));
+            Assert.IsTrue(um.getUserPermissionsForForum("forum1", "user1").Equals(permission.ADMIN));
+            Assert.IsTrue(um.getUserPermissionsForForum("forum1", "user2").Equals(permission.MEMBER));
+            Assert.IsTrue(um.getUserPermissionsForForum("forum1", "user3").Equals(permission.GUEST));
+
+            // valid inputs that should succeed
+            Assert.IsTrue(um.getUserPermissionsForForum("forum2", "user1").Equals(permission.INVALID));
+        }
+
+        [TestMethod]
+        public void UnitTest_getUserPermissionsForSubForum()
+        {
+            // start conditions"
+            // there is a forum
+            // there is an admin
+            // there is a sub forum
+            // there is a member
+            um.addForum("forum1");
+            um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
+            um.assignAdmin("forum1", "user1", 2);
+            um.registerMemberToForum("forum1", "user2", "pass2", "eMail2@gmail.com");
+            List<string> moderators = new List<string>();
+            moderators.Add("user2");
+            um.addSubForum("forum1", "subforum1", moderators, 1, 1);
+            um.registerMemberToForum("forum1", "user3", "pass3", "eMail3@gmail.com");
+
+            // invalid input
+            Assert.IsTrue(um.getUserPermissionsForSubForum(null, "subforum1", "user1").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("null", "subforum1", "user1").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("", "subforum1", "user1").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", null, "user1").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "null", "user1").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "", "user1").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "subforum1", null).Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "subforum1", "null").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "subforum1", "").Equals(permission.INVALID));
+
+            // valid inputs that should succeed
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "subforum1", "superAdmin").Equals(permission.SUPER_ADMIN));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "subforum1", "user1").Equals(permission.ADMIN));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "subforum1", "user2").Equals(permission.MODERATOR));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "subforum1", "user3").Equals(permission.MEMBER));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "subforum1", "user4").Equals(permission.GUEST));
+
+            // valid inputs that should fail
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum2", "subforum1", "user1").Equals(permission.INVALID));
+            Assert.IsTrue(um.getUserPermissionsForSubForum("forum1", "subforum2", "user1").Equals(permission.INVALID));
         }
 
         [TestMethod]
@@ -240,7 +322,7 @@ namespace WSEP_tests.userManagementTests
             um.addSubForum("forum1", "subforum1", moderators, 1, 1);
             um.registerMemberToForum("forum1", "user1", "pass1", "eMail1@gmail.com");
             um.assignModerator("forum1", "subforum1", "user1", 2);
-            
+
             // invalid input
             Assert.IsTrue(um.unassignModerator(null, "subforum1", "user1", 1).Contains("Invalid"));
             Assert.IsTrue(um.unassignModerator("null", "subforum1", "user1", 1).Contains("Invalid"));
@@ -325,6 +407,17 @@ namespace WSEP_tests.userManagementTests
             Assert.IsFalse(um.checkForumPolicy("forum2", 1, 1, 1, 2).Equals("true"));
             Assert.IsFalse(um.checkForumPolicy("forum1", 3, 5, 1, 2).Equals("true"));
             Assert.IsFalse(um.checkForumPolicy("forum1", 7, 5, 1, 2).Equals("true"));
+            Assert.IsFalse(um.checkForumPolicy("forum1", 0, 0, 1, 2).Equals("true"));
+
+            List<string> moderators = new List<string>();
+            moderators.Add("user1");
+            um.addSubForum("forum1", "subforum1", moderators, 1, 1);
+
+            Assert.IsFalse(um.checkForumPolicy("forum1", 2, 2, 0, 0).Equals("true"));
+            Assert.IsFalse(um.checkForumPolicy("forum1", 2, 2, 2, 2).Equals("true"));
+
+            // valid inputs that should succeed
+            Assert.IsTrue(um.checkForumPolicy("forum1", 2, 2, 1, 1).Equals("true"));
         }
     }
 }
