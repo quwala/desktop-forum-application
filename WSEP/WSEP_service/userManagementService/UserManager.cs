@@ -48,40 +48,31 @@ namespace WSEP_service.userManagementService
                 return INVALID_FORUM_NAME;
             }
             // verify there is no forum with that name
-            foreach (Tuple<string, List<User>> list in _forumsMembers)
+            List<User> admins = getForumAdmins(forumName);
+            List<User> member = getForumMembers(forumName);
+            if (admins != null || member != null)
             {
-                if (list.Item1.Equals(forumName))
-                {
-                    _log.Append(DateTime.Now.ToString() + ": New forum creation faild. " + forumNameTaken + Environment.NewLine);
-                    return forumNameTaken;
-                }
-            }
-            foreach (Tuple<string, List<User>> list in _forumsAdmins)
-            {
-                if (list.Item1.Equals(forumName))
-                {
-                    _log.Append(DateTime.Now.ToString() + ": New forum creation faild. " + forumNameTaken + Environment.NewLine);
-                    return forumNameTaken;
-                }
+                _log.Append(DateTime.Now.ToString() + ": New forum creation faild. " + forumNameTaken + Environment.NewLine);
+                return forumNameTaken;
             }
             // add new forum lists to the DB
-            List<User> admins = new List<User>();
+            admins = new List<User>();
             admins.Add(_superAdmin);
-            if (!admins.Contains(_superAdmin))
+            if (!admins.Contains(_superAdmin)) // cannot deliberatly cover this case
             {
                 _log.Append(DateTime.Now.ToString() + ": New forum creation faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
             }
             Tuple<string, List<User>> newForumAdmins = new Tuple<string, List<User>>(forumName, admins);
             _forumsAdmins.Add(newForumAdmins);
-            if (!_forumsAdmins.Contains(newForumAdmins))
+            if (!_forumsAdmins.Contains(newForumAdmins)) // cannot deliberatly cover this case
             {
                 _log.Append(DateTime.Now.ToString() + ": New forum creation faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
             }
             Tuple<string, List<User>> newForumMembers = new Tuple<string, List<User>>(forumName, new List<User>());
             _forumsMembers.Add(newForumMembers);
-            if (!_forumsMembers.Contains(newForumMembers))
+            if (!_forumsMembers.Contains(newForumMembers)) // cannot deliberatly cover this case
             {
                 _log.Append(DateTime.Now.ToString() + ": New forum creation faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
@@ -145,16 +136,16 @@ namespace WSEP_service.userManagementService
                     return "Moderators list contains a non existing user: " + newModerator;
                 }
                 moderators.Add(user);
-                if (!moderators.Contains(user))
+                if (!moderators.Contains(user)) // cannot deliberatly cover this case
                 {
                     _log.Append(DateTime.Now.ToString() + ": New sub forum creation faild. " + FUNCTION_ERRROR + Environment.NewLine);
                     return FUNCTION_ERRROR;
                 }
             }
             // add new sub forum list to the DB
-            Tuple<string, string, List<User>> newSubForumModerators = new Tuple<string,string,List<User>>(forumName, subForumName, moderators);
+            Tuple<string, string, List<User>> newSubForumModerators = new Tuple<string, string, List<User>>(forumName, subForumName, moderators);
             _subForumsModerators.Add(newSubForumModerators);
-            if (!_subForumsModerators.Contains(newSubForumModerators))
+            if (!_subForumsModerators.Contains(newSubForumModerators)) // cannot deliberatly cover this case
             {
                 _log.Append(DateTime.Now.ToString() + ": New sub forum creation faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
@@ -256,7 +247,7 @@ namespace WSEP_service.userManagementService
             #endregion
             User newMember = User.create(username, password, eMail);
             members.Add(newMember);
-            if (!members.Contains(newMember))
+            if (!members.Contains(newMember)) // cannot deliberatly cover this case
             {
                 _log.Append(DateTime.Now.ToString() + ": Registration faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
@@ -280,14 +271,14 @@ namespace WSEP_service.userManagementService
                 _log.Append(DateTime.Now.ToString() + ": Admin assignment faild. " + WRONG_FORUM_NAME + Environment.NewLine);
                 return WRONG_FORUM_NAME;
             }
-            User admin = getAdmin(admins, username);
+            User admin = getUser(admins, username);
             // if found return true
             if (admin != null)
             {
                 _log.Append(DateTime.Now.ToString() + ": Admin assignment succeeded. " + username + " is an admin of " + forumName + Environment.NewLine);
                 return SUCCESS;
             }
-            User member = getMember(members, username);
+            User member = getUser(members, username);
             // if not found return false
             if (member == null)
             {
@@ -302,7 +293,7 @@ namespace WSEP_service.userManagementService
             }
             admins.Add(member);
             // if not added return false
-            if (!admins.Contains(member))
+            if (!admins.Contains(member)) // cannot deliberatly cover this case
             {
                 _log.Append(DateTime.Now.ToString() + ": Admin assignment faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
@@ -310,12 +301,12 @@ namespace WSEP_service.userManagementService
             // remove user from regular members list
             members.Remove(member);
             // if not removed throw exception - fatal error
-            if (members.Contains(member))
+            if (members.Contains(member)) // cannot deliberatly cover this case
             {
                 string str1 = "User " + username + " was added as an admin to forum " + forumName + " but could not be removed from the regular members list.\n";
                 string str2 = "This created an illegal situation where the same user was in both data bases where a user can only be in one.\n";
                 string str3 = "Hence a fatal error occured.";
-                throw new Exception (str1 + str2 + str3);
+                throw new Exception(str1 + str2 + str3);
             }
             // success
             _log.Append(DateTime.Now.ToString() + ": Admin assignment succeeded. " + username + " is an admin of " + forumName + Environment.NewLine);
@@ -342,7 +333,7 @@ namespace WSEP_service.userManagementService
                 _log.Append(DateTime.Now.ToString() + ": Admin unassignment faild. " + WRONG_FORUM_NAME + Environment.NewLine);
                 return WRONG_FORUM_NAME;
             }
-            User admin = getAdmin(admins, username);
+            User admin = getUser(admins, username);
             // if not found return true
             if (admin == null)
             {
@@ -357,7 +348,7 @@ namespace WSEP_service.userManagementService
             // add user to regular members list
             members.Add(admin);
             // if not added return false
-            if (!members.Contains(admin))
+            if (!members.Contains(admin)) // cannot deliberatly cover this case
             {
                 _log.Append(DateTime.Now.ToString() + ": Admin unassignment faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
@@ -365,7 +356,7 @@ namespace WSEP_service.userManagementService
             // remove user from admins list
             admins.Remove(admin);
             // if not removed throw exception - fatal error
-            if (admins.Contains(admin))
+            if (admins.Contains(admin)) // cannot deliberatly cover this case
             {
                 string str1 = "User " + username + " is no longer an admin to forum " + forumName + " and added to the regular members list, but could not be removed from the admins list.\n";
                 string str2 = "This created an illegal situation where the same user was in both data bases where a user can only be in one.\n";
@@ -394,10 +385,10 @@ namespace WSEP_service.userManagementService
                 return WRONG_FORUM_NAME;
             }
             // verify user exists in this forum
-            User moderator = getAdmin(admins, username);
+            User moderator = getUser(admins, username);
             if (moderator == null)
             {
-                moderator = getMember(members, username);
+                moderator = getUser(members, username);
             }
             if (moderator == null)
             {
@@ -424,7 +415,7 @@ namespace WSEP_service.userManagementService
             }
             // set user as moderator
             moderators.Add(moderator);
-            if (!moderators.Contains(moderator))
+            if (!moderators.Contains(moderator)) // cannot deliberatly cover this case
             {
                 _log.Append(DateTime.Now.ToString() + ": Moderator assignment faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
@@ -469,7 +460,7 @@ namespace WSEP_service.userManagementService
             }
             // remove user from moderators list
             moderators.Remove(moderator);
-            if (moderators.Contains(moderator))
+            if (moderators.Contains(moderator)) // cannot deliberatly cover this case
             {
                 _log.Append(DateTime.Now.ToString() + ": Moderator unassignment faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
@@ -483,6 +474,7 @@ namespace WSEP_service.userManagementService
             string inputStatus = adminsAssignmentInputValidation(forumName, username);
             if (!inputStatus.Equals(SUCCESS))
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " is INVALID." + Environment.NewLine);
                 return permission.INVALID;
             }
             // verify correct forum name
@@ -490,25 +482,30 @@ namespace WSEP_service.userManagementService
             List<User> members = getForumMembers(forumName);
             if (admins == null || members == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " is INVALID." + Environment.NewLine);
                 return permission.INVALID;
             }
             // check if the user is the super admin
             if (username.Equals(_superAdmin.getUsername()))
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " is SUPER_ADMIN." + Environment.NewLine);
                 return permission.SUPER_ADMIN;
             }
             // check if the user is an admin
             User user = getUser(admins, username);
             if (user != null)
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " is ADMIN." + Environment.NewLine);
                 return permission.ADMIN;
             }
             // check if the user is a member
             user = getUser(members, username);
             if (user != null)
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " is MEMBER." + Environment.NewLine);
                 return permission.MEMBER;
             }
+            _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " is GUEST." + Environment.NewLine);
             return permission.GUEST;
         }
 
@@ -517,6 +514,7 @@ namespace WSEP_service.userManagementService
             string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
             if (!inputStatus.Equals(SUCCESS))
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " in sub forum " + subForumName + " is INVALID." + Environment.NewLine);
                 return permission.INVALID;
             }
             // verify correct forum name
@@ -525,31 +523,37 @@ namespace WSEP_service.userManagementService
             List<User> members = getForumMembers(forumName);
             if (admins == null || members == null || moderators == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " in sub forum " + subForumName + " is INVALID." + Environment.NewLine);
                 return permission.INVALID;
             }
             // check if the user is the super admin
             if (username.Equals(_superAdmin.getUsername()))
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " in sub forum " + subForumName + " is SUPER_ADMIN." + Environment.NewLine);
                 return permission.SUPER_ADMIN;
             }
             // check if the user is an admin
             User user = getUser(admins, username);
             if (user != null)
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " in sub forum " + subForumName + " is ADMIN." + Environment.NewLine);
                 return permission.ADMIN;
             }
             // check if the user is a moderator
             user = getUser(moderators, username);
             if (user != null)
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " in sub forum " + subForumName + " is MODERATOR." + Environment.NewLine);
                 return permission.MODERATOR;
             }
             // check if the user is a member
             user = getUser(members, username);
             if (user != null)
             {
+                _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " in sub forum " + subForumName + " is MEMBER." + Environment.NewLine);
                 return permission.MEMBER;
             }
+            _log.Append(DateTime.Now.ToString() + ": " + username + " permission in forum " + forumName + " in sub forum " + subForumName + " is GUEST." + Environment.NewLine);
             return permission.GUEST;
         }
 
@@ -557,18 +561,22 @@ namespace WSEP_service.userManagementService
         {
             if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
             {
+                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + INVALID_FORUM_NAME + Environment.NewLine);
                 return INVALID_FORUM_NAME;
             }
             if (from == null || from.Equals("null") || from.Equals(""))
             {
+                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + INVALID_USERNAME + Environment.NewLine);
                 return INVALID_USERNAME;
             }
             if (to == null || to.Equals("null") || to.Equals(""))
             {
+                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + INVALID_USERNAME + Environment.NewLine);
                 return INVALID_USERNAME;
             }
             if (msg == null || msg.Equals("null") || msg.Equals(""))
             {
+                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + INVALID_USERNAME + Environment.NewLine);
                 return INVALID_USERNAME;
             }
             // get both users
@@ -576,6 +584,7 @@ namespace WSEP_service.userManagementService
             List<User> members = getForumMembers(forumName);
             if (admins == null || members == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + WRONG_FORUM_NAME + Environment.NewLine);
                 return WRONG_FORUM_NAME;
             }
             User sender = getUser(admins, from);
@@ -585,6 +594,7 @@ namespace WSEP_service.userManagementService
             }
             if (sender == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + from + " - " + WRONG_USERNAME + Environment.NewLine);
                 return from + " - " + WRONG_USERNAME;
             }
             User receiver = getUser(admins, to);
@@ -594,19 +604,22 @@ namespace WSEP_service.userManagementService
             }
             if (receiver == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + to + " - " + WRONG_USERNAME + Environment.NewLine);
                 return to + " - " + WRONG_USERNAME;
             }
             // add msg to both users PM collections
-            if (!receiver.getMessage(from, msg).Equals(SUCCESS))
+            if (!receiver.getMessage(from, msg).Equals(SUCCESS)) // cannot deliberatly cover this case
             {
+                _log.Append(DateTime.Now.ToString() + ": Sending PM failed. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
             }
-            if (!sender.sendMessage(to, msg).Equals(SUCCESS))
+            if (!sender.sendMessage(to, msg).Equals(SUCCESS)) // cannot deliberatly cover this case
             {
                 string str1 = "Private Message was added only to one user collection of private messages.\n";
                 string str2 = "This  caused a critical error.\n";
                 throw new Exception(str1 + str2);
             }
+            _log.Append(DateTime.Now.ToString() + ": Sending PM succeeded. PM sent from " + from + " to " + to + " in forum " + forumName + Environment.NewLine);
             return SUCCESS;
         }
 
@@ -614,19 +627,23 @@ namespace WSEP_service.userManagementService
         {
             if (forumName == null || forumName.Equals("null") || forumName.Equals(""))
             {
+                _log.Append(DateTime.Now.ToString() + ": Bad forum policy. " + INVALID_FORUM_NAME + Environment.NewLine);
                 return INVALID_FORUM_NAME;
             }
             List<User> admins = getForumAdmins(forumName);
             if (admins == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Bad forum policy. " + WRONG_FORUM_NAME + Environment.NewLine);
                 return WRONG_FORUM_NAME;
             }
             if (admins.Count < minNumOfAdmins)
             {
+                _log.Append(DateTime.Now.ToString() + ": Bad forum policy. Forum have " + admins.Count + " admins. Cannot edit policy so minimum amout of admins will be higher than current amount." + Environment.NewLine);
                 return "Forum have " + admins.Count + " admins. Cannot edit policy so minimum amout of admins will be higher than current amount.";
             }
             if (admins.Count > maxNumOfAdmins)
             {
+                _log.Append(DateTime.Now.ToString() + ": Bad forum policy. Forum have " + admins.Count + " admins. Cannot edit policy so maximum amout of admins will be lower than current amount." + Environment.NewLine);
                 return "Forum have " + admins.Count + " admins. Cannot edit policy so maximum amout of admins will be lower than current amount.";
             }
             List<User> moderators;
@@ -637,25 +654,17 @@ namespace WSEP_service.userManagementService
                     moderators = subForum.Item3;
                     if (moderators.Count < minNumOfModerators)
                     {
+                        _log.Append(DateTime.Now.ToString() + ": Bad forum policy. Sub forum have " + moderators.Count + " moderators. Cannot edit policy so minimum amout of moderators will be higher than current amount." + Environment.NewLine);
                         return "Sub forum have " + moderators.Count + " moderators. Cannot edit policy so minimum amout of moderators will be higher than current amount.";
                     }
                     if (moderators.Count > maxNumOfModerators)
                     {
+                        _log.Append(DateTime.Now.ToString() + ": Bad forum policy. Sub forum have " + moderators.Count + " moderators. Cannot edit policy so maximum amout of moderators will be lower than current amount." + Environment.NewLine);
                         return "Sub forum have " + moderators.Count + " moderators. Cannot edit policy so maximum amout of moderators will be lower than current amount.";
                     }
                 }
             }
             return SUCCESS;
-            //Thanks Gal, glhf 
-            //only need to check stuff like if the minAdmins is 2 and there is 
-            //currently only one, shit like that. 
-            //also accordring to UC3, 2.1.2 the user needs to be presented with
-            //which attribute of the new policy creates a problem, so i know you
-            //won't like it, but could you just throw an exception such as:
-            //throw new Exception("Cannot set new policy - Conflicting minimum number of Moderators");
-            //and if everything is okay return true?
-            //Thanks!
-            //Roy
         }
 
         private List<User> getForumAdmins(string forumName)
@@ -684,34 +693,6 @@ namespace WSEP_service.userManagementService
                 }
             }
             return members;
-        }
-
-        private User getAdmin(List<User> admins, string username)
-        {
-            User admin = null;
-            foreach (User u in admins)
-            {
-                if (username.Equals(u.getUsername()))
-                {
-                    admin = u;
-                    break;
-                }
-            }
-            return admin;
-        }
-
-        private User getMember(List<User> members, string username)
-        {
-            User member = null;
-            foreach (User u in members)
-            {
-                if (username.Equals(u.getUsername()))
-                {
-                    member = u;
-                    break;
-                }
-            }
-            return member;
         }
 
         private List<User> getSubForumModerators(string forumName, string subForumName)
