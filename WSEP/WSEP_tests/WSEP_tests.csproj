@@ -70,7 +70,7 @@
     <Compile Include="userManagementTests\UserManagerUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WSEP\WSEP_domain.csproj">
+    <ProjectReference Include="..\WSEP_domain\WSEP_domain.csproj">
       <Project>{17a3a2ee-368f-40e1-8b69-7f3f9eee5d26}</Project>
       <Name>WSEP_domain</Name>
     </ProjectReference>
