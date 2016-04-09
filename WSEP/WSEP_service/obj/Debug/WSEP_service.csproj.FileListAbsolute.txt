@@ -1,0 +1,8 @@
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP_service\bin\Debug\WSEP_service.exe.config
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP_service\bin\Debug\WSEP_service.exe
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP_service\bin\Debug\WSEP_service.pdb
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP_service\bin\Debug\WSEP.exe
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP_service\bin\Debug\WSEP.pdb
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP_service\obj\Debug\WSEP_service.exe
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP_service\obj\Debug\WSEP_service.pdb
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\WSEP_service\obj\Debug\WSEP_service.csprojResolveAssemblyReference.cache
