@@ -1,58 +1,59 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WSEP_service.forumManagementService;
+using System.Collections.Generic;
+using WSEP_tests.adapter;
 
 namespace WSEP_tests.acceptanceTests
 {
     [TestClass]
     public class UserStory_ThreadCreationTests
     {
-        private IForumSystem fs;
+        //private IForumSystem fs;
+        IAdapter adapter;
 
         [TestInitialize()]
         public void Initialize()
         {
-            fs = new ForumSystem("superAdmin", new WSEP_service.userManagementService.UserManager());
-            //fs.addForum("forumName");                                               //adding the new forum..      
-            //fs.RegisterToFurom("forumName","UserName","UserPassword");             //register to forum new user
-            //fs.addSubForum("forumName","subForumName","UserName");                 //open new subforum in the forum
-
-            //user should be loged in as a pre condition, not sure if to check it here or not..
-            //
-            //fs.ForumLogIn("forumName","UserName","UserPassword"))
-            //if so, we need to add test to check validation with user loged in and out..
-        }
-
-        [TestMethod]
-        public void Test_ThreadCreation_GoodInput()
-        {
-            //Assert.AreEqual(fs.NumOfThreads("forumName","subForumName"),0);                                   //check number of threads in the subforum
-            //Assert.isTrue(fs.CreateThread("forumName","subForumName","thread title","someContent");           //creation of new thread in subforum
-            //Assert.AreEqual(fs.NumOfThreads("forumName","subForumName"),1);                                   //check number of threads in the subforum
-            //Assert.isFalse(fs.CreateThread("invalidForumName","subForumName","title","someContent");          //good input bad validation       
-            //Assert.isFalse(fs.CreateThread("forumName","invalidSubForumName","title","someContent");          //good input bad validation       
-
+            adapter = new Adapter();
+            adapter.addForum("forumName");                                               //adding the new forum..      
+            adapter.registerToForum("forumName", "UserName", "UserPassword1", "ccc@gmail.com");             //register to forum new user
+            List<string> mods = new List<string>();
+            mods.Add("UserName");
+            adapter.addSubForum("forumName", "subForumName", mods);                 //open new subforum in the forum
 
         }
 
         [TestMethod]
-        public void Test_ThreadCreation_BadInput()
+        public void Test_ThreadCreation_GoodInput() //6.1
         {
-            //Assert.isFalse(fs.CreateThread("forumName","subForumName","","someContent");             //try to create of new thread without title  
-            //Assert.isFalse(fs.CreateThread("","SubForumName","title","someContent");               //bad input- empty, spaces..       
-            //Assert.isFalse(fs.CreateThread("forumName","","title","someContent");                  //bad input- empty, spaces..       
-            //Assert.isFalse(fs.CreateThread("forumName","SubForumName","","");                     //bad input- empty, spaces..       
+
+            Assert.IsTrue(adapter.createThread("forumName", "subForumName", "thread title", "someContent", "UserName")); //TID 55          //creation of new thread in subforum
+
+            Assert.IsFalse(adapter.createThread("invalidForumName", "subForumName", "title", "someContent", "UserName"));  //TID 56        //good input bad validation       
+            Assert.IsFalse(adapter.createThread("forumName", "invalidSubForumName", "title", "someContent", "UserName"));  //TID 57        //good input bad validation       
+
 
         }
 
         [TestMethod]
-        public void Test_ThreadCreation_CatastophicInput()
+        public void Test_ThreadCreation_BadInput() //6.2
         {
-            //Assert.isFalse(fs.CreateThread(NULL,"subForumName","title","someContent");             //NUll everywhereee  
-            //Assert.isFalse(fs.CreateThread("forumName",NULL,"title","someContent");                     
-            //Assert.isFalse(fs.CreateThread("forumName","subForumName",NULL,"someContent");             
-            //Assert.isFalse(fs.CreateThread("forumName","subForumName",NULL,NULL);                         
-       
+
+            Assert.IsFalse(adapter.createThread("", "SubForumName", "title", "someContent", "UserName"));   //TID 58            //bad input- empty, spaces..       
+            Assert.IsFalse(adapter.createThread("forumName", "", "title", "someContent", "UserName"));     //TID 59             //bad input- empty, spaces..       
+            Assert.IsFalse(adapter.createThread("forumName", "SubForumName", "", "", "UserName"));        //TID 60             //bad input- empty, spaces..       
+            Assert.IsFalse(adapter.createThread("forumName", "SubForumName", "title", "someContent", "UserName1"));     //TID 61           
+        }
+
+        [TestMethod]
+        public void Test_ThreadCreation_CatastophicInput() //6.3
+        {
+            Assert.IsFalse(adapter.createThread(null, "subForumName", "title", "someContent", "UserName"));    //TID 62         //NUll everywhereee  
+            Assert.IsFalse(adapter.createThread("forumName", null, "title", "someContent", "UserName"));    //TID 63                 
+            Assert.IsFalse(adapter.createThread("forumName", "subForumName", null, "someContent", "UserName"));     //TID 64        
+            Assert.IsFalse(adapter.createThread("forumName", "subForumName", null, null, "UserName"));        //TID 65                 
+
         }
     }
 }

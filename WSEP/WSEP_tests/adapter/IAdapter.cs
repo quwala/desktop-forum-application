@@ -30,6 +30,9 @@ namespace WSEP_tests.adapter
         bool createThread(string forumName, string subForumName, string threadTitle, string content
             ,string userName);//via ForumSystem 
 
+        string createThreadAndGetID(string forumName, string subForumName, string threadTitle, string content
+           , string userName);//via ForumSystem
+
         //same as above
         bool createReply(string forumName, string subForumName, string title, string content
             ,string userName, string postIdToReplyTo);//via ForumSystem
