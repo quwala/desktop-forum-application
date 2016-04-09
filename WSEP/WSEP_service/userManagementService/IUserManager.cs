@@ -14,10 +14,10 @@ namespace WSEP_service.userManagementService
         string addForum(string forumName); // has tests & log
         string addSubForum(string forumName, string subForumName, List<string> moderators, int minNumOfModerators, int maxNumOfModerators); // changed - no tests, has log
         string registerMemberToForum(string forumName, string username, string password, string eMail); // has tests & log
-        string assignAdmin(string forumName, string username, int maxNumOfAdmins); // has tests
-        string unassignAdmin(string forumName, string username,  int minNumOfAdmins); // has tests
-        string assignModerator(string forumName, string subForumName, string username, int maxNumOfModerators); // has tests
-        string unassignModerator(string forumName, string subForumName, string username, int minNumOfModerators); // has tests
+        string assignAdmin(string forumName, string username, int maxNumOfAdmins); // has tests & log
+        string unassignAdmin(string forumName, string username,  int minNumOfAdmins); // has tests & log
+        string assignModerator(string forumName, string subForumName, string username, int maxNumOfModerators); // has tests & log
+        string unassignModerator(string forumName, string subForumName, string username, int minNumOfModerators); // has tests & log
         permission getUserPermissionsForForum(string forumName, string username); // implemented - no tests
         permission getUserPermissionsForSubForum(string forumName, string subForumName, string username); // implemented - no tests
         string sendPM(string forumName, string from, string to, string msg); // has tests

@@ -270,35 +270,41 @@ namespace WSEP_service.userManagementService
             string inputStatus = adminsAssignmentInputValidation(forumName, username);
             if (!inputStatus.Equals(SUCCESS))
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin assignment faild. " + inputStatus + Environment.NewLine);
                 return inputStatus;
             }
             List<User> admins = getForumAdmins(forumName);
             List<User> members = getForumMembers(forumName);
             if (admins == null || members == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin assignment faild. " + WRONG_FORUM_NAME + Environment.NewLine);
                 return WRONG_FORUM_NAME;
             }
             User admin = getAdmin(admins, username);
             // if found return true
             if (admin != null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin assignment succeeded. " + username + " is an admin of " + forumName + Environment.NewLine);
                 return SUCCESS;
             }
             User member = getMember(members, username);
             // if not found return false
             if (member == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin assignment faild. " + WRONG_USERNAME + Environment.NewLine);
                 return WRONG_USERNAME;
             }
             // add user to list of admins
             if (admins.Count >= maxNumOfAdmins)
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin assignment faild. " + ILLEGAL_ACTION + Environment.NewLine);
                 return ILLEGAL_ACTION;
             }
             admins.Add(member);
             // if not added return false
             if (!admins.Contains(member))
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin assignment faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
             }
             // remove user from regular members list
@@ -312,6 +318,7 @@ namespace WSEP_service.userManagementService
                 throw new Exception (str1 + str2 + str3);
             }
             // success
+            _log.Append(DateTime.Now.ToString() + ": Admin assignment succeeded. " + username + " is an admin of " + forumName + Environment.NewLine);
             return SUCCESS;
         }
 
@@ -320,26 +327,31 @@ namespace WSEP_service.userManagementService
             string inputStatus = adminsAssignmentInputValidation(forumName, username);
             if (!inputStatus.Equals(SUCCESS))
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin unassignment faild. " + inputStatus + Environment.NewLine);
                 return inputStatus;
             }
             if (username.Equals(_superAdmin.getUsername()))
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin unassignment faild. Cannot unassign the super admin." + Environment.NewLine);
                 return "Cannot unassign the super admin.";
             }
             List<User> admins = getForumAdmins(forumName);
             List<User> members = getForumMembers(forumName);
             if (admins == null || members == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin unassignment faild. " + WRONG_FORUM_NAME + Environment.NewLine);
                 return WRONG_FORUM_NAME;
             }
             User admin = getAdmin(admins, username);
             // if not found return true
             if (admin == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin unassignment succeeded. " + username + " is not an admin of " + forumName + Environment.NewLine);
                 return SUCCESS;
             }
             if (admins.Count <= minNumOfAdmins)
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin unassignment faild. " + ILLEGAL_ACTION + Environment.NewLine);
                 return ILLEGAL_ACTION;
             }
             // add user to regular members list
@@ -347,6 +359,7 @@ namespace WSEP_service.userManagementService
             // if not added return false
             if (!members.Contains(admin))
             {
+                _log.Append(DateTime.Now.ToString() + ": Admin unassignment faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
             }
             // remove user from admins list
@@ -360,6 +373,7 @@ namespace WSEP_service.userManagementService
                 throw new Exception(str1 + str2 + str3);
             }
             // success
+            _log.Append(DateTime.Now.ToString() + ": Admin unassignment succeeded. " + username + " is not an admin of " + forumName + Environment.NewLine);
             return SUCCESS;
         }
 
@@ -368,6 +382,7 @@ namespace WSEP_service.userManagementService
             string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
             if (!inputStatus.Equals(SUCCESS))
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator assignment faild. " + inputStatus + Environment.NewLine);
                 return inputStatus;
             }
             // verify correct forum name
@@ -375,6 +390,7 @@ namespace WSEP_service.userManagementService
             List<User> members = getForumMembers(forumName);
             if (admins == null || members == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator assignment faild. " + WRONG_FORUM_NAME + Environment.NewLine);
                 return WRONG_FORUM_NAME;
             }
             // verify user exists in this forum
@@ -385,29 +401,35 @@ namespace WSEP_service.userManagementService
             }
             if (moderator == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator assignment faild. " + WRONG_USERNAME + Environment.NewLine);
                 return WRONG_USERNAME;
             }
             // verify correct sub forum name
             List<User> moderators = getSubForumModerators(forumName, subForumName);
             if (moderators == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator assignment faild. " + WRONG_SUB_FORUM_NAME + Environment.NewLine);
                 return WRONG_SUB_FORUM_NAME;
             }
             // if user is a moderator return success
             if (moderators.Contains(moderator))
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator assignment succeeded. " + username + " is a moderator of " + subForumName + " in forum " + forumName + "." + Environment.NewLine);
                 return SUCCESS;
             }
             if (moderators.Count >= maxNumOfModerators)
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator assignment faild. " + ILLEGAL_ACTION + Environment.NewLine);
                 return ILLEGAL_ACTION;
             }
             // set user as moderator
             moderators.Add(moderator);
             if (!moderators.Contains(moderator))
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator assignment faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
             }
+            _log.Append(DateTime.Now.ToString() + ": Moderator assignment succeeded. " + username + " is a moderator of " + subForumName + " in forum " + forumName + "." + Environment.NewLine);
             return SUCCESS;
         }
 
@@ -416,36 +438,43 @@ namespace WSEP_service.userManagementService
             string inputStatus = moderatorsAssignmentInputValidation(forumName, subForumName, username);
             if (!inputStatus.Equals(SUCCESS))
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator unassignment faild. " + inputStatus + Environment.NewLine);
                 return inputStatus;
             }
             // verify correct forum name
             List<User> members = getForumMembers(forumName);
             if (members == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator unassignment faild. " + WRONG_FORUM_NAME + Environment.NewLine);
                 return WRONG_FORUM_NAME;
             }
             // verify correct sub forum name
             List<User> moderators = getSubForumModerators(forumName, subForumName);
             if (moderators == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator unassignment faild. " + WRONG_SUB_FORUM_NAME + Environment.NewLine);
                 return WRONG_SUB_FORUM_NAME;
             }
             // if username is not a moderator than it is a success
             User moderator = getUser(moderators, username);
             if (moderator == null)
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator unassignment succeeded. " + username + " is not a moderator of " + subForumName + " in forum " + forumName + "." + Environment.NewLine);
                 return SUCCESS;
             }
             if (moderators.Count <= minNumOfModerators)
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator unassignment faild. " + ILLEGAL_ACTION + Environment.NewLine);
                 return ILLEGAL_ACTION;
             }
             // remove user from moderators list
             moderators.Remove(moderator);
             if (moderators.Contains(moderator))
             {
+                _log.Append(DateTime.Now.ToString() + ": Moderator unassignment faild. " + FUNCTION_ERRROR + Environment.NewLine);
                 return FUNCTION_ERRROR;
             }
+            _log.Append(DateTime.Now.ToString() + ": Moderator unassignment succeeded. " + username + " is not a moderator of " + subForumName + " in forum " + forumName + "." + Environment.NewLine);
             return SUCCESS;
         }
 
