@@ -93,7 +93,13 @@ namespace WSEP_service.forumManagementService
             int minModerators = forum.getPolicy().MinModerators;
             int maxModerators = forum.getPolicy().MaxModerators;
 
-            string message = um.addSubForum(forumName, subForumName, mods, minModerators, maxModerators);
+            // condition added by gal since interface was changed and this test should be performed here
+            if (mods.Count < minModerators || mods.Count > maxModerators)
+            {
+                throw new Exception("wrong number of moderators");
+            }
+
+            string message = um.addSubForum(forumName, subForumName, mods);
 
             if (message.Equals("true"))
             {
@@ -107,7 +113,6 @@ namespace WSEP_service.forumManagementService
                 throw e;
             }
         }
-
 
         //need a user manager to perform
         public bool setForumPolicy(string forumName, string policyName, int minAdmins, int maxAdmins,
@@ -132,9 +137,6 @@ namespace WSEP_service.forumManagementService
                 return true;
             }
         }
-
-
-
 
         public string createThread(string forumName, string subForumName, string title, string content
             , string userName)

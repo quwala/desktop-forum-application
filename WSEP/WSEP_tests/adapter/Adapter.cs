@@ -22,7 +22,10 @@ namespace WSEP_tests.adapter
 
         public bool addForumAdmin(string forumName, string adminName)
         {
-            throw new NotImplementedException();
+            string ans = "um.AssignAdmin(forumName, adminName)";
+            if (ans.Equals("true"))
+                return true;
+            return false;
         }
 
         public bool addSubForum(string forumName, string subForumName, List<string> moderators)
@@ -143,6 +146,7 @@ namespace WSEP_tests.adapter
             throw new NotImplementedException();
         }
 
+        // currrently implemented wrong as the fs.um and this.um are 2 different instances and we should register users to the fs.um
         public bool registerToForum(string forumName, string userName, string userPassword, string userMail)
         {
             string ans = um.registerMemberToForum(forumName, userName, userPassword, userMail);

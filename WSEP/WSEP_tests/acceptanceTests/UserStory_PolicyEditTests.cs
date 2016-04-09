@@ -63,7 +63,7 @@ namespace WSEP_tests.acceptanceTests
             moderators.Add("user2");
             moderators.Add("user3");
             adapter.addSubForum("forumName", "subFor", moderators);
-            Assert.IsFalse(adapter.setPolicy("forumName", 1, 2, 1, 4, "Forum rules")); //TID 12
+            Assert.IsFalse(adapter.setPolicy("forumName", 1, 2, 1, 2, "Forum rules")); //TID 12
             Assert.IsFalse(adapter.setPolicy("forum2", 1, 2, 1, 1, "Forum rules")); //TID 13
 
         }

@@ -12,7 +12,7 @@ namespace WSEP_service.userManagementService
     public interface IUserManager
     {
         string addForum(string forumName); // has tests with perfect coverage & log
-        string addSubForum(string forumName, string subForumName, List<string> moderators, int minNumOfModerators, int maxNumOfModerators); // has tests with perfect coverage & log
+        string addSubForum(string forumName, string subForumName, List<string> moderators); // has tests with perfect coverage & log
         string registerMemberToForum(string forumName, string username, string password, string eMail); // has tests with perfect coverage & log
         string assignAdmin(string forumName, string username, int maxNumOfAdmins); // has tests with perfect coverage & log
         string unassignAdmin(string forumName, string username, int minNumOfAdmins); // has tests with perfect coverage & log

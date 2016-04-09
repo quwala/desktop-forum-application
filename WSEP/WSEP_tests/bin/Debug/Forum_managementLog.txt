@@ -1,3 +1,4 @@
-09/04/2016, 17:03: Forum System was created..
-09/04/2016, 17:03: Successfully added forum Test Forum..
-09/04/2016, 17:03: Exception caught: Name of the Sub Forum cannot be empty.
+09/04/2016, 19:34: Forum System was created..
+09/04/2016, 19:34: Successfully added forum forumName..
+09/04/2016, 19:34: Successfully added forum forumName2..
+09/04/2016, 19:34: Successfully added forum forumName3..
