@@ -146,6 +146,7 @@ namespace WSEP_tests.adapter
             throw new NotImplementedException();
         }
 
+        // currrently implemented wrong as the fs.um and this.um are 2 different instances and we should register users to the fs.um
         public bool registerToForum(string forumName, string userName, string userPassword, string userMail)
         {
             string ans = um.registerMemberToForum(forumName, userName, userPassword, userMail);

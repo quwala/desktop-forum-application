@@ -85,7 +85,7 @@ namespace WSEP_service.userManagementService
             return SUCCESS;
         }
 
-        public string addSubForum(string forumName, string subForumName, List<string> setModerators, int minNumOfModerators, int maxNumOfModerators)
+        public string addSubForum(string forumName, string subForumName, List<string> setModerators)
         {
             if (setModerators == null)
             {
@@ -103,11 +103,6 @@ namespace WSEP_service.userManagementService
                 return INVALID_INPUT;
             }
             string subForumNameTaken = "This sub forum name is already in use in that forum. Please select another name.";
-            if (setModerators.Count < minNumOfModerators || setModerators.Count > maxNumOfModerators)
-            {
-                _log.Append(DateTime.Now.ToString() + ": New sub forum creation faild. " + ILLEGAL_ACTION + Environment.NewLine);
-                return ILLEGAL_ACTION;
-            }
             // verify there is a forum with that name
             List<User> admins = getForumAdmins(forumName);
             List<User> members = getForumMembers(forumName);
