@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WSEP")]
+[assembly: AssemblyTitle("WSEP_domain")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WSEP")]
+[assembly: AssemblyProduct("WSEP_domain")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a501bd3e-d7ab-4357-9e18-dd219fa52d41")]
+[assembly: Guid("51f5fd17-b34c-46c6-8f51-7d7f263bd5ca")]
 
 // Version information for an assembly consists of the following four values:
 //

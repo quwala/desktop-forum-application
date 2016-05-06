@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WSEP_domain
+namespace AcceptanceTests.ServerTests
 {
-    class Program
+    class EditPostTests
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
