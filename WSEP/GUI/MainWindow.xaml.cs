@@ -30,8 +30,11 @@ namespace GUI
             
 
             List<string> forums = app.getForums();
+            //test:
+            forums.Add("Test Forum 1");
             forumsListView.ItemsSource = forums;
-            this.ResizeMode = ResizeMode.NoResize;
+
+            this.ResizeMode = ResizeMode.CanMinimize;
 
         }
 
@@ -52,14 +55,13 @@ namespace GUI
 
         private void superAdminBtn_Click(object sender, RoutedEventArgs e)
         {
-
             new SuperAdminLoginWindow(app, this).ShowDialog();
         }
 
         private void newForumBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!superAdmin.Equals(""))
-                GuiUtils.switchWindow(this, new NewForumWindow(app));
+                new NewForumWindow(app).ShowDialog();
             else
                 GuiUtils.displayError("This action is only available to Super Admins");
         }

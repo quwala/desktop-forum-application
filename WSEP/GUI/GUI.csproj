@@ -164,8 +164,6 @@
   <ItemGroup>
     <Resource Include="resources\clingr_logo.jpg" />
     <Resource Include="resources\clingr_logo.png" />
-    <Resource Include="resources\expand_minus.png" />
-    <Resource Include="resources\expand_plus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

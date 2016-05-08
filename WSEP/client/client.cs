@@ -932,7 +932,11 @@ namespace client
 
         public List<string> getAllUsers( string requestingUser)
         {
-            throw new NotImplementedException();
+            //implement
+            List<string> res = new List<string>();
+            res.Add("TestAdmin1");
+            res.Add("TestAdmin2");
+            return res;
         }
     }
 }

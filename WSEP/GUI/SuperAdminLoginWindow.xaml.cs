@@ -21,7 +21,8 @@ namespace GUI
             this.parent = window;
             this.cl = cl;
             //this.Visibility = System.Windows.Visibility.Hidden;
-            this.ResizeMode = ResizeMode.NoResize;
+            this.ResizeMode = ResizeMode.CanMinimize;
+            this.usernameTxt.Focus();
 
         }
 
@@ -32,7 +33,7 @@ namespace GUI
 
             if (usernameTxt.Text.Equals("superAdmin") && passwordTxt.Password.Equals("superAdmin"))
             {
-                GuiUtils.displaySuccess("Successfully loogged in as Super Admin");
+                GuiUtils.displaySuccess("Successfully logged in as Super Admin");
                 parent.setSuperAdmin();
                 this.Close();
                 //GuiUtils.switchWindow(this, new MainWindow(cl));

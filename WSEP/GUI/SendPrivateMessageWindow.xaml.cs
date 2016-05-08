@@ -26,7 +26,7 @@ namespace GUI
             this.cl = cl;
             this.forumName = forumName;
             this.userName = userName;
-            this.ResizeMode = ResizeMode.NoResize;
+            this.ResizeMode = ResizeMode.CanMinimize;
 
         }
 

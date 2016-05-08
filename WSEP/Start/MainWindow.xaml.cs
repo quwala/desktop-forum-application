@@ -29,7 +29,7 @@ namespace Start
             //client.start();
             GUI.MainWindow main = new GUI.MainWindow(client);
             main.ShowDialog();
-            Application.Current.Shutdown();
+            //Application.Current.Shutdown();
 
         }
     }

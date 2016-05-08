@@ -34,7 +34,7 @@ namespace GUI
 
             availableAdminsListView.ItemsSource = availableAdmins;
             finalAdminsListView.ItemsSource = finalAdmins;
-            this.ResizeMode = ResizeMode.NoResize;
+            this.ResizeMode = ResizeMode.CanMinimize;
 
         }
 

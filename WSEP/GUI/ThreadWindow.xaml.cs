@@ -36,7 +36,7 @@ namespace GUI
             this.Background = new SolidColorBrush(Color.FromRgb(69, 70, 73));
 
             subForumBtn.Content = subForumName;
-            this.ResizeMode = ResizeMode.NoResize;
+            this.ResizeMode = ResizeMode.CanMinimize;
         }
 
         private void postsTV_Loaded(object sender, RoutedEventArgs e)

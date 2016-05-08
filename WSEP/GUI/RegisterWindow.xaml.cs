@@ -25,7 +25,7 @@ namespace GUI
             this.userName = userName;
             userNameTxt.Text = userName;
             passwordTxt.Password = password;
-            this.ResizeMode = ResizeMode.NoResize;
+            this.ResizeMode = ResizeMode.CanMinimize;
 
 
         }

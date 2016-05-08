@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Super Admin Login" Height="236.5" Width="402">
     <Grid  >
-        <Button x:Name="loginBtn" Content="Login"   Click="loginBtn_Click" Margin="141,162,155.333,17.333" />
+        <Button x:Name="loginBtn" Content="Login"   Click="loginBtn_Click" Margin="141,162,155.333,17.333" IsDefault="True"/>
         <Label x:Name="usernameLbl" Content="Username" Margin="40,56,254.333,116.333"  >
 
         </Label>

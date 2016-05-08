@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 
 using System.Windows.Media;
-;
+
 
 namespace GUI
 {
@@ -38,7 +38,7 @@ namespace GUI
 
             availableModsListView.ItemsSource = availableMods;
             finalModsListView.ItemsSource = finalMods;
-            this.ResizeMode = ResizeMode.NoResize;
+            this.ResizeMode = ResizeMode.CanMinimize;
 
         }
 

@@ -29,13 +29,14 @@ namespace GUI
             permission = permission.GUEST;
 
             List<string> subForums = app.getSubForums(forumName, userName);
+            subForums.Add("Test Sub Forum 1");
             subForumsListView.ItemsSource = subForums;
 
             logoutBtn.Visibility = Visibility.Hidden;
             sendPrivateMessageBtn.Visibility = Visibility.Hidden;
 
             addSubForumBtn.Visibility = Visibility.Hidden;
-            this.ResizeMode = ResizeMode.NoResize;
+            this.ResizeMode = ResizeMode.CanMinimize;
 
         }
 

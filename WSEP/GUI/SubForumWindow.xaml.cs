@@ -33,6 +33,10 @@ namespace GUI
 
             threads=cl.getThreads(forumName, subForumName, userName);
 
+            threads = new List<Tuple<string, DateTime, int>>();
+            //if(threads == null) ....
+            threads.Add(new Tuple<string, DateTime, int>("Test Thread 1", DateTime.Now, 111));
+
             List<string> threadsStrings = new List<string>();
 
             foreach(Tuple<string, DateTime, int> thread in threads)
@@ -41,7 +45,7 @@ namespace GUI
             }
 
             threadsListView.ItemsSource = threadsStrings;
-            this.ResizeMode = ResizeMode.NoResize;
+            this.ResizeMode = ResizeMode.CanMinimize;
 
 
         }

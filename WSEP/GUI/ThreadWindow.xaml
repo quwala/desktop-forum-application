@@ -9,7 +9,7 @@
     <Grid>
         <TreeView x:Name="postsTV"  Height="316" Margin="92,33,159.333,71.667" Loaded="postsTV_Loaded"/>
 
-        <Button x:Name="subForumBtn"  Margin="52,370,576.333,0" VerticalAlignment="Top" Click="subForumBtn_Click" Height="41"/>
+        <Button x:Name="subForumBtn"  Margin="32,354,596.333,0" VerticalAlignment="Top" Click="subForumBtn_Click" Height="41"/>
         <Button x:Name="addReplyBtn"  Content="Reply" Margin="605,50,23.333,0" VerticalAlignment="Top" Click="addReplyBtn_Click" Height="40"/>
         <Button x:Name="deletePostBtn" Content="Delete" Margin="605,110,23.333,0" VerticalAlignment="Top" Click="deletePostBtn_Click" Height="40"/>
     </Grid>
