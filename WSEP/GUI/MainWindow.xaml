@@ -1,0 +1,24 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="Forum System" Height="521" Width="866" WindowStartupLocation="CenterScreen">
+    <Grid  >
+
+
+        <ListView x:Name="forumsListView" Margin="230,210,147,124.333"  PreviewMouseLeftButtonUp="forumsListView_PreviewMouseLeftButtonUp"/>
+
+        <Label x:Name="chooseForumLbl" Content="Please choose a Forum to enter:"  Margin="271,156,361.333,287"
+               FontFamily="Franklin Gothic Medium Italic" FontSize="14" Foreground="Crimson"/>
+        <Button x:Name="superAdminBtn" Content="Super Admin Login"  Margin="62,394,677.333,68" Click="superAdminBtn_Click"
+                Foreground="Crimson"/>
+        <Label x:Name="welcomeLbl" Content="Welcome to Clingr - Enjoy your stay!" FontFamily="Franklin Gothic Medium Italic" Foreground="Crimson"  Margin="271,400,0,0"  FontSize="20"  />
+        <Image x:Name="logo" Source="resources/clingr_logo.jpg" Margin="15,29,629.333,238"/>
+
+        <Button x:Name="newForumBtn"  Content="New Forum" Margin="597,152,165.333,304" Click="newForumBtn_Click" 
+                FontFamily="Franklin Gothic Medium Italic" Foreground="Crimson"/>
+    </Grid>
+</Window>

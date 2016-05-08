@@ -1,0 +1,33 @@
+﻿<Window x:Class="GUI.ForumWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="Forum" Height="450" Width="750">
+
+    <Grid>
+        <ListView x:Name="subForumsListView"  Height="224" Margin="148,129,123.333,67.667"  Width="472" PreviewMouseLeftButtonUp="subForumsListView_PreviewMouseLeftButtonUp" />
+
+        <Image x:Name="logo" Source="resources/clingr_logo.jpg" Margin="28,-13,616.333,279.667"/>
+
+
+        <Label x:Name="passwordLbl" Content="password"  Margin="535,45,146.333,348.667"  />
+        <Label x:Name="userNameLbl" Content="username"  Margin="535,8,135.333,380.667"  />
+        <TextBox x:Name="userNameTxt"  Height="23" Margin="613,10,10.333,387.667" TextWrapping="Wrap" Text=""   Width="120"/>
+        <Button x:Name="registerBtn" Content="register"  Margin="664,86,5.333,309.667"   Width="74" Click="registerBtn_Click"/>
+        <Button x:Name="loginBtn" Content="login"  Margin="546,74,123.333,321.667"   Width="74" Click="loginBtn_Click" />
+        <PasswordBox x:Name="passwordTxt"  Margin="613,52,10.333,346.667"   Height="22" Width="120"/>
+
+        <Button x:Name="forumsBtn" Content="Forums"  Margin="61,325,616.333,67.667" Click="forumsBtn_Click"/>
+        <Button x:Name="addSubForumBtn" Content="add sub forum"  Margin="40,290,600.333,100.667"   Width="103" Height="30" Click="addSubForumBtn_Click"/>
+
+        <Button x:Name="logoutBtn" Content="logout"  Margin="630,10,10.333,380.667"   Width="103" Height="30" Click="logoutBtn_Click"/>
+        <Button x:Name="sendPrivateMessageBtn" Content="send private msg"  Margin="40,129,600.333,261.667"   Width="103" Height="30" Click="sendMsgBtn_Click"/>
+        
+        
+        <TextBlock x:Name="loggedInTxt"  Margin="371,13,259.333,386.667" TextWrapping="Wrap" Text="Welcome, Guest"  />
+
+    </Grid>
+</Window>

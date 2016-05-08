@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "server", "server\server.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client", "client\client.csproj", "{3E4F31F5-354E-414F-BEC6-D6FDDBB1AA0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{84375572-E6AF-4A84-B845-820A9B354D6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Start", "Start\Start.csproj", "{E892F1DF-D1A3-40CF-BA06-4DD23C42BC0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{3E4F31F5-354E-414F-BEC6-D6FDDBB1AA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E4F31F5-354E-414F-BEC6-D6FDDBB1AA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E4F31F5-354E-414F-BEC6-D6FDDBB1AA0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84375572-E6AF-4A84-B845-820A9B354D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84375572-E6AF-4A84-B845-820A9B354D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84375572-E6AF-4A84-B845-820A9B354D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84375572-E6AF-4A84-B845-820A9B354D6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E892F1DF-D1A3-40CF-BA06-4DD23C42BC0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E892F1DF-D1A3-40CF-BA06-4DD23C42BC0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E892F1DF-D1A3-40CF-BA06-4DD23C42BC0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E892F1DF-D1A3-40CF-BA06-4DD23C42BC0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

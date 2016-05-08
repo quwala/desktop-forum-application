@@ -12,7 +12,7 @@ using System.Web.Script.Serialization;
 
 namespace client
 {
-    class client
+    public class client : Iclient
     {
 
 
@@ -44,10 +44,629 @@ namespace client
             ID = 0;
         }
 
-      
-      
+        public string addForum(string forumName, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(requestingUser);
+            serverMessage ans = sendMessage("addForum", strList, intList, DateTime.Now);
+            if(ans._messageType.Equals(serverMessage.messageType.success)){
+                return "true";
+            }
+            if(ans.stringContent.Count > 0){
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string addSubForum(string forumName, string subForumName, List<Tuple<string, string, int>> moderators, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(subForumName);
+            strList.Add(requestingUser);
+            foreach (Tuple<string, string, int> t in moderators)
+            {
+                strList.Add(t.Item1);
+                strList.Add(t.Item2);
+                intList.Add(t.Item3);
+            }
+            serverMessage ans = sendMessage("addSubForum", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string registerMemberToForum(string forumName, string username, string password, string eMail)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(username);
+            strList.Add(password);
+            strList.Add(eMail);
+            serverMessage ans = sendMessage("registerMemberToForum", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string assignAdmin(string forumName, string username, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(username);
+            strList.Add(requestingUser);
+            serverMessage ans = sendMessage("assignAdmin", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
 
 
+        public string unassignAdmin(string forumName, string username, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(username);
+            strList.Add(requestingUser);
+            serverMessage ans = sendMessage("unassignAdmin", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string assignModerator(string forumName, string subForumName, string username, string requestingUser, int days)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(subForumName);
+            strList.Add(username);
+            strList.Add(requestingUser);
+            intList.Add(days);
+            serverMessage ans = sendMessage("assignModerator", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string unassignModerator(string forumName, string subForumName, string username, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(subForumName);
+            strList.Add(username);
+            strList.Add(requestingUser);
+            serverMessage ans = sendMessage("unassignModerator", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public permission getUserPermissionsForForum(string forumName, string username)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(username);
+            serverMessage ans = sendMessage("getUserPermissionsForForum", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                switch (ans.intContent.ElementAt(0))
+                {
+                    case 1:
+                        return permission.INVALID;   
+                    case 2:
+                        return permission.GUEST; 
+                    case 3:
+                       return permission.MEMBER;    
+                    case 5:
+                        return permission.ADMIN; 
+                    case 6:
+                        return permission.SUPER_ADMIN;      
+                }
+            }
+           return permission.INVALID;
+            }
+
+
+        public permission getUserPermissionsForSubForum(string forumName, string subForumName, string username)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(subForumName);
+            strList.Add(username);
+            serverMessage ans = sendMessage("getUserPermissionsForSubForum", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                switch (ans.intContent.ElementAt(0))
+                {
+                    case 1:
+                        return permission.INVALID;
+                    case 2:
+                        return permission.GUEST;
+                    case 3:
+                        return permission.MEMBER;
+                    case 4:
+                        return permission.MODERATOR;
+                    case 5:
+                        return permission.ADMIN;
+                    case 6:
+                        return permission.SUPER_ADMIN;
+                }
+            }
+            return permission.INVALID;
+        }
+
+        public string sendPM(string forumName, string from, string to, string msg)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(from);
+            strList.Add(to);
+            strList.Add(msg);
+            serverMessage ans = sendMessage("sendPM", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string checkForumPolicy(string forumName, ForumPolicy policy)
+        {
+
+            serverMessage ans = sendMessage(forumName, policy);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public loginStatus login(string forumname, string username, string password)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumname);
+            strList.Add(username);
+            strList.Add(password);
+            serverMessage ans = sendMessage("login", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                switch (ans.intContent.ElementAt(0))
+                {
+                    case 1:
+                        return loginStatus.FALSE;
+                    case 2:
+                        return loginStatus.TRUE;
+                    case 3:
+                        return loginStatus.UPDATE_PASSWORD;
+                    
+                }
+            }
+            return loginStatus.FALSE;
+        }
+
+        public string setForumMaxAdmins(string forumName, int maxAdmins, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(requestingUser);
+            intList.Add(maxAdmins);
+            serverMessage ans = sendMessage("setForumMaxAdmins", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string setForumMinAdmins(string forumName, int minAdmins, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(requestingUser);
+            intList.Add(minAdmins);
+            serverMessage ans = sendMessage("setForumMinAdmins", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string setForumMaxModerators(string forumName, int maxModerators, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(requestingUser);
+            intList.Add(maxModerators);
+            serverMessage ans = sendMessage("setForumMaxModerators", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string setForumMinModerators(string forumName, int minModerators, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(requestingUser);
+            intList.Add(minModerators);
+            serverMessage ans = sendMessage("setForumMinModerators", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string setForumPostDeletionPermissions(string forumName, postDeletionPermission permission, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(requestingUser);
+            int toAdd = 0;
+            switch (permission)
+            {
+                case postDeletionPermission.WRITER:
+                    toAdd = 2;
+                    break;
+                case postDeletionPermission.MODERATOR:
+                    toAdd = 3;
+                    break;
+                case postDeletionPermission.ADMIN:
+                    toAdd = 4;
+                    break;
+                case postDeletionPermission.SUPER_ADMIN:
+                    toAdd = 5;
+                    break;
+            }
+            intList.Add(toAdd);
+            serverMessage ans = sendMessage("setForumPostDeletionPermissions", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string setForumPasswordLifespan(string forumName, int lifespan, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(requestingUser);
+            intList.Add(lifespan);
+            serverMessage ans = sendMessage("setForumPasswordLifespan", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string setForumModeratorsSeniority(string forumName, int seniority, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(requestingUser);
+            intList.Add(seniority);
+            serverMessage ans = sendMessage("setForumModeratorsSeniority", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string setForumModUnassignmentPermissions(string forumName, modUnassignmentPermission permission, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(requestingUser);
+            int toAdd = 0;
+            switch (permission)
+            {
+                case modUnassignmentPermission.ASSIGNING_ADMIN:
+                    toAdd = 3;
+                    break;
+                case modUnassignmentPermission.SUPER_ADMIN:
+                    toAdd = 4;
+                    break;
+                case modUnassignmentPermission.ADMIN:
+                    toAdd = 2;
+                    break;
+            }
+            intList.Add(toAdd);
+            serverMessage ans = sendMessage("setForumModUnassignmentPermissions", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string writePost(string forumName, string subForumName, int parentPostNo, string username, string title, string content)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(subForumName);
+            strList.Add(username);
+            strList.Add(title);
+            strList.Add(content);
+            intList.Add(parentPostNo);
+            serverMessage ans = sendMessage("writePost", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string setModeratorTrialTime(string forumName, string subForumName, string moderator, int newTime, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(subForumName);
+            strList.Add(moderator);
+            strList.Add(requestingUser);
+            intList.Add(newTime);
+            serverMessage ans = sendMessage("setModeratorTrialTime", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string deletePost(string forumName, string subForumName, int postNo, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(subForumName);
+            strList.Add(requestingUser);
+            intList.Add(postNo);
+            serverMessage ans = sendMessage("deletePost", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public string editPost(string forumName, string subForumName, int postNo, string requestingUser, string content)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(subForumName);
+            strList.Add(requestingUser);
+            strList.Add(content);
+            intList.Add(postNo);
+            serverMessage ans = sendMessage("editPost", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return "true";
+            }
+            if (ans.stringContent.Count > 0)
+            {
+                return ans.stringContent.ElementAt(0);
+            }
+            return "error, not successful for unknown reason";
+        }
+
+        public int getNumOfPostsInSubForum(string forumName, string subForumName, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(subForumName);
+            strList.Add(requestingUser);
+            serverMessage ans = sendMessage("getNumOfPostsInSubForum", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return ans.intContent.ElementAt(0);
+            }
+            return -1;
+        }
+
+        public List<Tuple<string, string, DateTime, int>> getListOfMemberMessages(string forumName, string memberName, string requestingUser)
+        {
+            List<string> temp = new List<string>();
+            temp.Add(forumName);
+            temp.Add(memberName);
+            temp.Add(requestingUser);
+            serverMessage ans = new serverMessage(1, temp);
+            return sendMessage(ans).ListOfMemberMessages;
+        }
+
+        public List<Tuple<string, string, DateTime, string>> getListOfForumModerators(string forumName, string requestingUser)
+        {
+            List<string> temp = new List<string>();
+            temp.Add(forumName);
+            temp.Add(requestingUser);
+            serverMessage ans = new serverMessage(2, temp);
+            return sendMessage(ans).ListOfForumModerators;
+        }
+
+        public int numOfForums(string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(requestingUser);
+            serverMessage ans = sendMessage("numOfForums", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return ans.intContent.ElementAt(0);
+            }
+            return -1;
+        }
+
+        public List<string> getForums()
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            serverMessage ans = sendMessage("getForums", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return ans.stringContent;
+            }
+
+            return new List<string>(); 
+        }
+
+        public List<string> getSubForums(string forumName, string requestingUser)
+        {
+            List<string> strList = new List<string>();
+            List<int> intList = new List<int>();
+            strList.Add(forumName);
+            strList.Add(requestingUser);
+            serverMessage ans = sendMessage("getSubForums", strList, intList, DateTime.Now);
+            if (ans._messageType.Equals(serverMessage.messageType.success))
+            {
+                return ans.stringContent;
+            }
+
+            return new List<string>(); 
+        }
+
+        public List<Tuple<string, DateTime, int>> getThreads(string forumName, string subForumName, string requestingUser)
+        {
+            List<string> temp = new List<string>();
+            temp.Add(forumName);
+            temp.Add(requestingUser);
+            serverMessage ans = new serverMessage(3, temp);
+            return sendMessage(ans).Threads;
+        }
+
+        public List<Tuple<string, string, DateTime, int, int, string, DateTime>> getThread(string forumName, string subForumName, int openPostNo, string requestingUser)
+        {
+            List<string> temp = new List<string>();
+            temp.Add(forumName);
+            temp.Add(subForumName);
+            temp.Add(requestingUser);
+            serverMessage ans = new serverMessage(temp, openPostNo);
+            return sendMessage(ans).getThread;
+        }
+
+        private serverMessage sendMessage(string forumName, ForumPolicy policy)
+        {
+            serverMessage ans = new serverMessage(serverMessage.messageType.checkForumPolicy, policy, forumName);
+            return sendMessage(ans);
+        }
+
+      
+      
 
 
         public static string GetIP4Address()
@@ -171,7 +790,7 @@ namespace client
 
         public serverMessage sendMessage(string s, List<string> inputStrings, List<int> inputInts, DateTime time)
         {
-            int amount_bytes_read = 0;
+            
             serverMessage.messageType type = serverMessage.messageType.addForum;
 
             switch (s)
@@ -260,6 +879,12 @@ namespace client
                 
             }
             serverMessage message = new serverMessage(type, inputStrings, inputInts, time);
+            return sendMessage(message);
+        }
+
+        private serverMessage sendMessage(serverMessage message)
+        {
+            int amount_bytes_read = 0;
             byte[] ba = asen.GetBytes(serializer.Serialize(message));
             try
             {
@@ -269,14 +894,14 @@ namespace client
             {
                 return new serverMessage("error");
             }
-           
+
             while (true)
             {
                 try
                 {
                     amount_bytes_read = outputStream.Read(input_buffer, 0, input_buffer.Length);
                 }
-                catch (IOException )
+                catch (IOException)
                 {
                     return new serverMessage("error");
                 }
@@ -289,10 +914,8 @@ namespace client
 
                         str = str + Convert.ToChar(input_buffer[i]);
                     }
-                 
+
                     serverMessage temp = serializer.Deserialize<serverMessage>(str);
-                    //temp.writeData();
-                  
                     return temp;
                 }
                 else
@@ -302,104 +925,14 @@ namespace client
             }
         }
 
-        public specialServerMessage sendMessage(){
-            int amount_bytes_read = 0;
-            List<string> str1 = new List<string>();
-            str1.Add("Cars");
-            str1.Add("carsUser1");
-            str1.Add("carsUser2");
-            serverMessage message = new serverMessage(serverMessage.messageType.getListOfMemberMessages, str1, new List<int>(), DateTime.Now);
-            byte[] ba = asen.GetBytes(serializer.Serialize(message));
-            try
-            {
-                outputStream.Write(ba, 0, ba.Length);
-            }
-            catch (Exception)
-            {
-                return new specialServerMessage();
-            }
-
-            while (true)
-            {
-                try
-                {
-                    amount_bytes_read = outputStream.Read(input_buffer, 0, input_buffer.Length);
-                }
-                catch (IOException)
-                {
-                    return new specialServerMessage();
-                }
-
-                if (amount_bytes_read != 0)
-                {
-                    string str = "";
-                    for (int i = 0; i < amount_bytes_read; i++)
-                    {
-
-                        str = str + Convert.ToChar(input_buffer[i]);
-                    }
-
-                    specialServerMessage temp = serializer.Deserialize<specialServerMessage>(str);
-                    //temp.writeData();
-
-                    return temp;
-                }
-                else
-                {
-                    Console.WriteLine("no message");
-                }
-            }
-
-            //   Console.WriteLine("sent");
-            //ba = asen.GetBytes("           ");
-
-
-
-            //forum temp = serializer.Deserialize<forum>(str);
-            // temp.writeData();
-            // while (true) { }
-
-            //client.Close();
-        }
-
-
-
-
-
-         public serverMessage sendMessage2()
+        public List<string> getUsersInForum(string forumName, string requestingUser)
         {
-            int amount_bytes_read = 0;
-            //serverMessage message = new serverMessage(serverMessage.messageType.messageYouRepliedToChanged, "sent message 2 to server");
-            //byte[] ba = asen.GetBytes(serializer.Serialize(message));
+            throw new NotImplementedException();
+        }
 
-          //  outputStream.Write(ba, 0, ba.Length);
-            //Console.WriteLine("got here");
-            while (true)
-            {
-                try
-                {
-                    amount_bytes_read = outputStream.Read(input_buffer, 0, input_buffer.Length);
-                }
-                catch (IOException e) { }
-                //Console.WriteLine("should have got here");
-                if (amount_bytes_read != 0)
-                {
-                    string str = "";
-                    for (int i = 0; i < amount_bytes_read; i++)
-                    {
-
-                        str = str + Convert.ToChar(input_buffer[i]);
-                    }
-                    serverMessage temp = serializer.Deserialize<serverMessage>(str);
-                    //temp.writeData();
-                    return temp;
-                }
-                else
-                {
-                    Console.WriteLine("no message");
-                }
-            }
-
+        public List<string> getAllUsers( string requestingUser)
+        {
+            throw new NotImplementedException();
         }
     }
 }

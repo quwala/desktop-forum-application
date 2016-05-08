@@ -1,0 +1,26 @@
+﻿<Window x:Class="GUI.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="Register" Height="450" Width="750">
+    <Grid x:Name="grid">
+        <Label x:Name="userNameLbl" Content="Username"  Margin="213,52,460.333,339.667" />
+        <TextBox x:Name="userNameTxt"  Height="26" Margin="321,55,266.333,339.667" TextWrapping="Wrap" Text=""  Width="156"/>
+
+
+        <Label x:Name="passwordLbl" Content="password"  Margin="213,103,460.333,287.667" />
+        <PasswordBox x:Name="passwordTxt"  Margin="321,107,266.333,287.667"  Height="26" Width="156"/>
+
+        <Label x:Name="confirmPasswordLbl" Content="Confirm Password"  Margin="171,163,460.333,227.667" />
+        <PasswordBox x:Name="confirmPasswordTxt"  Margin="321,163,266.333,231.667"  Height="26" Width="156"/>
+
+        <Label x:Name="emailLbl" Content="email"  Margin="239,220,460.333,171.667" />
+        <TextBox x:Name="emailTxt"  Height="26" Margin="321,223,266.333,171.667" TextWrapping="Wrap" Text=""  Width="156"/>
+       
+        <Button x:Name="submitBtn" Content="submit"  Margin="357,301,308.333,88.667" Click="submitBtn_Click"/>
+
+    </Grid>
+</Window>
