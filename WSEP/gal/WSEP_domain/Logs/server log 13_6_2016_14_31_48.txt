@@ -1,0 +1,11 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username1 with eMail email1@gmail.com to forum TestingForum
+PASS: Opration succedded
+superAdmin wants to add sub forum TestingSubForum to forum TestingForum
+FAIL: 	Moderators data:
+		Username is username1, trial time is 7
+PASS: Opration succedded
+superAdmin wants to set the moderating trial time of username1 in sub forum UnexistedSubForum in forum TestingForum to 10 days
+FAIL: Wrong sub forum name. No sub forum found with such a name found in this forum.

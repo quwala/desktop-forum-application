@@ -1,0 +1,11 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username1 with eMail email1@gmail.com to forum TestingForum
+PASS: Opration succedded
+superAdmin wants to set post deletion permissions in forum 
+FAIL: Invalid input.
+ wants to set post deletion permissions in forum TestingForum
+FAIL: Invalid input.
+ wants to set post deletion permissions in forum 
+FAIL: Invalid input.

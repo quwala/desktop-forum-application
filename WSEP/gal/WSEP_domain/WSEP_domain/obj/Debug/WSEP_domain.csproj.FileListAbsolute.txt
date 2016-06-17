@@ -1,0 +1,14 @@
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\WSEP_domain.exe.config
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\WSEP_domain.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\WSEP_domain.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\FormsDataBase.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\LogServices.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\Observer.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\EntityFramework.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\FormsDataBase.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\LogServices.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\Observer.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\bin\Debug\EntityFramework.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\obj\Debug\WSEP_domain.csprojResolveAssemblyReference.cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\obj\Debug\WSEP_domain.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_domain\obj\Debug\WSEP_domain.pdb

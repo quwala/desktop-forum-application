@@ -1,0 +1,51 @@
+c:\users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\ForumsDataBase.exe.config
+c:\users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\ForumsDataBase.exe
+c:\users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\ForumsDataBase.pdb
+c:\users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\obj\Debug\ForumsDataBase.csprojResolveAssemblyReference.cache
+c:\users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\obj\Debug\ForumsDataBase.exe
+c:\users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\obj\Debug\ForumsDataBase.pdb
+c:\users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\forumDatabase.mdf
+c:\users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\forumDatabase_log.ldf
+C:\Users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Common.dll
+C:\Users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Extension.dll
+C:\Users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITesting.dll
+C:\Users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\UiaComWrapper.dll
+C:\Users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\Interop.UIAutomationClient.dll
+C:\Users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Common.xml
+C:\Users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Extension.xml
+C:\Users\שי\documents\visual studio 2013\Projects\ForumsDataBase\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITesting.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\forumDatabase.mdf
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\forumDatabase_log.ldf
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\ForumsDataBase.exe.config
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\ForumsDataBase.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\ForumsDataBase.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Common.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Extension.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITesting.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.ExtensionUtilities.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\UiaComWrapper.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\Interop.UIAutomationClient.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Common.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Extension.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITesting.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\obj\Debug\ForumsDataBase.csprojResolveAssemblyReference.cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\obj\Debug\ForumsDataBase.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\ForumsDataBase\obj\Debug\ForumsDataBase.pdb
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\forumDatabase.mdf
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\forumDatabase_log.ldf
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\ForumsDataBase.exe.config
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\ForumsDataBase.exe
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\ForumsDataBase.pdb
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Common.dll
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Extension.dll
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITesting.dll
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\UiaComWrapper.dll
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\Interop.UIAutomationClient.dll
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Common.xml
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Extension.xml
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\bin\Debug\Microsoft.VisualStudio.TestTools.UITesting.xml
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\obj\Debug\ForumsDataBase.csprojResolveAssemblyReference.cache
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\obj\Debug\ForumsDataBase.exe
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\ForumsDataBase\obj\Debug\ForumsDataBase.pdb

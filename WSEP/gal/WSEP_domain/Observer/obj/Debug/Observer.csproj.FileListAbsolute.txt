@@ -1,0 +1,5 @@
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Observer\bin\Debug\Observer.exe.config
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Observer\bin\Debug\Observer.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Observer\bin\Debug\Observer.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Observer\obj\Debug\Observer.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Observer\obj\Debug\Observer.pdb

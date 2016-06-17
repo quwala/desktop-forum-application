@@ -1,0 +1,13 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username1 with eMail email1@gmail.com to forum TestingForum
+PASS: Opration succedded
+User username1tries to login to forum 
+FAIL: Invalid input.
+User tries to login to forum TestingForum
+FAIL: Invalid input.
+User username1tries to login to forum TestingForum
+FAIL: Invalid input.
+User tries to login to forum 
+FAIL: Invalid input.

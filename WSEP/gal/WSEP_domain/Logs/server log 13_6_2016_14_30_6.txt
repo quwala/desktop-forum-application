@@ -1,0 +1,7 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username1 with eMail email1@gmail.com to forum TestingForum
+PASS: Opration succedded
+superAdmin wants to set maximal number of moderators in forum UnexistedForum
+FAIL: Forum UnexistedForum doesn't exist.

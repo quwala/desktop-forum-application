@@ -1,0 +1,10 @@
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\FormsDataBase\bin\Debug\FormsDataBase.exe.config
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\FormsDataBase\bin\Debug\FormsDataBase.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\FormsDataBase\bin\Debug\FormsDataBase.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\FormsDataBase\bin\Debug\EntityFramework.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\FormsDataBase\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\FormsDataBase\bin\Debug\EntityFramework.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\FormsDataBase\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\FormsDataBase\obj\Debug\FormsDataBase.csprojResolveAssemblyReference.cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\FormsDataBase\obj\Debug\FormsDataBase.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\FormsDataBase\obj\Debug\FormsDataBase.pdb

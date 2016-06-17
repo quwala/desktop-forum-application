@@ -1,0 +1,19 @@
+Forum System log:
+superAdmin wants to add forum Cars
+PASS: Opration succedded
+Try rgistration of new user carsUser1 with eMail email1@gmail.com to forum Cars
+PASS: Opration succedded
+User carsUser1tries to login to forum Cars
+carsUser1 login status to forum Cars is Logged in
+Try rgistration of new user carsUser2 with eMail email2@gmail.com to forum Cars
+PASS: Opration succedded
+Try rgistration of new user carsUser2 with eMail email2@gmail.com to forum Cars
+FAIL: This username is already in use in that forum. Please select another name.
+Try rgistration of new user carsUser3 with eMail email3@gmail.com to forum Cars
+PASS: Opration succedded
+Try rgistration of new user carsUser4 with eMail email4@gmail.com to forum Cars
+PASS: Opration succedded
+Try rgistration of new user carsUser5 with eMail email5@gmail.com to forum Cars
+PASS: Opration succedded
+Try rgistration of new user carsUser6 with eMail email6@gmail.com to forum Cars
+PASS: Opration succedded

@@ -1,0 +1,11 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username1 with eMail email1@gmail.com to forum TestingForum
+PASS: Opration succedded
+superAdmin wants to set minimal number of admins in forum TestingForum
+FAIL: Illegal action due to forum policy.
+superAdmin wants to set minimal number of admins in forum TestingForum
+FAIL: Invalid input.
+superAdmin wants to set minimal number of admins in forum TestingForum
+FAIL: Invalid input.

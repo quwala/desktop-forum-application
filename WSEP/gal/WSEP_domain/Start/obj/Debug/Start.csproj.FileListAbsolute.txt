@@ -1,0 +1,19 @@
+C:\Users\Gal\Desktop\University\gmrrs\WSEP\Start\bin\Debug\Start.exe.config
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\bin\Debug\Start.exe.config
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\bin\Debug\Start.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\bin\Debug\Start.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\bin\Debug\client.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\bin\Debug\GUI.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\bin\Debug\client.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\bin\Debug\GUI.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\Start.csprojResolveAssemblyReference.cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\MainWindow.g.cs
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\App.g.cs
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\Start_MarkupCompile.cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\Start_MarkupCompile.lref
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\MainWindow.baml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\Start.g.resources
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\Start.Properties.Resources.resources
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\Start.csproj.GenerateResource.Cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\Start.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\Start\obj\Debug\Start.pdb

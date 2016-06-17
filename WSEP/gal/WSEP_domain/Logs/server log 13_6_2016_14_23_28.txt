@@ -1,0 +1,11 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username1 with eMail email1@gmail.com to forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username2 with eMail email2@gmail.com to forum TestingForum
+PASS: Opration succedded
+superAdmin wants to assign username1 as admin of forum TestingForum
+PASS: Opration succedded
+username2 wants to unassign username1 from being an admin of forum TestingForum
+FAIL: Unauthorized user.

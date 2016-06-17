@@ -1,0 +1,48 @@
+C:\Users\roie dominitz\Desktop\ניסויים\server\server\bin\Debug\server.exe.config
+C:\Users\roie dominitz\Desktop\ניסויים\server\server\bin\Debug\server.exe
+C:\Users\roie dominitz\Desktop\ניסויים\server\server\bin\Debug\server.pdb
+C:\Users\roie dominitz\Desktop\ניסויים\server\server\obj\Debug\server.csprojResolveAssemblyReference.cache
+C:\Users\roie dominitz\Desktop\ניסויים\server\server\obj\Debug\server.exe
+C:\Users\roie dominitz\Desktop\ניסויים\server\server\obj\Debug\server.pdb
+C:\Users\roie dominitz\Desktop\adapter\WSEP_domain\server\bin\Debug\server.exe.config
+C:\Users\roie dominitz\Desktop\adapter\WSEP_domain\server\bin\Debug\server.exe
+C:\Users\roie dominitz\Desktop\adapter\WSEP_domain\server\bin\Debug\server.pdb
+C:\Users\roie dominitz\Desktop\adapter\WSEP_domain\server\bin\Debug\WSEP_domain.exe
+C:\Users\roie dominitz\Desktop\adapter\WSEP_domain\server\bin\Debug\WSEP_service.exe
+C:\Users\roie dominitz\Desktop\adapter\WSEP_domain\server\bin\Debug\WSEP_domain.pdb
+C:\Users\roie dominitz\Desktop\adapter\WSEP_domain\server\bin\Debug\WSEP_service.pdb
+C:\Users\roie dominitz\Desktop\adapter\WSEP_domain\server\obj\Debug\server.csprojResolveAssemblyReference.cache
+C:\Users\roie dominitz\Desktop\adapter\WSEP_domain\server\obj\Debug\server.exe
+C:\Users\roie dominitz\Desktop\adapter\WSEP_domain\server\obj\Debug\server.pdb
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\server.exe.config
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\server.exe
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\server.pdb
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\WSEP_domain.exe
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\WSEP_service.exe
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\ForumsDataBase.exe
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\WSEP_domain.pdb
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\WSEP_service.pdb
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\ForumsDataBase.pdb
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\obj\Debug\server.csprojResolveAssemblyReference.cache
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\obj\Debug\server.exe
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\obj\Debug\server.pdb
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\serverService.exe
+C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\server\bin\Debug\serverService.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\server.exe.config
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\server.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\server.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\Observer.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\serverService.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\WSEP_domain.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\LogServices.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\FormsDataBase.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\EntityFramework.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\Observer.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\serverService.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\WSEP_domain.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\LogServices.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\FormsDataBase.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\bin\Debug\EntityFramework.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\obj\Debug\server.csprojResolveAssemblyReference.cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\obj\Debug\server.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\server\obj\Debug\server.pdb

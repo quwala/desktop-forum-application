@@ -1,0 +1,17 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username1 with eMail email1@gmail.com to forum TestingForum
+PASS: Opration succedded
+superAdmin wants to add sub forum TestingSubForum to forum TestingForum
+FAIL: 	Moderators data:
+		Username is username1, trial time is 7
+PASS: Opration succedded
+Get superAdmin permission in sub forum TestingSubForum in forum 
+FAIL: Invalid input.
+Get superAdmin permission in sub forum  in forum TestingForum
+FAIL: Invalid input.
+Get  permission in sub forum TestingSubForum in forum TestingForum
+FAIL: Invalid input.
+Get  permission in sub forum  in forum 
+FAIL: Invalid input.

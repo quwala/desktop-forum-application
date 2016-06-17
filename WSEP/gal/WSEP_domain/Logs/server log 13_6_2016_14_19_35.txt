@@ -1,0 +1,5 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Checking if the given forum policy doesn't contradict current situation in forum TestingForum
+PASS: Opration succedded

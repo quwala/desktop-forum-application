@@ -1,0 +1,15 @@
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\DomainUnitTests.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\DomainUnitTests.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\WSEP_domain.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\Observer.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\LogServices.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\FormsDataBase.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\EntityFramework.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\WSEP_domain.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\Observer.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\LogServices.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\FormsDataBase.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\bin\Debug\EntityFramework.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\obj\Debug\DomainUnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\obj\Debug\DomainUnitTests.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DomainUnitTests\obj\Debug\DomainUnitTests.pdb

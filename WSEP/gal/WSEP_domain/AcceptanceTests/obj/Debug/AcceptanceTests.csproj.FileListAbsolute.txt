@@ -1,0 +1,33 @@
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Acceptance Tests\WSEP_domain\AcceptanceTests\bin\Debug\AcceptanceTests.dll
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Acceptance Tests\WSEP_domain\AcceptanceTests\bin\Debug\AcceptanceTests.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Acceptance Tests\WSEP_domain\AcceptanceTests\bin\Debug\WSEP_domain.exe
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Acceptance Tests\WSEP_domain\AcceptanceTests\bin\Debug\WSEP_service.exe
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Acceptance Tests\WSEP_domain\AcceptanceTests\bin\Debug\WSEP_domain.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Acceptance Tests\WSEP_domain\AcceptanceTests\bin\Debug\WSEP_service.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Acceptance Tests\WSEP_domain\AcceptanceTests\obj\Debug\AcceptanceTests.csprojResolveAssemblyReference.cache
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Acceptance Tests\WSEP_domain\AcceptanceTests\obj\Debug\AcceptanceTests.dll
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Acceptance Tests\WSEP_domain\AcceptanceTests\obj\Debug\AcceptanceTests.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP_domain\AcceptanceTests\bin\Debug\AcceptanceTests.dll
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP_domain\AcceptanceTests\bin\Debug\AcceptanceTests.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP_domain\AcceptanceTests\bin\Debug\WSEP_domain.exe
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP_domain\AcceptanceTests\bin\Debug\WSEP_service.exe
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP_domain\AcceptanceTests\bin\Debug\WSEP_domain.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP_domain\AcceptanceTests\bin\Debug\WSEP_service.pdb
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP_domain\AcceptanceTests\obj\Debug\AcceptanceTests.csprojResolveAssemblyReference.cache
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP_domain\AcceptanceTests\obj\Debug\AcceptanceTests.dll
+C:\Users\Magal\Documents\סמסטר ו\סדנא ליישום פרוייקט תוכנה\Workspace\WSEP_domain\AcceptanceTests\obj\Debug\AcceptanceTests.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\AcceptanceTests.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\AcceptanceTests.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\Observer.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\WSEP_domain.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\LogServices.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\FormsDataBase.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\EntityFramework.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\Observer.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\WSEP_domain.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\LogServices.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\FormsDataBase.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\bin\Debug\EntityFramework.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\obj\Debug\AcceptanceTests.csprojResolveAssemblyReference.cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\obj\Debug\AcceptanceTests.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\AcceptanceTests\obj\Debug\AcceptanceTests.pdb

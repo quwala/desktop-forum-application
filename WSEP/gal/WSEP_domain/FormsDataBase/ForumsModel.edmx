@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ForumDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="forumName" />
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="forumName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="userName" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumPolicy">
+          <Key>
+            <PropertyRef Name="forumName" />
+          </Key>
+          <Property Name="maxNumOfAdmins" Type="int" Nullable="false" />
+          <Property Name="minNumOfAdmins" Type="int" Nullable="false" />
+          <Property Name="maxNumOfModerators" Type="int" Nullable="false" />
+          <Property Name="minNumOfModerators" Type="int" Nullable="false" />
+          <Property Name="forumName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="pdp" Type="int" Nullable="false" />
+          <Property Name="passwordLifespan" Type="int" Nullable="false" />
+          <Property Name="moderatorSeniority" Type="int" Nullable="false" />
+          <Property Name="mup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Forums">
+          <Key>
+            <PropertyRef Name="forumName" />
+          </Key>
+          <Property Name="forumName" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="forumName" />
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="forumName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="userName" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Moderators">
+          <Key>
+            <PropertyRef Name="forumName" />
+            <PropertyRef Name="subForumName" />
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="forumName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="subForumName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="userName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="assigningAdmin" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="trialTime" Type="int" Nullable="false" />
+          <Property Name="assignment" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="serialNumber" />
+          </Key>
+          <Property Name="title" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="content" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="forumName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="subForumName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="userName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="creation" Type="datetime" Nullable="false" />
+          <Property Name="serialNumber" Type="int" Nullable="false" />
+          <Property Name="parentPost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrivateMessages">
+          <Key>
+            <PropertyRef Name="writer" />
+            <PropertyRef Name="creation" />
+            <PropertyRef Name="forumName" />
+          </Key>
+          <Property Name="writer" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="sendTo" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="creation" Type="datetime" Nullable="false" />
+          <Property Name="forumName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="text" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubForums">
+          <Key>
+            <PropertyRef Name="forumName" />
+            <PropertyRef Name="subForumName" />
+          </Key>
+          <Property Name="forumName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="subForumName" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="forumName" />
+          </Key>
+          <Property Name="userName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="registration" Type="datetime" Nullable="false" />
+          <Property Name="forumName" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="lastPassChange" Type="datetime" Nullable="false" />
+          <Property Name="question" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="answer" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ForumDBModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumPolicy" EntityType="Self.ForumPolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Forums" EntityType="Self.Forums" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moderators" EntityType="Self.Moderators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrivateMessages" EntityType="Self.PrivateMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubForums" EntityType="Self.SubForums" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ForumDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="forumName" />
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="forumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumPolicy">
+          <Key>
+            <PropertyRef Name="forumName" />
+          </Key>
+          <Property Name="maxNumOfAdmins" Type="Int32" Nullable="false" />
+          <Property Name="minNumOfAdmins" Type="Int32" Nullable="false" />
+          <Property Name="maxNumOfModerators" Type="Int32" Nullable="false" />
+          <Property Name="minNumOfModerators" Type="Int32" Nullable="false" />
+          <Property Name="forumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="pdp" Type="Int32" Nullable="false" />
+          <Property Name="passwordLifespan" Type="Int32" Nullable="false" />
+          <Property Name="moderatorSeniority" Type="Int32" Nullable="false" />
+          <Property Name="mup" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Forum">
+          <Key>
+            <PropertyRef Name="forumName" />
+          </Key>
+          <Property Name="forumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="forumName" />
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="forumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Moderator">
+          <Key>
+            <PropertyRef Name="forumName" />
+            <PropertyRef Name="subForumName" />
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="forumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="subForumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="assigningAdmin" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="trialTime" Type="Int32" Nullable="false" />
+          <Property Name="assignment" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="serialNumber" />
+          </Key>
+          <Property Name="title" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="forumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="subForumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="creation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="serialNumber" Type="Int32" Nullable="false" />
+          <Property Name="parentPost" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrivateMessage">
+          <Key>
+            <PropertyRef Name="writer" />
+            <PropertyRef Name="creation" />
+            <PropertyRef Name="forumName" />
+          </Key>
+          <Property Name="writer" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="sendTo" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="creation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="forumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubForum">
+          <Key>
+            <PropertyRef Name="forumName" />
+            <PropertyRef Name="subForumName" />
+          </Key>
+          <Property Name="forumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="subForumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="forumName" />
+          </Key>
+          <Property Name="userName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="registration" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="forumName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="lastPassChange" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="question" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="answer" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ForumDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="ForumPolicies" EntityType="Self.ForumPolicy" />
+          <EntitySet Name="Forums" EntityType="Self.Forum" />
+          <EntitySet Name="Members" EntityType="Self.Member" />
+          <EntitySet Name="Moderators" EntityType="Self.Moderator" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="PrivateMessages" EntityType="Self.PrivateMessage" />
+          <EntitySet Name="SubForums" EntityType="Self.SubForum" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ForumDBModelStoreContainer" CdmEntityContainer="ForumDB">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="ForumDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="forumName" ColumnName="forumName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumPolicies">
+            <EntityTypeMapping TypeName="ForumDBModel.ForumPolicy">
+              <MappingFragment StoreEntitySet="ForumPolicy">
+                <ScalarProperty Name="maxNumOfAdmins" ColumnName="maxNumOfAdmins" />
+                <ScalarProperty Name="minNumOfAdmins" ColumnName="minNumOfAdmins" />
+                <ScalarProperty Name="maxNumOfModerators" ColumnName="maxNumOfModerators" />
+                <ScalarProperty Name="minNumOfModerators" ColumnName="minNumOfModerators" />
+                <ScalarProperty Name="forumName" ColumnName="forumName" />
+                <ScalarProperty Name="pdp" ColumnName="pdp" />
+                <ScalarProperty Name="passwordLifespan" ColumnName="passwordLifespan" />
+                <ScalarProperty Name="moderatorSeniority" ColumnName="moderatorSeniority" />
+                <ScalarProperty Name="mup" ColumnName="mup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Forums">
+            <EntityTypeMapping TypeName="ForumDBModel.Forum">
+              <MappingFragment StoreEntitySet="Forums">
+                <ScalarProperty Name="forumName" ColumnName="forumName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="ForumDBModel.Member">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="forumName" ColumnName="forumName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moderators">
+            <EntityTypeMapping TypeName="ForumDBModel.Moderator">
+              <MappingFragment StoreEntitySet="Moderators">
+                <ScalarProperty Name="forumName" ColumnName="forumName" />
+                <ScalarProperty Name="subForumName" ColumnName="subForumName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="assigningAdmin" ColumnName="assigningAdmin" />
+                <ScalarProperty Name="trialTime" ColumnName="trialTime" />
+                <ScalarProperty Name="assignment" ColumnName="assignment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="ForumDBModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="forumName" ColumnName="forumName" />
+                <ScalarProperty Name="subForumName" ColumnName="subForumName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="creation" ColumnName="creation" />
+                <ScalarProperty Name="serialNumber" ColumnName="serialNumber" />
+                <ScalarProperty Name="parentPost" ColumnName="parentPost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrivateMessages">
+            <EntityTypeMapping TypeName="ForumDBModel.PrivateMessage">
+              <MappingFragment StoreEntitySet="PrivateMessages">
+                <ScalarProperty Name="writer" ColumnName="writer" />
+                <ScalarProperty Name="sendTo" ColumnName="sendTo" />
+                <ScalarProperty Name="creation" ColumnName="creation" />
+                <ScalarProperty Name="forumName" ColumnName="forumName" />
+                <ScalarProperty Name="text" ColumnName="text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubForums">
+            <EntityTypeMapping TypeName="ForumDBModel.SubForum">
+              <MappingFragment StoreEntitySet="SubForums">
+                <ScalarProperty Name="forumName" ColumnName="forumName" />
+                <ScalarProperty Name="subForumName" ColumnName="subForumName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ForumDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="registration" ColumnName="registration" />
+                <ScalarProperty Name="forumName" ColumnName="forumName" />
+                <ScalarProperty Name="lastPassChange" ColumnName="lastPassChange" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

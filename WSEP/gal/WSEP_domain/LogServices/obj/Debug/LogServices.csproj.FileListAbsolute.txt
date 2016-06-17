@@ -1,0 +1,5 @@
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\LogServices\bin\Debug\LogServices.exe.config
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\LogServices\bin\Debug\LogServices.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\LogServices\bin\Debug\LogServices.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\LogServices\obj\Debug\LogServices.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\LogServices\obj\Debug\LogServices.pdb

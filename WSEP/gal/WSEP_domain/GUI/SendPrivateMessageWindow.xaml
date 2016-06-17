@@ -1,0 +1,22 @@
+﻿<Window x:Class="GUI.SendPrivateMessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="Send Private Message" Height="450" Width="750">
+    <Grid Margin="10,0,0.333,-0.333">
+        <Label x:Name="titleLbl" Content="Title"   Margin="176,76,523.333,315.667" />
+
+        <TextBox x:Name="titleTxt"   Height="23" Margin="268,76,213.333,321.667" TextWrapping="Wrap" Text=""/>
+        <Label x:Name="contentLbl" Content="Content"   Margin="176,134,495,256" />
+
+        <TextBox x:Name="contentTxt"   Height="211" Margin="267,134,66,76" TextWrapping="Wrap" Text=""/>
+
+        <Button x:Name="sendBtn" Content="Send"   Margin="606,364,89.333,24.667" Click="sendBtn_Click"/>
+        <TextBox x:Name="recepientTxt"   Height="23" Margin="268,33,234,365" TextWrapping="Wrap" Text=""/>
+        <Label x:Name="recepientLbl" Content="Recepient"   Margin="176,29,495.333,364.667" />
+
+    </Grid>
+</Window>

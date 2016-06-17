@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ForumDBModelStoreContainer" CdmEntityContainer="ForumDB">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="ForumDBModel.Admin">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="forumName" ColumnName="forumName" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ForumPolicies">
+      <EntityTypeMapping TypeName="ForumDBModel.ForumPolicy">
+        <MappingFragment StoreEntitySet="ForumPolicy">
+          <ScalarProperty Name="maxNumOfAdmins" ColumnName="maxNumOfAdmins" />
+          <ScalarProperty Name="minNumOfAdmins" ColumnName="minNumOfAdmins" />
+          <ScalarProperty Name="maxNumOfModerators" ColumnName="maxNumOfModerators" />
+          <ScalarProperty Name="minNumOfModerators" ColumnName="minNumOfModerators" />
+          <ScalarProperty Name="forumName" ColumnName="forumName" />
+          <ScalarProperty Name="pdp" ColumnName="pdp" />
+          <ScalarProperty Name="passwordLifespan" ColumnName="passwordLifespan" />
+          <ScalarProperty Name="moderatorSeniority" ColumnName="moderatorSeniority" />
+          <ScalarProperty Name="mup" ColumnName="mup" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Forums">
+      <EntityTypeMapping TypeName="ForumDBModel.Forum">
+        <MappingFragment StoreEntitySet="Forums">
+          <ScalarProperty Name="forumName" ColumnName="forumName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="ForumDBModel.Member">
+        <MappingFragment StoreEntitySet="Members">
+          <ScalarProperty Name="forumName" ColumnName="forumName" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Moderators">
+      <EntityTypeMapping TypeName="ForumDBModel.Moderator">
+        <MappingFragment StoreEntitySet="Moderators">
+          <ScalarProperty Name="forumName" ColumnName="forumName" />
+          <ScalarProperty Name="subForumName" ColumnName="subForumName" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="assigningAdmin" ColumnName="assigningAdmin" />
+          <ScalarProperty Name="trialTime" ColumnName="trialTime" />
+          <ScalarProperty Name="assignment" ColumnName="assignment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posts">
+      <EntityTypeMapping TypeName="ForumDBModel.Post">
+        <MappingFragment StoreEntitySet="Posts">
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="forumName" ColumnName="forumName" />
+          <ScalarProperty Name="subForumName" ColumnName="subForumName" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="creation" ColumnName="creation" />
+          <ScalarProperty Name="serialNumber" ColumnName="serialNumber" />
+          <ScalarProperty Name="parentPost" ColumnName="parentPost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrivateMessages">
+      <EntityTypeMapping TypeName="ForumDBModel.PrivateMessage">
+        <MappingFragment StoreEntitySet="PrivateMessages">
+          <ScalarProperty Name="writer" ColumnName="writer" />
+          <ScalarProperty Name="sendTo" ColumnName="sendTo" />
+          <ScalarProperty Name="creation" ColumnName="creation" />
+          <ScalarProperty Name="forumName" ColumnName="forumName" />
+          <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubForums">
+      <EntityTypeMapping TypeName="ForumDBModel.SubForum">
+        <MappingFragment StoreEntitySet="SubForums">
+          <ScalarProperty Name="forumName" ColumnName="forumName" />
+          <ScalarProperty Name="subForumName" ColumnName="subForumName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ForumDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="registration" ColumnName="registration" />
+          <ScalarProperty Name="forumName" ColumnName="forumName" />
+          <ScalarProperty Name="lastPassChange" ColumnName="lastPassChange" />
+          <ScalarProperty Name="question" ColumnName="question" />
+          <ScalarProperty Name="answer" ColumnName="answer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

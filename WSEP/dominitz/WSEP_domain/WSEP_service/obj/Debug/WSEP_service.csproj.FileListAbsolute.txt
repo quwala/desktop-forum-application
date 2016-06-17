@@ -1,0 +1,14 @@
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\obj\Debug\WSEP_service.csprojResolveAssemblyReference.cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\WSEP_service.exe.config
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\WSEP_service.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\WSEP_service.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\WSEP_domain.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\WSEP_domain.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\obj\Debug\WSEP_service.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\obj\Debug\WSEP_service.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\forumDatabase.mdf
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\forumDatabase_log.ldf
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\ForumsDataBase.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\ForumsDataBase.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\WSEP_service\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml

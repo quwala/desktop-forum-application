@@ -1,0 +1,17 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username1 with eMail email1@gmail.com to forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username2 with eMail email2@gmail.com to forum TestingForum
+PASS: Opration succedded
+superAdmin wants to assign username1 as admin of forum TestingForum
+PASS: Opration succedded
+superAdmin wants to unassign username1 from being an admin of forum 
+FAIL: Invalid input.
+superAdmin wants to unassign  from being an admin of forum TestingForum
+FAIL: Invalid input.
+ wants to unassign username1 from being an admin of forum TestingForum
+FAIL: Invalid input.
+ wants to unassign  from being an admin of forum 
+FAIL: Invalid input.

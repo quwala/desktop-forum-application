@@ -1,0 +1,9 @@
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DataBaseTests\bin\Debug\DataBaseTests.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DataBaseTests\bin\Debug\DataBaseTests.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DataBaseTests\bin\Debug\FormsDataBase.exe
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DataBaseTests\bin\Debug\EntityFramework.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DataBaseTests\bin\Debug\FormsDataBase.pdb
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DataBaseTests\bin\Debug\EntityFramework.xml
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DataBaseTests\obj\Debug\DataBaseTests.csprojResolveAssemblyReference.cache
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DataBaseTests\obj\Debug\DataBaseTests.dll
+C:\Users\Gal\Documents\Visual Studio 2013\Projects\WSEP_domain\DataBaseTests\obj\Debug\DataBaseTests.pdb

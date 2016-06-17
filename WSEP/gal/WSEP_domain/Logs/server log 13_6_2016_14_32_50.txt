@@ -1,0 +1,18 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username1 with eMail email1@gmail.com to forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username2 with eMail email2@gmail.com to forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username3 with eMail email3@gmail.com to forum TestingForum
+PASS: Opration succedded
+superAdmin wants to assign username1 as admin of forum TestingForum
+PASS: Opration succedded
+superAdmin wants to add sub forum TestingSubForum to forum TestingForum
+FAIL: 	Moderators data:
+		Username is username1, trial time is 7
+		Username is username2, trial time is 7
+PASS: Opration succedded
+superAdmin wants to unassign username1 from being a moderator of sub forum TestingSubForum in forum UnexistedForum
+FAIL: Forum UnexistedForum doesn't exist.

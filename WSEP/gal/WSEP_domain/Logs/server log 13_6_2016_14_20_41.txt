@@ -1,0 +1,11 @@
+Forum System log:
+superAdmin wants to add forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username1 with eMail email1@gmail.com to forum TestingForum
+PASS: Opration succedded
+Try rgistration of new user username2 with eMail email2@gmail.com to forum TestingForum
+PASS: Opration succedded
+username1 wants to send a private msg with content 
+	Hello
+	to username2 in forum UnexistedForum
+FAIL: Wrong forum name. No forum found with such a name.
