@@ -29,7 +29,7 @@ namespace GUI
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            
 
             if (usernameTxt.Text.Equals("superAdmin") && passwordTxt.Password.Equals("superAdmin"))
             {
