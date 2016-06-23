@@ -11,13 +11,13 @@
         <TextBox x:Name="userNameTxt"  Height="26" Margin="321,55,266.333,339.667" TextWrapping="Wrap" Text=""  Width="156"/>
 
 
-        <Label x:Name="passwordLbl" Content="password"  Margin="213,103,460.333,287.667" />
+        <Label x:Name="passwordLbl" Content="Password"  Margin="213,103,460.333,287.667" />
         <PasswordBox x:Name="passwordTxt"  Margin="321,107,266.333,287.667"  Height="26" Width="156"/>
 
         <Label x:Name="confirmPasswordLbl" Content="Confirm Password"  Margin="171,163,460.333,227.667" />
         <PasswordBox x:Name="confirmPasswordTxt"  Margin="321,163,266.333,231.667"  Height="26" Width="156"/>
 
-        <Label x:Name="emailLbl" Content="email"  Margin="239,220,460.333,171.667" />
+        <Label x:Name="emailLbl" Content="Email"  Margin="239,220,460.333,171.667" />
         <TextBox x:Name="emailTxt"  Height="26" Margin="321,223,266.333,171.667" TextWrapping="Wrap" Text=""  Width="156"/>
        
         <Button x:Name="submitBtn" Content="submit"  Margin="357,301,308.333,88.667" Click="submitBtn_Click"/>

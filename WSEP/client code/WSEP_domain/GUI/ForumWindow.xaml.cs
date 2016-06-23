@@ -6,6 +6,7 @@ using System.Windows.Input;
 
 using client;
 using System.Windows.Media;
+using System;
 
 namespace GUI
 {
@@ -38,6 +39,12 @@ namespace GUI
             addSubForumBtn.Visibility = Visibility.Hidden;
             this.ResizeMode = ResizeMode.CanMinimize;
 
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Current.Shutdown();
         }
 
         private void forumsBtn_Click(object sender, RoutedEventArgs e)

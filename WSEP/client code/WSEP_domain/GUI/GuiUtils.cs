@@ -16,7 +16,7 @@ namespace GUI
             newOne.Left = oldOne.Left;
             newOne.Top = oldOne.Top;
             newOne.Show();
-            oldOne.Close();
+            oldOne.Hide();
         }
 
         public static void show(Window oldOne, Window newOne)

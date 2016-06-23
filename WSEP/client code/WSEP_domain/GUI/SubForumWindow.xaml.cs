@@ -33,10 +33,13 @@ namespace GUI
 
             threads=cl.getThreads(forumName, subForumName, userName);
 
+            //test
             threads = new List<Tuple<string, DateTime, int>>();
-            //if(threads == null) ....
+            
             threads.Add(new Tuple<string, DateTime, int>("Test Thread 1", DateTime.Now, 111));
+            //endTest
 
+            //if(threads == null) --> display no threads
             List<string> threadsStrings = new List<string>();
 
             foreach(Tuple<string, DateTime, int> thread in threads)
@@ -46,8 +49,12 @@ namespace GUI
 
             threadsListView.ItemsSource = threadsStrings;
             this.ResizeMode = ResizeMode.CanMinimize;
+        }
 
-
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Current.Shutdown();
         }
 
         private void subForumsBtn_Click(object sender, RoutedEventArgs e)
@@ -57,7 +64,20 @@ namespace GUI
 
         private void createThreadBtn_Click(object sender, RoutedEventArgs e)
         {
-           //implement
+            
+            new NewThreadWindow(forumName,subForumName, userName, cl).ShowDialog();
+            threads = cl.getThreads(forumName, subForumName, userName);
+            List<string> threadsStrings = new List<string>();
+
+            if (threads != null)
+            {
+                foreach (Tuple<string, DateTime, int> thread in threads)
+                {
+                    threadsStrings.Add(thread.Item2.ToShortDateString() + ": " + thread.Item1);
+                }
+            }
+            threadsListView.ItemsSource = threadsStrings;
+
         }
 
         

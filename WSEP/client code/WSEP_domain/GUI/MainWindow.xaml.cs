@@ -1,5 +1,6 @@
 ﻿
 using client;
+using System;
 using System.Collections.Generic;
 
 using System.Windows;
@@ -36,6 +37,13 @@ namespace GUI
 
             this.ResizeMode = ResizeMode.CanMinimize;
 
+        }
+
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Application.Current.Shutdown();
         }
 
         private void forumsListView_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

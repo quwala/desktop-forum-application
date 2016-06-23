@@ -1,0 +1,18 @@
+﻿<Window x:Class="GUI.NewThreadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="NewThreadWindow" Height="450" Width="650">
+    <Grid >
+        <TextBox x:Name="titleText"  TextWrapping="Wrap" Text="" Margin="230,122,216,269"/>
+        <TextBox x:Name="contentText" TextWrapping="Wrap" Text="" Margin="230,186,216,93" />
+        <Button x:Name="addThreadBtn" Content="Submit"  Click="submitBtn_Click" Margin="372,347,216,42" />
+        <Button x:Name="cancelBtn" Content="Cancel" Click="cancelBtn_Click" Margin="230,347,358,42" />
+        <Label x:Name="titleLbl" Content="Title" Margin="160,122,417,253" />
+        <Label x:Name="contentLbl" Content="Content" Margin="146,206,417,169" />
+
+    </Grid>
+</Window>

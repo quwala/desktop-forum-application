@@ -27,7 +27,7 @@
         <Button x:Name="sendPrivateMessageBtn" Content="send private msg"  Margin="40,129,600.333,261.667"   Width="103" Height="30" Click="sendMsgBtn_Click"/>
         
         
-        <TextBlock x:Name="loggedInTxt"  Margin="371,13,259.333,386.667" TextWrapping="Wrap" Text="Welcome, Guest"  />
+        <TextBlock x:Name="loggedInTxt"  Margin="371,13,259,379" TextWrapping="Wrap" Text="Welcome, Guest"  />
 
     </Grid>
 </Window>

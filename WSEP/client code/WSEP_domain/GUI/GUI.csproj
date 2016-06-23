@@ -62,6 +62,9 @@
     <Compile Include="NewSubForumWindow.xaml.cs">
       <DependentUpon>NewSubForumWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewThreadWindow.xaml.cs">
+      <DependentUpon>NewThreadWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,10 @@
     <Page Include="NewSubForumWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NewThreadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegisterWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

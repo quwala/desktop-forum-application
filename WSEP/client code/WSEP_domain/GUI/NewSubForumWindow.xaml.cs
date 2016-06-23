@@ -73,7 +73,7 @@ namespace GUI
             response = cl.addSubForum(forumName,subForumName,mods, userName);
             if (response.Equals("true", StringComparison.InvariantCultureIgnoreCase))
             {
-                GuiUtils.displaySuccess("Forum " + forumName + " added successfully");
+                GuiUtils.displaySuccess("Sub Forum " + subForumName + " added successfully");
                 this.Close();
             }
             else
