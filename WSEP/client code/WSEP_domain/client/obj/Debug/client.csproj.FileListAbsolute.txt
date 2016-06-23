@@ -22,9 +22,3 @@ C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוי
 C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\client\obj\Debug\client.csprojResolveAssemblyReference.cache
 C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\client\obj\Debug\client.exe
 C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\client\obj\Debug\client.pdb
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\client\bin\Debug\client.exe.config
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\client\bin\Debug\client.exe
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\client\bin\Debug\client.pdb
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\client\obj\Debug\client.csprojResolveAssemblyReference.cache
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\client\obj\Debug\client.exe
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\client\obj\Debug\client.pdb

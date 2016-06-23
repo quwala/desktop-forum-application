@@ -64,38 +64,3 @@ C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוי
 C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
 C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\GUI\obj\Debug\GUI.exe
 C:\Users\roie dominitz\Desktop\לימודים\סימסטר ו'\מיני פרוייקט\קוד 3\WSEP_domain\GUI\obj\Debug\GUI.pdb
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\bin\Debug\GUI.exe.config
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\bin\Debug\GUI.exe
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\bin\Debug\GUI.pdb
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\bin\Debug\client.exe
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\bin\Debug\WPFSmartLibraryLight35.dll
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\bin\Debug\client.pdb
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\NewForumWindow.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\ForumWindow.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\MainWindow.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\NewSubForumWindow.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\RegisterWindow.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\SendPrivateMessageWindow.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\SubForumWindow.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\SuperAdminLoginWindow.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\ThreadWindow.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\App.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\GUI_MarkupCompile.cache
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\GUI_MarkupCompile.lref
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\NewForumWindow.baml
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\ForumWindow.baml
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\MainWindow.baml
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\NewSubForumWindow.baml
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\RegisterWindow.baml
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\SendPrivateMessageWindow.baml
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\SubForumWindow.baml
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\SuperAdminLoginWindow.baml
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\ThreadWindow.baml
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\GUI.g.resources
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\GUI.Properties.Resources.resources
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\GUI.exe
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\GUI.pdb
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\NewThreadWindow.g.cs
-C:\Users\quwala\Documents\gmrrs.git\WSEP\client code\WSEP_domain\GUI\obj\Debug\NewThreadWindow.baml
